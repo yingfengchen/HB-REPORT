@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.server.mapper.CommonReportMapper">
+    <select id="executeSql" parameterType="java.util.Map" resultType="java.util.Map">
+        ${sqlStr}
+    </select>
+
+    <select id="getSqlStr" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            ss.sql_str
+        FROM sys_sql ss
+        WHERE ss.sql_name = #{sql_name}
+    </select>
+</mapper>

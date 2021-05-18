@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getAction } from '@/api/manage'
+import { httpAction } from '@/api/manage'
 
 export default {
   name: 'QuerySelect',
@@ -26,7 +26,7 @@ export default {
     event: 'changed'
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['optionConfig', 'url', 'params', 'options'],
+  props: ['optionConfig', 'url', 'params', 'options', 'method'],
   data() {
     return {
       optionsList: [],
@@ -51,7 +51,8 @@ export default {
     queryResult() {
       let that = this
       if (this.url) {
-        getAction(this.url, this.params_real).then(res => {
+        httpAction(this.url, this.params_real, this.method||'get').then(res => {
+          console.log(res)
           if (res.result && res.result.records) {
             that.optionsList = res.result.records
           } else {
