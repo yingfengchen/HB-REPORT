@@ -37,5 +37,9 @@
             <version>1.5.22</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jeecgframework.boot</groupId>
+            <artifactId>jeecg-boot-base-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

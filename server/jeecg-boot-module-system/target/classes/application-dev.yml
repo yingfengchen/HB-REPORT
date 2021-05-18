@@ -130,6 +130,9 @@ spring:
         # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
         time-between-log-stats-millis: 600000
+        wall:
+          condition-and-alway-true-allow: true
+          condition-double-const-allow: true
       datasource:
         master:
           url: jdbc:mysql://10.3.5.245:3306/mes_report?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
