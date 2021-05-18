@@ -1,34 +1,33 @@
 <template>
-  <div class='main'>
-    <a-form-model ref='form' :model='model' :rules='validatorRules' class='user-layout-login'>
-      <a-form-model-item required prop='username'>
-        <a-input v-model='model.username' size='large' placeholder='请输入帐户名 / admin'>
-          <a-icon slot='prefix' type='user' :style="{ color: 'rgba(0,0,0,.25)' }" />
+  <div class="main">
+    <a-form-model ref="form" :model="model" :rules="validatorRules" class="user-layout-login">
+      <a-form-model-item required prop="username">
+        <a-input v-model="model.username" size="large" placeholder="请输入帐户名 / admin">
+          <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }" />
         </a-input>
       </a-form-model-item>
-      <a-form-model-item required prop='password'>
-        <a-input v-model='model.password' size='large' type='password' autocomplete='false'
-                 placeholder='请输入密码 / 123456'>
-          <a-icon slot='prefix' type='lock' :style="{ color: 'rgba(0,0,0,.25)' }" />
+      <a-form-model-item required prop="password">
+        <a-input v-model="model.password" size="large" type="password" autocomplete="false"
+                 placeholder="请输入密码 / 123456">
+          <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }" />
         </a-input>
       </a-form-model-item>
 
       <a-form-model-item>
-        <a-checkbox @change='handleRememberMeChange' default-checked>自动登录</a-checkbox>
+        <a-checkbox @change="handleRememberMeChange" default-checked>自动登录</a-checkbox>
       </a-form-model-item>
 
-      <a-form-item style='margin-top:24px'>
-        <a-button size='large' type='primary' htmlType='submit' class='login-button' :loading='loginBtn'
-                  @click.stop.prevent='handleSubmit' :disabled='loginBtn'>确定
+      <a-form-item style="margin-top:24px">
+        <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="loginBtn"
+                  @click.stop.prevent="handleSubmit" :disabled="loginBtn">确定
         </a-button>
       </a-form-item>
 
     </a-form-model>
 
-    <two-step-captcha v-if='requiredTwoStepCaptcha' :visible='stepCaptchaVisible' @success='stepCaptchaSuccess'
-                      @cancel='stepCaptchaCancel'></two-step-captcha>
-    <login-select-tenant ref='loginSelect' @success='loginSelectOk'></login-select-tenant>
-    <!--<third-login ref='thirdLogin'></third-login>-->
+    <two-step-captcha v-if="requiredTwoStepCaptcha" :visible="stepCaptchaVisible" @success="stepCaptchaSuccess"
+                      @cancel="stepCaptchaCancel"></two-step-captcha>
+    <login-select-tenant ref="loginSelect" @success="loginSelectOk"></login-select-tenant>
   </div>
 </template>
 
@@ -37,7 +36,6 @@ import { postAction, getAction } from '@/api/manage'
 import Vue from 'vue'
 import { ACCESS_TOKEN, ENCRYPTED_STRING } from '@/store/mutation-types'
 import { mapActions } from 'vuex'
-import ThirdLogin from './third/ThirdLogin'
 import LoginSelectTenant from './LoginSelectTenant'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { encryption, getEncryptedString } from '@/utils/encryption/aesEncrypt'
@@ -46,8 +44,7 @@ import { timeFix } from '@/utils/util'
 export default {
   components: {
     LoginSelectTenant,
-    TwoStepCaptcha,
-    ThirdLogin
+    TwoStepCaptcha
   },
   data() {
     return {
@@ -311,7 +308,7 @@ export default {
 
 }
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
 .user-layout-login {
   margin-top: 25%;
 
