@@ -1,0 +1,12 @@
+org\jeecg\common\constant\CacheConstant.class
+org\jeecg\common\modules\redis\receiver\RedisReceiver.class
+org\jeecg\common\config\CommonConfig.class
+org\jeecg\common\modules\redis\client\JeecgRedisClient.class
+org\jeecg\common\modules\redis\config\RedisConfig.class
+org\jeecg\common\constant\GlobalConstants.class
+org\jeecg\common\base\BaseMap.class
+org\jeecg\common\modules\redis\writer\JeecgRedisCacheWriter.class
+org\jeecg\common\util\RedisUtil.class
+org\jeecg\common\modules\redis\listener\JeecgRedisListerer.class
+org\jeecg\common\util\SpringContextHolder.class
+org\jeecg\common\annotation\RabbitComponent.class

@@ -1,0 +1,1765 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Logback Log Messages</title>
+<style  type="text/css">
+table { margin-left: 2em; margin-right: 2em; border-left: 2px solid #AAA; }
+TR.even { background: #FFFFFF; }
+TR.odd { background: #EAEAEA; }
+TR.warn TD.Level, TR.error TD.Level, TR.fatal TD.Level {font-weight: bold; color: #FF4040 }
+TD { padding-right: 1ex; padding-left: 1ex; border-right: 2px solid #AAA; }
+TD.Time, TD.Date { text-align: right; font-family: courier, monospace; font-size: smaller; }
+TD.Thread { text-align: left; }
+TD.Level { text-align: right; }
+TD.Logger { text-align: left; }
+TR.header { background: #596ED5; color: #FFF; font-weight: bold; font-size: larger; }
+TD.Exception { background: #A2AEE8; font-family: courier, monospace;}
+</style>
+
+  </head>
+<body>
+<hr/>
+<p>Log session start time Fri May 07 16:00:10 CST 2021</p><p></p>
+
+<table cellspacing="0">
+<tr class="header">
+<td class="Level">Level</td>
+<td class="Date">Date</td>
+<td class="Message">Message</td>
+<td class="MethodOfCaller">MethodOfCaller</td>
+<td class="FileOfCaller">FileOfCaller</td>
+<td class="LineOfCaller">LineOfCaller</td>
+</tr>
+
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:10,944</td>
+<td class="Message">HV000001: Hibernate Validator 6.1.6.Final</td>
+<td class="MethodOfCaller">&lt;clinit&gt;</td>
+<td class="FileOfCaller">Version.java</td>
+<td class="LineOfCaller">21</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:10,994</td>
+<td class="Message">Starting JeecgSystemApplication on YRK with PID 25028 (E:\personalSpace\BAG02\server\jeecg-boot-module-system\target\classes started by 19732 in E:\personalSpace\BAG02\server)</td>
+<td class="MethodOfCaller">logStarting</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:10,995</td>
+<td class="Message">The following profiles are active: dev</td>
+<td class="MethodOfCaller">logStartupProfileInfo</td>
+<td class="FileOfCaller">SpringApplication.java</td>
+<td class="LineOfCaller">655</td>
+</tr>
+
+<tr class="warn odd">
+<td class="Level">WARN</td>
+<td class="Date">2021-05-07 16:00:11,560</td>
+<td class="Message">For Jackson Kotlin classes support please add &quot;com.fasterxml.jackson.module:jackson-module-kotlin&quot; to the classpath</td>
+<td class="MethodOfCaller">warn</td>
+<td class="FileOfCaller">CompositeLog.java</td>
+<td class="LineOfCaller">127</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,036</td>
+<td class="Message">Multiple Spring Data modules found, entering strict repository configuration mode!</td>
+<td class="MethodOfCaller">multipleStoresDetected</td>
+<td class="FileOfCaller">RepositoryConfigurationDelegate.java</td>
+<td class="LineOfCaller">249</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,039</td>
+<td class="Message">Bootstrapping Spring Data Redis repositories in DEFAULT mode.</td>
+<td class="MethodOfCaller">registerRepositoriesIn</td>
+<td class="FileOfCaller">RepositoryConfigurationDelegate.java</td>
+<td class="LineOfCaller">127</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,180</td>
+<td class="Message">Finished Spring Data repository scanning in 125ms. Found 0 Redis repository interfaces.</td>
+<td class="MethodOfCaller">registerRepositoriesIn</td>
+<td class="FileOfCaller">RepositoryConfigurationDelegate.java</td>
+<td class="LineOfCaller">187</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,306</td>
+<td class="Message"> ******************* init miniDao config [ begin ] *********************** </td>
+<td class="MethodOfCaller">miniDaoBeanScannerConfigurer</td>
+<td class="FileOfCaller">MinidaoAutoConfiguration.java</td>
+<td class="LineOfCaller">24</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,307</td>
+<td class="Message"> ------ minidao.base-package ------- org.jeecg.modules.jmreport.*</td>
+<td class="MethodOfCaller">miniDaoBeanScannerConfigurer</td>
+<td class="FileOfCaller">MinidaoAutoConfiguration.java</td>
+<td class="LineOfCaller">26</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,307</td>
+<td class="Message"> ------ minidao.db-type ------------ mysql</td>
+<td class="MethodOfCaller">miniDaoBeanScannerConfigurer</td>
+<td class="FileOfCaller">MinidaoAutoConfiguration.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,310</td>
+<td class="Message"> *******************  init miniDao config  [ end ] *********************** </td>
+<td class="MethodOfCaller">miniDaoBeanScannerConfigurer</td>
+<td class="FileOfCaller">MinidaoAutoConfiguration.java</td>
+<td class="LineOfCaller">44</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,385</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,386</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDataSourceDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDbDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDbFieldDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDbParamDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDictDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportDictItemDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportLinkDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportMapDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,387</td>
+<td class="Message">register minidao name is { org.jeecg.modules.jmreport.desreport.dao.JimuReportShareDao }</td>
+<td class="MethodOfCaller">doScan</td>
+<td class="FileOfCaller">MiniDaoClassPathMapperScanner.java</td>
+<td class="LineOfCaller">48</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,606</td>
+<td class="Message">Bean &#39;org.springframework.boot.autoconfigure.jdbc.JdbcTemplateConfiguration&#39; of type [org.springframework.boot.autoconfigure.jdbc.JdbcTemplateConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,660</td>
+<td class="Message">Bean &#39;spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties&#39; of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,662</td>
+<td class="Message">Bean &#39;com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration&#39; of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$f56d25bc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,676</td>
+<td class="Message">Bean &#39;com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceCreatorAutoConfiguration&#39; of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceCreatorAutoConfiguration$$EnhancerBySpringCGLIB$$1b40e5c6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,699</td>
+<td class="Message">Bean &#39;basicDataSourceCreator&#39; of type [com.baomidou.dynamic.datasource.creator.BasicDataSourceCreator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,702</td>
+<td class="Message">Bean &#39;jndiDataSourceCreator&#39; of type [com.baomidou.dynamic.datasource.creator.JndiDataSourceCreator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,704</td>
+<td class="Message">Bean &#39;druidDataSourceCreator&#39; of type [com.baomidou.dynamic.datasource.creator.DruidDataSourceCreator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,705</td>
+<td class="Message">Bean &#39;hikariDataSourceCreator&#39; of type [com.baomidou.dynamic.datasource.creator.HikariDataSourceCreator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,706</td>
+<td class="Message">Bean &#39;dataSourceCreator&#39; of type [com.baomidou.dynamic.datasource.creator.DataSourceCreator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:13,707</td>
+<td class="Message">Bean &#39;dynamicDataSourceProvider&#39; of type [com.baomidou.dynamic.datasource.provider.YmlDynamicDataSourceProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,467</td>
+<td class="Message">{dataSource-1,master} inited</td>
+<td class="MethodOfCaller">init</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">994</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,468</td>
+<td class="Message">dynamic-datasource - load a datasource named [master] success</td>
+<td class="MethodOfCaller">addDataSource</td>
+<td class="FileOfCaller">DynamicRoutingDataSource.java</td>
+<td class="LineOfCaller">132</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,469</td>
+<td class="Message">dynamic-datasource initial loaded [1] datasource,primary datasource named [master]</td>
+<td class="MethodOfCaller">afterPropertiesSet</td>
+<td class="FileOfCaller">DynamicRoutingDataSource.java</td>
+<td class="LineOfCaller">237</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,469</td>
+<td class="Message">Bean &#39;dataSource&#39; of type [com.baomidou.dynamic.datasource.DynamicRoutingDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,470</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:00:15&quot;,&quot;connectCount&quot;:0,&quot;closeCount&quot;:0,&quot;physicalConnectCount&quot;:5}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,472</td>
+<td class="Message">Bean &#39;spring.jdbc-org.springframework.boot.autoconfigure.jdbc.JdbcProperties&#39; of type [org.springframework.boot.autoconfigure.jdbc.JdbcProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,481</td>
+<td class="Message">Bean &#39;jdbcTemplate&#39; of type [org.springframework.jdbc.core.JdbcTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,482</td>
+<td class="Message">Bean &#39;org.springframework.boot.autoconfigure.jdbc.NamedParameterJdbcTemplateConfiguration&#39; of type [org.springframework.boot.autoconfigure.jdbc.NamedParameterJdbcTemplateConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,486</td>
+<td class="Message">Bean &#39;namedParameterJdbcTemplate&#39; of type [org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,489</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#9&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,493</td>
+<td class="Message">Bean &#39;jimuReportShareDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,495</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#8&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,496</td>
+<td class="Message">Bean &#39;jimuReportMapDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,497</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#7&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,498</td>
+<td class="Message">Bean &#39;jimuReportLinkDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,500</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#6&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,501</td>
+<td class="Message">Bean &#39;jimuReportDictItemDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,503</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#5&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,505</td>
+<td class="Message">Bean &#39;jimuReportDictDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,506</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#4&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,507</td>
+<td class="Message">Bean &#39;jimuReportDbParamDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,509</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#3&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,510</td>
+<td class="Message">Bean &#39;jimuReportDbFieldDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,511</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#2&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,512</td>
+<td class="Message">Bean &#39;jimuReportDbDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,513</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1#1&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,514</td>
+<td class="Message">Bean &#39;jimuReportDataSourceDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,516</td>
+<td class="Message">Bean &#39;(inner bean)#77d959f1&#39; of type [org.jeecgframework.minidao.aop.MiniDaoHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,517</td>
+<td class="Message">Bean &#39;jimuReportDao&#39; of type [org.jeecgframework.minidao.factory.MiniDaoBeanFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,526</td>
+<td class="Message">Bean &#39;spring.redis-org.springframework.boot.autoconfigure.data.redis.RedisProperties&#39; of type [org.springframework.boot.autoconfigure.data.redis.RedisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,530</td>
+<td class="Message">Bean &#39;org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration&#39; of type [org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,622</td>
+<td class="Message">Bean &#39;lettuceClientResources&#39; of type [io.lettuce.core.resource.DefaultClientResources] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,721</td>
+<td class="Message">Bean &#39;redisConnectionFactory&#39; of type [org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,723</td>
+<td class="Message">Bean &#39;shiroConfig&#39; of type [org.jeecg.config.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$eb1afce4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,783</td>
+<td class="Message">Bean &#39;shiroRealm&#39; of type [org.jeecg.config.shiro.ShiroRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,818</td>
+<td class="Message">===============(1)创建缓存管理器RedisCacheManager</td>
+<td class="MethodOfCaller">redisCacheManager</td>
+<td class="FileOfCaller">ShiroConfig.java</td>
+<td class="LineOfCaller">208</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,820</td>
+<td class="Message">===============(2)创建RedisManager,连接Redis..</td>
+<td class="MethodOfCaller">redisManager</td>
+<td class="FileOfCaller">ShiroConfig.java</td>
+<td class="LineOfCaller">226</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,824</td>
+<td class="Message">Bean &#39;redisManager&#39; of type [org.crazycake.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,828</td>
+<td class="Message">Bean &#39;securityManager&#39; of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:15,859</td>
+<td class="Message">Bean &#39;authorizationAttributeSourceAdvisor&#39; of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,074</td>
+<td class="Message">Bean &#39;dsProcessor&#39; of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,088</td>
+<td class="Message">Bean &#39;redisConfig&#39; of type [org.jeecg.common.modules.redis.config.RedisConfig$$EnhancerBySpringCGLIB$$87d0d14] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,128</td>
+<td class="Message">Bean &#39;org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration&#39; of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$9ef7929b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,132</td>
+<td class="Message">Bean &#39;eventBus&#39; of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</td>
+<td class="MethodOfCaller">postProcessAfterInitialization</td>
+<td class="FileOfCaller">PostProcessorRegistrationDelegate.java</td>
+<td class="LineOfCaller">335</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,462</td>
+<td class="Message">Tomcat initialized with port(s): 8080 (http)</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">108</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,474</td>
+<td class="Message">Initializing ProtocolHandler [&quot;http-nio-8080&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,475</td>
+<td class="Message">Starting service [Tomcat]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,475</td>
+<td class="Message">Starting Servlet engine: [Apache Tomcat/9.0.39]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,711</td>
+<td class="Message">Initializing Spring embedded WebApplicationContext</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:16,711</td>
+<td class="Message">Root WebApplicationContext: initialization completed in 5657 ms</td>
+<td class="MethodOfCaller">prepareWebApplicationContext</td>
+<td class="FileOfCaller">ServletWebServerApplicationContext.java</td>
+<td class="LineOfCaller">285</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:19,846</td>
+<td class="Message"> --- redis config init --- </td>
+<td class="MethodOfCaller">redisTemplate</td>
+<td class="FileOfCaller">RedisConfig.java</td>
+<td class="LineOfCaller">76</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,779</td>
+<td class="Message">Using default implementation for ThreadExecutor</td>
+<td class="MethodOfCaller">instantiate</td>
+<td class="FileOfCaller">StdSchedulerFactory.java</td>
+<td class="LineOfCaller">1220</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,781</td>
+<td class="Message">Job execution threads will use class loader of thread: main</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">SimpleThreadPool.java</td>
+<td class="LineOfCaller">268</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,791</td>
+<td class="Message">Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl</td>
+<td class="MethodOfCaller">&lt;init&gt;</td>
+<td class="FileOfCaller">SchedulerSignalerImpl.java</td>
+<td class="LineOfCaller">61</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,793</td>
+<td class="Message">Quartz Scheduler v.2.3.2 created.</td>
+<td class="MethodOfCaller">&lt;init&gt;</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">229</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,797</td>
+<td class="Message">Using db table-based data access locking (synchronization).</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">672</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,799</td>
+<td class="Message">JobStoreCMT initialized.</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">JobStoreCMT.java</td>
+<td class="LineOfCaller">145</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,800</td>
+<td class="Message">Scheduler meta-data: Quartz Scheduler (v2.3.2) &#39;MyScheduler&#39; with instanceId &#39;YRK1620374420780&#39;
+  Scheduler class: &#39;org.quartz.core.QuartzScheduler&#39; - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool &#39;org.quartz.simpl.SimpleThreadPool&#39; - with 10 threads.
+  Using job-store &#39;org.springframework.scheduling.quartz.LocalDataSourceJobStore&#39; - which supports persistence. and is clustered.
+</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">294</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,800</td>
+<td class="Message">Quartz scheduler &#39;MyScheduler&#39; initialized from an externally provided properties instance.</td>
+<td class="MethodOfCaller">instantiate</td>
+<td class="FileOfCaller">StdSchedulerFactory.java</td>
+<td class="LineOfCaller">1374</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,800</td>
+<td class="Message">Quartz scheduler version: 2.3.2</td>
+<td class="MethodOfCaller">instantiate</td>
+<td class="FileOfCaller">StdSchedulerFactory.java</td>
+<td class="LineOfCaller">1378</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:20,801</td>
+<td class="Message">JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@572d1f18</td>
+<td class="MethodOfCaller">setJobFactory</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">2293</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:22,151</td>
+<td class="Message"> --- Init JimuReport Config --- </td>
+<td class="MethodOfCaller">afterPropertiesSet</td>
+<td class="FileOfCaller">JimuReportConfiguration.java</td>
+<td class="LineOfCaller">52</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:22,900</td>
+<td class="Message">Exposing 2 endpoint(s) beneath base path &#39;/actuator&#39;</td>
+<td class="MethodOfCaller">&lt;init&gt;</td>
+<td class="FileOfCaller">EndpointLinksResolver.java</td>
+<td class="LineOfCaller">58</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:23,031</td>
+<td class="Message"> 代码生成器数据库连接，使用application.yml的DB配置 ###################</td>
+<td class="MethodOfCaller">initCodeGenerateDbConfig</td>
+<td class="FileOfCaller">CodeGenerateDbConfig.java</td>
+<td class="LineOfCaller">34</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:23,139</td>
+<td class="Message">Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]</td>
+<td class="MethodOfCaller">initHandlerMethods</td>
+<td class="FileOfCaller">PropertySourcedRequestMappingHandlerMapping.java</td>
+<td class="LineOfCaller">69</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:23,509</td>
+<td class="Message">Initializing ExecutorService &#39;applicationTaskExecutor&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">181</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,194</td>
+<td class="Message">Starting ProtocolHandler [&quot;http-nio-8080&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,220</td>
+<td class="Message">Tomcat started on port(s): 8080 (http) with context path &#39;/jeecg-boot&#39;</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">220</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,221</td>
+<td class="Message">Context refreshed</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">DocumentationPluginsBootstrapper.java</td>
+<td class="LineOfCaller">160</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,237</td>
+<td class="Message">Found 1 custom documentation plugin(s)</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">DocumentationPluginsBootstrapper.java</td>
+<td class="LineOfCaller">163</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,299</td>
+<td class="Message">Scanning for api listing references</td>
+<td class="MethodOfCaller">scan</td>
+<td class="FileOfCaller">ApiListingReferenceScanner.java</td>
+<td class="LineOfCaller">41</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,513</td>
+<td class="Message">Generating unique operation named: addUsingPOST_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,514</td>
+<td class="Message">Generating unique operation named: deleteUsingDELETE_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,516</td>
+<td class="Message">Generating unique operation named: deleteBatchUsingDELETE_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,517</td>
+<td class="Message">Generating unique operation named: editUsingPUT_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,519</td>
+<td class="Message">Generating unique operation named: queryByIdUsingGET_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,523</td>
+<td class="Message">Generating unique operation named: queryPageListUsingGET_1</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,527</td>
+<td class="Message">Generating unique operation named: addUsingPOST_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,528</td>
+<td class="Message">Generating unique operation named: deleteUsingDELETE_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,530</td>
+<td class="Message">Generating unique operation named: deleteBatchUsingDELETE_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,532</td>
+<td class="Message">Generating unique operation named: editUsingPUT_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,533</td>
+<td class="Message">Generating unique operation named: queryByIdUsingGET_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,537</td>
+<td class="Message">Generating unique operation named: queryPageListUsingGET_2</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,541</td>
+<td class="Message">Generating unique operation named: addUsingPOST_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,543</td>
+<td class="Message">Generating unique operation named: deleteUsingDELETE_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,544</td>
+<td class="Message">Generating unique operation named: deleteBatchUsingDELETE_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,545</td>
+<td class="Message">Generating unique operation named: editUsingPUT_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,547</td>
+<td class="Message">Generating unique operation named: queryByIdUsingGET_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,550</td>
+<td class="Message">Generating unique operation named: queryPageListUsingGET_3</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,558</td>
+<td class="Message">Generating unique operation named: addUsingPOST_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,559</td>
+<td class="Message">Generating unique operation named: deleteUsingDELETE_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,561</td>
+<td class="Message">Generating unique operation named: deleteBatchUsingDELETE_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,562</td>
+<td class="Message">Generating unique operation named: editUsingPUT_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,563</td>
+<td class="Message">Generating unique operation named: queryByIdUsingGET_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,567</td>
+<td class="Message">Generating unique operation named: queryPageListUsingGET_4</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,576</td>
+<td class="Message">Generating unique operation named: addUsingPOST_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,577</td>
+<td class="Message">Generating unique operation named: deleteUsingDELETE_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,579</td>
+<td class="Message">Generating unique operation named: deleteBatchUsingDELETE_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,580</td>
+<td class="Message">Generating unique operation named: editUsingPUT_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,582</td>
+<td class="Message">Generating unique operation named: queryByIdUsingGET_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:24,590</td>
+<td class="Message">Generating unique operation named: queryPageListUsingGET_5</td>
+<td class="MethodOfCaller">startingWith</td>
+<td class="FileOfCaller">CachingOperationNameGenerator.java</td>
+<td class="LineOfCaller">40</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,047</td>
+<td class="Message">Starting Quartz Scheduler now</td>
+<td class="MethodOfCaller">startScheduler</td>
+<td class="FileOfCaller">SchedulerFactoryBean.java</td>
+<td class="LineOfCaller">727</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,482</td>
+<td class="Message">ClusterManager: detected 1 failed or restarted instances.</td>
+<td class="MethodOfCaller">logWarnIfNonZero</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">3644</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,483</td>
+<td class="Message">ClusterManager: Scanning for instance &quot;YRK1620287906435&quot;&#39;s failed in-progress jobs.</td>
+<td class="MethodOfCaller">clusterRecover</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">3503</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,673</td>
+<td class="Message">Scheduler MyScheduler_$_YRK1620374420780 started.</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">547</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,707</td>
+<td class="Message">Started JeecgSystemApplication in 16.641 seconds (JVM running for 19.116)</td>
+<td class="MethodOfCaller">logStarted</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">61</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:00:26,718</td>
+<td class="Message">
+----------------------------------------------------------
+	Application Jeecg-Boot is running! Access URLs:
+	Local: 		http://localhost:8080/jeecg-boot/
+	External: 	http://10.147.20.207:8080/jeecg-boot/
+	Swagger文档: 	http://10.147.20.207:8080/jeecg-boot/doc.html
+----------------------------------------------------------</td>
+<td class="MethodOfCaller">main</td>
+<td class="FileOfCaller">JeecgSystemApplication.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:20,345</td>
+<td class="Message">Initializing Spring DispatcherServlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:20,345</td>
+<td class="Message">Initializing Servlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">525</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:20,359</td>
+<td class="Message">Completed initialization in 14 ms</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">547</td>
+</tr>
+
+<tr class="error odd">
+<td class="Level">ERROR</td>
+<td class="Date">2021-05-07 16:06:20,642</td>
+<td class="Message">Servlet.service() for servlet [dispatcherServlet] in context with path [/jeecg-boot] threw exception [org.apache.shiro.authc.AuthenticationException: Token失效，请重新登录] with root cause</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">175</td>
+</tr>
+<tr><td class="Exception" colspan="6">org.apache.shiro.authc.AuthenticationException: Token失效，请重新登录!
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.jeecg.config.shiro.ShiroRealm.checkUserTokenIsEffect(ShiroRealm.java:127)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.jeecg.config.shiro.ShiroRealm.doGetAuthenticationInfo(ShiroRealm.java:99)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.realm.AuthenticatingRealm.getAuthenticationInfo(AuthenticatingRealm.java:571)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.authc.pam.ModularRealmAuthenticator.doSingleRealmAuthentication(ModularRealmAuthenticator.java:180)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.authc.pam.ModularRealmAuthenticator.doAuthenticate(ModularRealmAuthenticator.java:273)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.authc.AbstractAuthenticator.authenticate(AbstractAuthenticator.java:198)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.mgt.AuthenticatingSecurityManager.authenticate(AuthenticatingSecurityManager.java:106)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.mgt.DefaultSecurityManager.login(DefaultSecurityManager.java:275)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.subject.support.DelegatingSubject.login(DelegatingSubject.java:260)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.jeecg.config.shiro.filters.JwtFilter.executeLogin(JwtFilter.java:65)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.jeecg.config.shiro.filters.JwtFilter.isAccessAllowed(JwtFilter.java:43)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.filter.AccessControlFilter.onPreHandle(AccessControlFilter.java:162)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.filter.PathMatchingFilter.isFilterChainContinued(PathMatchingFilter.java:223)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.filter.PathMatchingFilter.preHandle(PathMatchingFilter.java:198)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.jeecg.config.shiro.filters.JwtFilter.preHandle(JwtFilter.java:95)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:131)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:450)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.github.xiaoymin.knife4j.spring.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.github.xiaoymin.knife4j.spring.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:90)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:88)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:93)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at java.base/java.lang.Thread.run(Thread.java:829)
+</td></tr>
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:20,902</td>
+<td class="Message"> 用户名:  管理员,退出成功！ </td>
+<td class="MethodOfCaller">logout</td>
+<td class="FileOfCaller">LoginController.java</td>
+<td class="LineOfCaller">141</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:23,761</td>
+<td class="Message">redis remove key:sys:cache:user::admin</td>
+<td class="MethodOfCaller">remove</td>
+<td class="FileOfCaller">JeecgRedisCacheWriter.java</td>
+<td class="LineOfCaller">104</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:06:24,601</td>
+<td class="Message">【websocket消息】有新的连接，总数为:1</td>
+<td class="MethodOfCaller">onOpen</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">57</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:08:11,884</td>
+<td class="Message">【websocket消息】连接断开，总数为:0</td>
+<td class="MethodOfCaller">onClose</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">67</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:10:15,484</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:6,&quot;activePeakTime&quot;:&quot;2021-05-07 16:06:34&quot;,&quot;poolingCount&quot;:6,&quot;poolingPeak&quot;:6,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:06:35&quot;,&quot;connectCount&quot;:120,&quot;closeCount&quot;:120,&quot;notEmptyWaitCount&quot;:2,&quot;notEmptyWaitMillis&quot;:518,&quot;physicalConnectCount&quot;:1,&quot;executeCount&quot;:183,&quot;commitCount&quot;:151,&quot;pstmtCacheHitCount&quot;:149,&quot;pstmtCacheMissCount&quot;:34,&quot;startTransactionCount&quot;:92,&quot;transactionHistogram&quot;:[0,0,59,33],&quot;connectionHoldTimeHistogram&quot;:[1,1,17,100,1],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_LOCKS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND LOCK_NAME = ? FOR UPDATE&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:52,&quot;executeMillisTotal&quot;:101,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2],&quot;inTransactionCount&quot;:2},{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:83,&quot;executeMillisTotal&quot;:2230,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[59],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:59,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;SELECT DISTINCT INSTANCE_NAME FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:30,&quot;executeMillisTotal&quot;:30,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:64,&quot;executeMillisTotal&quot;:1713,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[0,0,59],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:58,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[1,58],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;INSERT INTO QRTZ_SCHEDULER_STATE (SCHED_NAME, INSTANCE_NAME, LAST_CHECKIN_TIME, CHECKIN_INTERVAL) VALUES(&#39;MyScheduler&#39;, ?, ?, ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:44,&quot;executeMillisTotal&quot;:44,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:1,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,1],&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:45,&quot;executeMillisTotal&quot;:45,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;DELETE FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:36,&quot;executeMillisTotal&quot;:36,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;DELETE FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:25,&quot;executeMillisTotal&quot;:25,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:1,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,1],&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:60,&quot;executeMillisTotal&quot;:343,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:23,&quot;executeMillisMax&quot;:106,&quot;executeMillisTotal&quot;:1384,&quot;executeHistogram&quot;:[0,0,22,1],&quot;executeAndResultHoldHistogram&quot;:[23],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:23},{&quot;sql&quot;:&quot;select * from  sys_user  where username = ? and del_flag = 0&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:35,&quot;executeMillisTotal&quot;:58,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;insert into sys_log (id, log_type, log_content, method, operate_type, request_param, ip, userid, username, cost_time, create_time)\n        values(\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?,\n            ?\n        )&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:97,&quot;executeMillisTotal&quot;:154,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[0,0,2],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:2,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT  id,username,realname,password,salt,avatar,birthday,sex,email,phone,org_code,status,del_flag,work_no,post,telephone,create_by,create_time,update_by,update_time,activiti_sync,user_identity,depart_ids,rel_tenant_ids,client_id  FROM sys_user \n WHERE  del_flag=0\n\nAND (username = ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:34,&quot;executeMillisTotal&quot;:34,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;select * from sys_depart where id IN ( select dep_id from sys_user_depart where user_id = ? )&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:35,&quot;executeMillisTotal&quot;:35,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;UPDATE sys_user SET org_code = ? where username = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:50,&quot;executeMillisTotal&quot;:50,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:1,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT  id,type,dict_name,dict_code,description,del_flag,create_by,create_time,update_by,update_time  FROM sys_dict \n WHERE del_flag=0&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:26,&quot;executeMillisTotal&quot;:26,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:41,&quot;fetchRowCountMax&quot;:41,&quot;fetchRowHistogram&quot;:[0,0,1]},{&quot;sql&quot;:&quot;SELECT  id,dict_id,item_text,item_value,description,sort_order,status,create_by,create_time,update_by,update_time  FROM sys_dict_item \n \n WHERE (status = ?) ORDER BY sort_order ASC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:50,&quot;executeMillisTotal&quot;:50,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:121,&quot;fetchRowCountMax&quot;:121,&quot;fetchRowHistogram&quot;:[0,0,0,1]},{&quot;sql&quot;:&quot;SELECT * FROM (\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE (exists(\n\t\t\t\t\t\tselect a.id from sys_role_permission a\n\t\t\t\t\t\tjoin sys_role b on a.role_id = b.id\n\t\t\t\t\t\tjoin sys_user_role c on c.role_id = b.id\n\t\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t\t\t)\n\t\t\t\t\tor (p.url like &#39;%:code&#39; and p.url like &#39;/online%&#39; and p.hidden = 1)\n\t\t\t\t\tor p.url = &#39;/online&#39;)\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t\t   UNION\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE exists(\n\t\t\t\t\tselect a.id from sys_depart_role_permission a\n\t\t\t\t\tjoin sys_depart_role b on a.role_id = b.id\n\t\t\t\t\tjoin sys_depart_role_user c on c.drole_id = b.id\n\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t   )\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t   ) h order by h.sort_no ASC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:32,&quot;executeMillisTotal&quot;:32,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:71,&quot;fetchRowCountMax&quot;:71,&quot;fetchRowHistogram&quot;:[0,0,1]},{&quot;sql&quot;:&quot;SELECT  id,parent_id,name,perms,perms_type,icon,component,component_name,url,redirect,sort_no,menu_type,is_leaf AS leaf,is_route AS route,keep_alive,description,create_by,del_flag,rule_flag,hidden,create_time,update_by,update_time,status,always_show,internal_or_external  FROM sys_permission \n \n WHERE (del_flag = ? AND menu_type = ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:23,&quot;executeMillisTotal&quot;:23,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:6,&quot;fetchRowCountMax&quot;:6,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (stvc.tag_name, &#39;.&#39;, 1) AS tag_name,\n            stvc.value\n        FROM sdyy_tag_value_current stvc\n        WHERE FIND_IN_SET(stvc.tag_name, ?)&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:80,&quot;executeMillisTotal&quot;:106,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:11,&quot;fetchRowCountMax&quot;:8,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT  id,titile,msg_content,start_time,end_time,sender,priority,msg_category,msg_type,send_status,send_time,cancel_time,del_flag,create_by,create_time,update_by,update_time,user_ids,bus_type,bus_id,open_type,open_page,msg_abstract  FROM sys_announcement \n \n WHERE (msg_type = ? AND del_flag = ? AND send_status = ? AND end_time &gt;= ? AND id NOT IN (select annt_id from sys_announcement_send where user_id=&#39;e9ca23d68d884d4ebb19d07889727dae&#39;))&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:28,&quot;executeMillisTotal&quot;:28,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1},{&quot;sql&quot;:&quot;SELECT COUNT(1) FROM sys_announcement WHERE send_status = &#39;1&#39; AND del_flag = &#39;0&#39; AND msg_category = ? AND id IN (SELECT annt_id FROM sys_announcement_send WHERE user_id = ? AND read_flag = &#39;0&#39;)&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:27,&quot;executeMillisTotal&quot;:55,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            ROUND(SUM(IF(src01.day_str = DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;), src01.diff_time, 0)), 2) AS day_value,\n            ROUND(SUM(IF(src01.month_str = DATE_FORMAT(NOW(), &#39;%Y-%m&#39;), src01.diff_time, 0)), 2) AS month_value,\n            ROUND(SUM(src01.diff_time), 2) AS year_value\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m&#39;) AS month_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_time,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)\n                AND DATE_FORMAT(stvh.date_time, &#39;%Y&#39;) = DATE_FORMAT(NOW(), &#39;%Y&#39;)) src01\n        WHERE src01.diff_time IS NOT NULL\n        GROUP BY src01.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:1531,&quot;executeMillisTotal&quot;:1531,&quot;executeHistogram&quot;:[0,0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:4,&quot;fetchRowCountMax&quot;:4,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            src01.diff_value AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d %H&#39;) AS day_str,\n                  IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 24 HOUR)\n          AND src01.diff_value IS NOT NULL&quot;,&quot;executeCount&quot;:6,&quot;executeMillisMax&quot;:797,&quot;executeMillisTotal&quot;:4493,&quot;executeHistogram&quot;:[0,0,0,6],&quot;executeAndResultHoldHistogram&quot;:[6],&quot;concurrentMax&quot;:5},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            SUM(src01.diff_value) AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 2 DAY)\n          AND src01.diff_value IS NOT NULL\n        GROUP BY src01.day_str\n        ORDER BY src01.day_str DESC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:627,&quot;executeMillisTotal&quot;:627,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src02.tag_name,\n            GROUP_CONCAT(src02.unit ORDER BY src02.unit) AS unit,\n            GROUP_CONCAT(src02.value ORDER BY src02.unit) AS value\n        FROM (SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            DATE_FORMAT(src01.date_time, ?) AS unit,\n            ROUND(IF(?, SUM(src01.diff_value), AVG(src01.diff_value)), 2) AS value\n            FROM (SELECT\n            stvh.tag_name,\n            stvh.date_time,\n            IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value\n            FROM sdyy_tag_value_his stvh\n            WHERE FIND_IN_SET(stvh.tag_name, ?)\n            AND DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) BETWEEN ? AND ?) src01\n            WHERE src01.diff_value IS NOT NULL\n            GROUP BY unit,\n            src01.tag_name) src02\n        GROUP BY src02.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:644,&quot;executeMillisTotal&quot;:644,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:20:15,486</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:1,&quot;activePeakTime&quot;:&quot;2021-05-07 16:10:20&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:6,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:10:20&quot;,&quot;connectCount&quot;:93,&quot;closeCount&quot;:93,&quot;physicalCloseCount&quot;:1,&quot;executeCount&quot;:153,&quot;commitCount&quot;:153,&quot;pstmtCacheHitCount&quot;:153,&quot;startTransactionCount&quot;:93,&quot;transactionHistogram&quot;:[0,0,56,37],&quot;connectionHoldTimeHistogram&quot;:[0,0,1,92],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:365,&quot;executeMillisTotal&quot;:2591,&quot;executeHistogram&quot;:[0,0,59,1],&quot;executeAndResultHoldHistogram&quot;:[60],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:60,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:60,&quot;executeMillisTotal&quot;:1687,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[0,0,60],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:60,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:54,&quot;executeMillisTotal&quot;:330,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:23,&quot;executeMillisMax&quot;:83,&quot;executeMillisTotal&quot;:1344,&quot;executeHistogram&quot;:[0,0,23],&quot;executeAndResultHoldHistogram&quot;:[23],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:23}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:30:15,487</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:2,&quot;activePeakTime&quot;:&quot;2021-05-07 16:25:26&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:20:24&quot;,&quot;connectCount&quot;:91,&quot;closeCount&quot;:91,&quot;executeCount&quot;:150,&quot;commitCount&quot;:150,&quot;pstmtCacheHitCount&quot;:149,&quot;pstmtCacheMissCount&quot;:1,&quot;startTransactionCount&quot;:91,&quot;transactionHistogram&quot;:[0,0,64,27],&quot;connectionHoldTimeHistogram&quot;:[0,0,3,88],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:95,&quot;executeMillisTotal&quot;:2157,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[59],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:59,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:54,&quot;executeMillisTotal&quot;:1661,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[0,0,59],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:59,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:51,&quot;executeMillisTotal&quot;:302,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:65,&quot;executeMillisTotal&quot;:1190,&quot;executeHistogram&quot;:[0,0,22],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:22}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:40:15,488</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:2,&quot;activePeakTime&quot;:&quot;2021-05-07 16:33:19&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:30:18&quot;,&quot;connectCount&quot;:92,&quot;closeCount&quot;:92,&quot;executeCount&quot;:152,&quot;commitCount&quot;:152,&quot;pstmtCacheHitCount&quot;:149,&quot;pstmtCacheMissCount&quot;:3,&quot;startTransactionCount&quot;:92,&quot;transactionHistogram&quot;:[0,0,55,37],&quot;connectionHoldTimeHistogram&quot;:[0,0,3,89],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:97,&quot;executeMillisTotal&quot;:2247,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[60],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:60,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:82,&quot;executeMillisTotal&quot;:1700,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[0,0,60],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:60,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:51,&quot;executeMillisTotal&quot;:279,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:90,&quot;executeMillisTotal&quot;:1185,&quot;executeHistogram&quot;:[0,0,22],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:22}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:48:41,836</td>
+<td class="Message">【websocket消息】有新的连接，总数为:1</td>
+<td class="MethodOfCaller">onOpen</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">57</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:50:15,491</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:6,&quot;activePeakTime&quot;:&quot;2021-05-07 16:48:44&quot;,&quot;poolingCount&quot;:6,&quot;poolingPeak&quot;:6,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:48:45&quot;,&quot;connectCount&quot;:108,&quot;closeCount&quot;:108,&quot;notEmptyWaitCount&quot;:2,&quot;notEmptyWaitMillis&quot;:460,&quot;physicalConnectCount&quot;:1,&quot;executeCount&quot;:167,&quot;commitCount&quot;:151,&quot;pstmtCacheHitCount&quot;:151,&quot;pstmtCacheMissCount&quot;:16,&quot;startTransactionCount&quot;:92,&quot;transactionHistogram&quot;:[0,0,55,37],&quot;connectionHoldTimeHistogram&quot;:[0,0,11,93,4],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:143,&quot;executeMillisTotal&quot;:2396,&quot;executeHistogram&quot;:[0,0,55,4],&quot;executeAndResultHoldHistogram&quot;:[59],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:59,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:68,&quot;executeMillisTotal&quot;:1683,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[0,0,59],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:59,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:54,&quot;executeMillisTotal&quot;:279,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:23,&quot;executeMillisMax&quot;:214,&quot;executeMillisTotal&quot;:1499,&quot;executeHistogram&quot;:[0,0,22,1],&quot;executeAndResultHoldHistogram&quot;:[23],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:23},{&quot;sql&quot;:&quot;SELECT * FROM (\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE (exists(\n\t\t\t\t\t\tselect a.id from sys_role_permission a\n\t\t\t\t\t\tjoin sys_role b on a.role_id = b.id\n\t\t\t\t\t\tjoin sys_user_role c on c.role_id = b.id\n\t\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t\t\t)\n\t\t\t\t\tor (p.url like &#39;%:code&#39; and p.url like &#39;/online%&#39; and p.hidden = 1)\n\t\t\t\t\tor p.url = &#39;/online&#39;)\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t\t   UNION\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE exists(\n\t\t\t\t\tselect a.id from sys_depart_role_permission a\n\t\t\t\t\tjoin sys_depart_role b on a.role_id = b.id\n\t\t\t\t\tjoin sys_depart_role_user c on c.drole_id = b.id\n\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t   )\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t   ) h order by h.sort_no ASC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:374,&quot;executeMillisTotal&quot;:374,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:71,&quot;fetchRowCountMax&quot;:71,&quot;fetchRowHistogram&quot;:[0,0,1]},{&quot;sql&quot;:&quot;SELECT  id,parent_id,name,perms,perms_type,icon,component,component_name,url,redirect,sort_no,menu_type,is_leaf AS leaf,is_route AS route,keep_alive,description,create_by,del_flag,rule_flag,hidden,create_time,update_by,update_time,status,always_show,internal_or_external  FROM sys_permission \n \n WHERE (del_flag = ? AND menu_type = ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:28,&quot;executeMillisTotal&quot;:28,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:6,&quot;fetchRowCountMax&quot;:6,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (stvc.tag_name, &#39;.&#39;, 1) AS tag_name,\n            stvc.value\n        FROM sdyy_tag_value_current stvc\n        WHERE FIND_IN_SET(stvc.tag_name, ?)&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:59,&quot;executeMillisTotal&quot;:97,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:11,&quot;fetchRowCountMax&quot;:8,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT  id,titile,msg_content,start_time,end_time,sender,priority,msg_category,msg_type,send_status,send_time,cancel_time,del_flag,create_by,create_time,update_by,update_time,user_ids,bus_type,bus_id,open_type,open_page,msg_abstract  FROM sys_announcement \n \n WHERE (msg_type = ? AND del_flag = ? AND send_status = ? AND end_time &gt;= ? AND id NOT IN (select annt_id from sys_announcement_send where user_id=&#39;e9ca23d68d884d4ebb19d07889727dae&#39;))&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:83,&quot;executeMillisTotal&quot;:83,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1},{&quot;sql&quot;:&quot;SELECT COUNT(1) FROM sys_announcement WHERE send_status = &#39;1&#39; AND del_flag = &#39;0&#39; AND msg_category = ? AND id IN (SELECT annt_id FROM sys_announcement_send WHERE user_id = ? AND read_flag = &#39;0&#39;)&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:37,&quot;executeMillisTotal&quot;:66,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            ROUND(SUM(IF(src01.day_str = DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;), src01.diff_time, 0)), 2) AS day_value,\n            ROUND(SUM(IF(src01.month_str = DATE_FORMAT(NOW(), &#39;%Y-%m&#39;), src01.diff_time, 0)), 2) AS month_value,\n            ROUND(SUM(src01.diff_time), 2) AS year_value\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m&#39;) AS month_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_time,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)\n                AND DATE_FORMAT(stvh.date_time, &#39;%Y&#39;) = DATE_FORMAT(NOW(), &#39;%Y&#39;)) src01\n        WHERE src01.diff_time IS NOT NULL\n        GROUP BY src01.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:1412,&quot;executeMillisTotal&quot;:1412,&quot;executeHistogram&quot;:[0,0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:4,&quot;fetchRowCountMax&quot;:4,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            src01.diff_value AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d %H&#39;) AS day_str,\n                  IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 24 HOUR)\n          AND src01.diff_value IS NOT NULL&quot;,&quot;executeCount&quot;:6,&quot;executeMillisMax&quot;:1103,&quot;executeMillisTotal&quot;:5195,&quot;executeHistogram&quot;:[0,0,0,3,3],&quot;executeAndResultHoldHistogram&quot;:[6],&quot;concurrentMax&quot;:5},{&quot;sql&quot;:&quot;SELECT\n            src02.tag_name,\n            GROUP_CONCAT(src02.unit ORDER BY src02.unit) AS unit,\n            GROUP_CONCAT(src02.value ORDER BY src02.unit) AS value\n        FROM (SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            DATE_FORMAT(src01.date_time, ?) AS unit,\n            ROUND(IF(?, SUM(src01.diff_value), AVG(src01.diff_value)), 2) AS value\n            FROM (SELECT\n            stvh.tag_name,\n            stvh.date_time,\n            IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value\n            FROM sdyy_tag_value_his stvh\n            WHERE FIND_IN_SET(stvh.tag_name, ?)\n            AND DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) BETWEEN ? AND ?) src01\n            WHERE src01.diff_value IS NOT NULL\n            GROUP BY unit,\n            src01.tag_name) src02\n        GROUP BY src02.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:476,&quot;executeMillisTotal&quot;:476,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            SUM(src01.diff_value) AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 2 DAY)\n          AND src01.diff_value IS NOT NULL\n        GROUP BY src01.day_str\n        ORDER BY src01.day_str DESC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:429,&quot;executeMillisTotal&quot;:429,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:1,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,1]}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="warn even">
+<td class="Level">WARN</td>
+<td class="Date">2021-05-07 16:53:18,360</td>
+<td class="Message">This scheduler instance (YRK1620374420780) is still active but was recovered by another instance in the cluster.  This may cause inconsistent behavior.</td>
+<td class="MethodOfCaller">findFailedInstances</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">3411</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:53:18,524</td>
+<td class="Message">ClusterManager: detected 1 failed or restarted instances.</td>
+<td class="MethodOfCaller">logWarnIfNonZero</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">3644</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 16:53:18,524</td>
+<td class="Message">ClusterManager: Scanning for instance &quot;YRK1619663340017&quot;&#39;s failed in-progress jobs.</td>
+<td class="MethodOfCaller">clusterRecover</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">3503</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:00:15,493</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:2,&quot;activePeakTime&quot;:&quot;2021-05-07 16:54:38&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:6,&quot;poolingPeakTime&quot;:&quot;2021-05-07 16:50:17&quot;,&quot;connectCount&quot;:92,&quot;closeCount&quot;:92,&quot;physicalCloseCount&quot;:1,&quot;executeCount&quot;:159,&quot;commitCount&quot;:152,&quot;pstmtCacheHitCount&quot;:153,&quot;pstmtCacheMissCount&quot;:6,&quot;startTransactionCount&quot;:93,&quot;transactionHistogram&quot;:[0,0,41,52],&quot;connectionHoldTimeHistogram&quot;:[0,0,1,91],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:61,&quot;executeMillisMax&quot;:149,&quot;executeMillisTotal&quot;:2803,&quot;executeHistogram&quot;:[0,0,57,4],&quot;executeAndResultHoldHistogram&quot;:[61],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:62,&quot;fetchRowCountMax&quot;:2,&quot;fetchRowHistogram&quot;:[0,61],&quot;inTransactionCount&quot;:61},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:73,&quot;executeMillisTotal&quot;:2142,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[0,0,60],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:59,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[1,59],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:265,&quot;executeMillisTotal&quot;:729,&quot;executeHistogram&quot;:[0,0,9,1],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:127,&quot;executeMillisTotal&quot;:1523,&quot;executeHistogram&quot;:[0,0,17,5],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:22},{&quot;sql&quot;:&quot;INSERT INTO QRTZ_SCHEDULER_STATE (SCHED_NAME, INSTANCE_NAME, LAST_CHECKIN_TIME, CHECKIN_INTERVAL) VALUES(&#39;MyScheduler&#39;, ?, ?, ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:28,&quot;executeMillisTotal&quot;:28,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:1,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,1],&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_LOCKS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND LOCK_NAME = ? FOR UPDATE&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:20,&quot;executeMillisTotal&quot;:40,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2],&quot;inTransactionCount&quot;:2},{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:29,&quot;executeMillisTotal&quot;:29,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;DELETE FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:20,&quot;executeMillisTotal&quot;:20,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:1},{&quot;sql&quot;:&quot;DELETE FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:22,&quot;executeMillisTotal&quot;:22,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:1,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,1],&quot;inTransactionCount&quot;:1}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:04:16,794</td>
+<td class="Message">【websocket消息】连接断开，总数为:0</td>
+<td class="MethodOfCaller">onClose</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">67</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:04:18,784</td>
+<td class="Message">【websocket消息】有新的连接，总数为:1</td>
+<td class="MethodOfCaller">onOpen</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">57</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:10:15,495</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:6,&quot;activePeakTime&quot;:&quot;2021-05-07 17:04:19&quot;,&quot;poolingCount&quot;:6,&quot;poolingPeak&quot;:6,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:04:20&quot;,&quot;connectCount&quot;:126,&quot;closeCount&quot;:126,&quot;notEmptyWaitCount&quot;:2,&quot;notEmptyWaitMillis&quot;:519,&quot;physicalConnectCount&quot;:1,&quot;executeCount&quot;:185,&quot;commitCount&quot;:151,&quot;pstmtCacheHitCount&quot;:176,&quot;pstmtCacheMissCount&quot;:9,&quot;startTransactionCount&quot;:92,&quot;transactionHistogram&quot;:[0,0,47,45],&quot;connectionHoldTimeHistogram&quot;:[0,0,7,116,3],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:126,&quot;executeMillisTotal&quot;:2691,&quot;executeHistogram&quot;:[0,0,55,4],&quot;executeAndResultHoldHistogram&quot;:[59],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:59,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:78,&quot;executeMillisTotal&quot;:1997,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[0,0,59],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:59,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:61,&quot;executeMillisTotal&quot;:371,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:23,&quot;executeMillisMax&quot;:169,&quot;executeMillisTotal&quot;:1680,&quot;executeHistogram&quot;:[0,0,17,6],&quot;executeAndResultHoldHistogram&quot;:[23],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:23},{&quot;sql&quot;:&quot;SELECT * FROM (\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE (exists(\n\t\t\t\t\t\tselect a.id from sys_role_permission a\n\t\t\t\t\t\tjoin sys_role b on a.role_id = b.id\n\t\t\t\t\t\tjoin sys_user_role c on c.role_id = b.id\n\t\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t\t\t)\n\t\t\t\t\tor (p.url like &#39;%:code&#39; and p.url like &#39;/online%&#39; and p.hidden = 1)\n\t\t\t\t\tor p.url = &#39;/online&#39;)\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t\t   UNION\n\t\t\t   SELECT p.*\n\t\t\t   FROM  sys_permission p\n\t\t\t   WHERE exists(\n\t\t\t\t\tselect a.id from sys_depart_role_permission a\n\t\t\t\t\tjoin sys_depart_role b on a.role_id = b.id\n\t\t\t\t\tjoin sys_depart_role_user c on c.drole_id = b.id\n\t\t\t\t\tjoin sys_user d on d.id = c.user_id\n\t\t\t\t\twhere p.id = a.permission_id AND d.username = ?\n\t\t\t   )\n\t\t\t   and p.del_flag = 0\n\t\t\t\n\t\t   ) h order by h.sort_no ASC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:187,&quot;executeMillisTotal&quot;:187,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:71,&quot;fetchRowCountMax&quot;:71,&quot;fetchRowHistogram&quot;:[0,0,1]},{&quot;sql&quot;:&quot;SELECT  id,parent_id,name,perms,perms_type,icon,component,component_name,url,redirect,sort_no,menu_type,is_leaf AS leaf,is_route AS route,keep_alive,description,create_by,del_flag,rule_flag,hidden,create_time,update_by,update_time,status,always_show,internal_or_external  FROM sys_permission \n \n WHERE (del_flag = ? AND menu_type = ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:24,&quot;executeMillisTotal&quot;:24,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:6,&quot;fetchRowCountMax&quot;:6,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (stvc.tag_name, &#39;.&#39;, 1) AS tag_name,\n            stvc.value\n        FROM sdyy_tag_value_current stvc\n        WHERE FIND_IN_SET(stvc.tag_name, ?)&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:70,&quot;executeMillisTotal&quot;:70,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:3,&quot;fetchRowCountMax&quot;:3,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            src01.diff_value AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d %H&#39;) AS day_str,\n                  IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 24 HOUR)\n          AND src01.diff_value IS NOT NULL&quot;,&quot;executeCount&quot;:6,&quot;executeMillisMax&quot;:891,&quot;executeMillisTotal&quot;:4634,&quot;executeHistogram&quot;:[0,0,0,6],&quot;executeAndResultHoldHistogram&quot;:[6],&quot;concurrentMax&quot;:5,&quot;fetchRowCount&quot;:129,&quot;fetchRowCountMax&quot;:22,&quot;fetchRowHistogram&quot;:[0,0,6]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            ROUND(SUM(IF(src01.day_str = DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;), src01.diff_time, 0)), 2) AS day_value,\n            ROUND(SUM(IF(src01.month_str = DATE_FORMAT(NOW(), &#39;%Y-%m&#39;), src01.diff_time, 0)), 2) AS month_value,\n            ROUND(SUM(src01.diff_time), 2) AS year_value\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m&#39;) AS month_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_time,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)\n                AND DATE_FORMAT(stvh.date_time, &#39;%Y&#39;) = DATE_FORMAT(NOW(), &#39;%Y&#39;)) src01\n        WHERE src01.diff_time IS NOT NULL\n        GROUP BY src01.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:1441,&quot;executeMillisTotal&quot;:1441,&quot;executeHistogram&quot;:[0,0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:4,&quot;fetchRowCountMax&quot;:4,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src01.day_str AS x,\n            SUM(src01.diff_value) AS y\n        FROM (SELECT\n                  stvh.tag_name,\n                  DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) AS day_str,\n                  (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value) AS diff_value,\n                  stvh.value\n              FROM sdyy_tag_value_his stvh\n              WHERE FIND_IN_SET(stvh.tag_name, ?)) src01\n        WHERE src01.day_str &gt; DATE_SUB(now(), INTERVAL 2 DAY)\n          AND src01.diff_value IS NOT NULL\n        GROUP BY src01.day_str\n        ORDER BY src01.day_str DESC&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:835,&quot;executeMillisTotal&quot;:835,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:2,&quot;fetchRowHistogram&quot;:[0,1]},{&quot;sql&quot;:&quot;SELECT\n            src02.tag_name,\n            GROUP_CONCAT(src02.unit ORDER BY src02.unit) AS unit,\n            GROUP_CONCAT(src02.value ORDER BY src02.unit) AS value\n        FROM (SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag_name,\n            DATE_FORMAT(src01.date_time, ?) AS unit,\n            ROUND(IF(?, SUM(src01.diff_value), AVG(src01.diff_value)), 2) AS value\n            FROM (SELECT\n            stvh.tag_name,\n            stvh.date_time,\n            IF(?, (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name ORDER BY stvh.date_time) - stvh.value), stvh.value) AS diff_value\n            FROM sdyy_tag_value_his stvh\n            WHERE FIND_IN_SET(stvh.tag_name, ?)\n            AND DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) BETWEEN ? AND ?) src01\n            WHERE src01.diff_value IS NOT NULL\n            GROUP BY unit,\n            src01.tag_name) src02\n        GROUP BY src02.tag_name&quot;,&quot;executeCount&quot;:19,&quot;executeMillisMax&quot;:1070,&quot;executeMillisTotal&quot;:7595,&quot;executeHistogram&quot;:[0,0,0,17,2],&quot;executeAndResultHoldHistogram&quot;:[19],&quot;concurrentMax&quot;:3,&quot;fetchRowCount&quot;:39,&quot;fetchRowCountMax&quot;:4,&quot;fetchRowHistogram&quot;:[0,19]},{&quot;sql&quot;:&quot;SELECT  id,titile,msg_content,start_time,end_time,sender,priority,msg_category,msg_type,send_status,send_time,cancel_time,del_flag,create_by,create_time,update_by,update_time,user_ids,bus_type,bus_id,open_type,open_page,msg_abstract  FROM sys_announcement \n \n WHERE (msg_type = ? AND del_flag = ? AND send_status = ? AND end_time &gt;= ? AND id NOT IN (select annt_id from sys_announcement_send where user_id=&#39;e9ca23d68d884d4ebb19d07889727dae&#39;))&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:55,&quot;executeMillisTotal&quot;:55,&quot;executeHistogram&quot;:[0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1},{&quot;sql&quot;:&quot;SELECT COUNT(1) FROM sys_announcement WHERE send_status = &#39;1&#39; AND del_flag = &#39;0&#39; AND msg_category = ? AND id IN (SELECT annt_id FROM sys_announcement_send WHERE user_id = ? AND read_flag = &#39;0&#39;)&quot;,&quot;executeCount&quot;:2,&quot;executeMillisMax&quot;:75,&quot;executeMillisTotal&quot;:133,&quot;executeHistogram&quot;:[0,0,2],&quot;executeAndResultHoldHistogram&quot;:[2],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:2,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,2]},{&quot;sql&quot;:&quot;SELECT\n            SUBSTRING_INDEX (src01.tag_name, &#39;.&#39;, 1) AS tag,\n            ROUND(SUM(src01.diff_time), 2) AS value\n        FROM (SELECT\n            stvh.tag_name,\n            stvh.date_time,\n            (LEAD(stvh.value) OVER (PARTITION BY stvh.tag_name\n            ORDER BY stvh.date_time) - stvh.value) AS diff_time\n            FROM sdyy_tag_value_his stvh\n            WHERE FIND_IN_SET(stvh.tag_name, ?)\n            AND DATE_FORMAT(stvh.date_time, &#39;%Y-%m-%d&#39;) BETWEEN ? AND ?) src01\n        WHERE src01.diff_time &gt; 0\n        GROUP BY src01.tag_name&quot;,&quot;executeCount&quot;:1,&quot;executeMillisMax&quot;:791,&quot;executeMillisTotal&quot;:791,&quot;executeHistogram&quot;:[0,0,0,1],&quot;executeAndResultHoldHistogram&quot;:[1],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:9,&quot;fetchRowCountMax&quot;:9,&quot;fetchRowHistogram&quot;:[0,1]}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:20:15,498</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:2,&quot;activePeakTime&quot;:&quot;2021-05-07 17:10:27&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:10:17&quot;,&quot;connectCount&quot;:92,&quot;closeCount&quot;:92,&quot;physicalCloseCount&quot;:1,&quot;executeCount&quot;:152,&quot;commitCount&quot;:152,&quot;pstmtCacheHitCount&quot;:152,&quot;startTransactionCount&quot;:92,&quot;transactionHistogram&quot;:[0,0,43,49],&quot;connectionHoldTimeHistogram&quot;:[0,0,8,84],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:204,&quot;executeMillisTotal&quot;:2752,&quot;executeHistogram&quot;:[0,0,56,4],&quot;executeAndResultHoldHistogram&quot;:[60],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:60,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:77,&quot;executeMillisTotal&quot;:2006,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[0,0,60],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:60,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:71,&quot;executeMillisTotal&quot;:390,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:350,&quot;executeMillisTotal&quot;:1561,&quot;executeHistogram&quot;:[0,0,20,2],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:22}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:30:15,499</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:1,&quot;activePeakTime&quot;:&quot;2021-05-07 17:20:22&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:20:22&quot;,&quot;connectCount&quot;:91,&quot;closeCount&quot;:91,&quot;executeCount&quot;:150,&quot;commitCount&quot;:150,&quot;pstmtCacheHitCount&quot;:150,&quot;startTransactionCount&quot;:91,&quot;transactionHistogram&quot;:[0,0,60,31],&quot;connectionHoldTimeHistogram&quot;:[0,0,8,83],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:100,&quot;executeMillisTotal&quot;:2095,&quot;executeHistogram&quot;:[0,0,58,1],&quot;executeAndResultHoldHistogram&quot;:[59],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:59,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:59,&quot;executeMillisMax&quot;:60,&quot;executeMillisTotal&quot;:1614,&quot;executeHistogram&quot;:[0,0,59],&quot;executeAndResultHoldHistogram&quot;:[0,0,59],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:59,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,59],&quot;inTransactionCount&quot;:59},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:53,&quot;executeMillisTotal&quot;:300,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:86,&quot;executeMillisTotal&quot;:1119,&quot;executeHistogram&quot;:[0,0,22],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:22}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:40:15,500</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:2,&quot;activePeakTime&quot;:&quot;2021-05-07 17:32:06&quot;,&quot;poolingCount&quot;:5,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:30:15&quot;,&quot;connectCount&quot;:93,&quot;closeCount&quot;:93,&quot;executeCount&quot;:153,&quot;commitCount&quot;:153,&quot;pstmtCacheHitCount&quot;:153,&quot;startTransactionCount&quot;:93,&quot;transactionHistogram&quot;:[0,0,51,42],&quot;connectionHoldTimeHistogram&quot;:[0,0,4,89],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:169,&quot;executeMillisTotal&quot;:2404,&quot;executeHistogram&quot;:[0,0,59,1],&quot;executeAndResultHoldHistogram&quot;:[60],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:60,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:60,&quot;executeMillisMax&quot;:76,&quot;executeMillisTotal&quot;:1750,&quot;executeHistogram&quot;:[0,0,60],&quot;executeAndResultHoldHistogram&quot;:[0,0,60],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:60,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,60],&quot;inTransactionCount&quot;:60},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:63,&quot;executeMillisTotal&quot;:343,&quot;executeHistogram&quot;:[0,0,10],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:10,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,10],&quot;inTransactionCount&quot;:10},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:23,&quot;executeMillisMax&quot;:136,&quot;executeMillisTotal&quot;:1342,&quot;executeHistogram&quot;:[0,0,22,1],&quot;executeAndResultHoldHistogram&quot;:[23],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:23}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="warn even">
+<td class="Level">WARN</td>
+<td class="Date">2021-05-07 17:49:27,794</td>
+<td class="Message">get connection timeout retry : 1</td>
+<td class="MethodOfCaller">getConnectionDirect</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">1414</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:50:15,501</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:2,&quot;activePeak&quot;:3,&quot;activePeakTime&quot;:&quot;2021-05-07 17:48:26&quot;,&quot;poolingCount&quot;:0,&quot;poolingPeak&quot;:5,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:40:20&quot;,&quot;connectCount&quot;:79,&quot;closeCount&quot;:72,&quot;waitThreadCount&quot;:1,&quot;notEmptyWaitCount&quot;:1,&quot;notEmptyWaitMillis&quot;:60012,&quot;executeCount&quot;:121,&quot;commitCount&quot;:119,&quot;pstmtCacheHitCount&quot;:121,&quot;startTransactionCount&quot;:74,&quot;transactionHistogram&quot;:[0,0,60,12],&quot;connectionHoldTimeHistogram&quot;:[0,0,18,54],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:47,&quot;executeMillisMax&quot;:59,&quot;executeMillisTotal&quot;:1281,&quot;executeHistogram&quot;:[0,0,47],&quot;executeAndResultHoldHistogram&quot;:[47],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:47,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,47],&quot;inTransactionCount&quot;:48},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:47,&quot;executeMillisMax&quot;:261,&quot;executeMillisTotal&quot;:1203,&quot;executeHistogram&quot;:[0,0,46,1],&quot;executeAndResultHoldHistogram&quot;:[0,0,46,1],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:47,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,47],&quot;inTransactionCount&quot;:47},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:8,&quot;executeMillisMax&quot;:42,&quot;executeMillisTotal&quot;:178,&quot;executeHistogram&quot;:[0,0,8],&quot;executeAndResultHoldHistogram&quot;:[8],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:8,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,8],&quot;inTransactionCount&quot;:8},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:17,&quot;executeMillisMax&quot;:58,&quot;executeMillisTotal&quot;:690,&quot;executeHistogram&quot;:[0,0,17],&quot;executeAndResultHoldHistogram&quot;:[17],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:18}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="error even">
+<td class="Level">ERROR</td>
+<td class="Date">2021-05-07 17:50:27,811</td>
+<td class="Message">MisfireHandler: Error handling misfires: Failed to obtain DB connection from data source &#39;springNonTxDataSource.MyScheduler&#39;: com.alibaba.druid.pool.GetConnectionTimeoutException: wait millis 60012, active 2, maxActive 20, creating 1, createElapseMillis 133798, runningSqlCount 1 : SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;
+runningSqlCount 1 : SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC</td>
+<td class="MethodOfCaller">manage</td>
+<td class="FileOfCaller">JobStoreSupport.java</td>
+<td class="LineOfCaller">4017</td>
+</tr>
+<tr><td class="Exception" colspan="6">org.quartz.JobPersistenceException: Failed to obtain DB connection from data source &#39;springNonTxDataSource.MyScheduler&#39;: com.alibaba.druid.pool.GetConnectionTimeoutException: wait millis 60012, active 2, maxActive 20, creating 1, createElapseMillis 133798, runningSqlCount 1 : SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;
+runningSqlCount 1 : SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.impl.jdbcjobstore.JobStoreCMT.getNonManagedTXConnection(JobStoreCMT.java:168)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.impl.jdbcjobstore.JobStoreSupport.doRecoverMisfires(JobStoreSupport.java:3246)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.impl.jdbcjobstore.JobStoreSupport$MisfireHandler.manage(JobStoreSupport.java:4012)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.impl.jdbcjobstore.JobStoreSupport$MisfireHandler.run(JobStoreSupport.java:4033)
+<br />Caused by: com.alibaba.druid.pool.GetConnectionTimeoutException: wait millis 60012, active 2, maxActive 20, creating 1, createElapseMillis 133798, runningSqlCount 1 : SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;
+runningSqlCount 1 : SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.pool.DruidDataSource.getConnectionInternal(DruidDataSource.java:1739)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.pool.DruidDataSource.getConnectionDirect(DruidDataSource.java:1409)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.FilterChainImpl.dataSource_connect(FilterChainImpl.java:5059)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.logging.LogFilter.dataSource_getConnection(LogFilter.java:886)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.FilterChainImpl.dataSource_connect(FilterChainImpl.java:5055)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.FilterAdapter.dataSource_getConnection(FilterAdapter.java:2756)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.FilterChainImpl.dataSource_connect(FilterChainImpl.java:5055)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.stat.StatFilter.dataSource_getConnection(StatFilter.java:680)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.filter.FilterChainImpl.dataSource_connect(FilterChainImpl.java:5055)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.pool.DruidDataSource.getConnection(DruidDataSource.java:1387)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.pool.DruidDataSource.getConnection(DruidDataSource.java:1379)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.alibaba.druid.pool.DruidDataSource.getConnection(DruidDataSource.java:109)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.baomidou.dynamic.datasource.ds.ItemDataSource.getConnection(ItemDataSource.java:53)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at com.baomidou.dynamic.datasource.ds.AbstractRoutingDataSource.getConnection(AbstractRoutingDataSource.java:42)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.springframework.scheduling.quartz.LocalDataSourceJobStore$2.getConnection(LocalDataSourceJobStore.java:136)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.utils.DBConnectionManager.getConnection(DBConnectionManager.java:108)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;at org.quartz.impl.jdbcjobstore.JobStoreCMT.getNonManagedTXConnection(JobStoreCMT.java:165)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;	... 3 common frames omitted
+</td></tr>
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 17:54:13,716</td>
+<td class="Message">【websocket消息】连接断开，总数为:0</td>
+<td class="MethodOfCaller">onClose</td>
+<td class="FileOfCaller">WebSocket.java</td>
+<td class="LineOfCaller">67</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:00:15,513</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:3,&quot;activePeak&quot;:3,&quot;activePeakTime&quot;:&quot;2021-05-07 17:51:27&quot;,&quot;poolingCount&quot;:0,&quot;poolingPeak&quot;:2,&quot;poolingPeakTime&quot;:&quot;2021-05-07 17:55:51&quot;,&quot;connectCount&quot;:10,&quot;closeCount&quot;:9,&quot;notEmptyWaitCount&quot;:2,&quot;notEmptyWaitMillis&quot;:81773,&quot;physicalConnectCount&quot;:1,&quot;executeCount&quot;:13,&quot;commitCount&quot;:12,&quot;pstmtCacheHitCount&quot;:12,&quot;pstmtCacheMissCount&quot;:1,&quot;startTransactionCount&quot;:10,&quot;transactionHistogram&quot;:[0,0,0,0,0,0,9],&quot;connectionHoldTimeHistogram&quot;:[0,0,0,0,0,0,9],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:147818,&quot;executeMillisTotal&quot;:298750,&quot;executeHistogram&quot;:[0,0,0,0,0,2,1],&quot;executeAndResultHoldHistogram&quot;:[3],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:3,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,3],&quot;inTransactionCount&quot;:3},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:96063,&quot;executeMillisTotal&quot;:185037,&quot;executeHistogram&quot;:[0,0,0,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[0,0,0,0,0,3],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:3,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,3],&quot;inTransactionCount&quot;:3},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:124778,&quot;executeMillisTotal&quot;:346002,&quot;executeHistogram&quot;:[0,0,0,0,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[3],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:3,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,3],&quot;inTransactionCount&quot;:4},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:183122,&quot;executeMillisTotal&quot;:480784,&quot;executeHistogram&quot;:[0,0,0,0,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[3],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:3}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:10:15,516</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:3,&quot;activePeak&quot;:3,&quot;activePeakTime&quot;:&quot;2021-05-07 18:00:54&quot;,&quot;poolingCount&quot;:0,&quot;poolingPeak&quot;:2,&quot;poolingPeakTime&quot;:&quot;2021-05-07 18:00:26&quot;,&quot;connectCount&quot;:11,&quot;closeCount&quot;:11,&quot;executeCount&quot;:13,&quot;commitCount&quot;:15,&quot;pstmtCacheHitCount&quot;:13,&quot;startTransactionCount&quot;:10,&quot;transactionHistogram&quot;:[0,0,0,0,0,4,7],&quot;connectionHoldTimeHistogram&quot;:[0,0,0,0,0,2,9],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:95118,&quot;executeMillisTotal&quot;:206956,&quot;executeHistogram&quot;:[0,0,0,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[3],&quot;runningCount&quot;:1,&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:3,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,3],&quot;inTransactionCount&quot;:3},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:3,&quot;executeMillisMax&quot;:89232,&quot;executeMillisTotal&quot;:192838,&quot;executeHistogram&quot;:[0,0,0,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[0,0,0,0,0,3],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:3,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,3],&quot;inTransactionCount&quot;:3},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:5,&quot;executeMillisMax&quot;:145485,&quot;executeMillisTotal&quot;:427790,&quot;executeHistogram&quot;:[0,0,0,0,0,3,2],&quot;executeAndResultHoldHistogram&quot;:[5],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:5,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,5],&quot;inTransactionCount&quot;:4},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:4,&quot;executeMillisMax&quot;:209982,&quot;executeMillisTotal&quot;:460552,&quot;executeHistogram&quot;:[0,0,0,0,0,2,2],&quot;executeAndResultHoldHistogram&quot;:[4],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:3}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:20:15,521</td>
+<td class="Message">{&quot;url&quot;:&quot;jdbc:mysql://119.45.177.203:3306/energydb?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai&quot;,&quot;dbType&quot;:&quot;mysql&quot;,&quot;name&quot;:&quot;master&quot;,&quot;activeCount&quot;:0,&quot;activePeak&quot;:3,&quot;activePeakTime&quot;:&quot;2021-05-07 18:11:02&quot;,&quot;poolingCount&quot;:3,&quot;poolingPeak&quot;:3,&quot;poolingPeakTime&quot;:&quot;2021-05-07 18:17:08&quot;,&quot;connectCount&quot;:38,&quot;closeCount&quot;:41,&quot;executeCount&quot;:61,&quot;commitCount&quot;:62,&quot;pstmtCacheHitCount&quot;:60,&quot;pstmtCacheMissCount&quot;:1,&quot;startTransactionCount&quot;:39,&quot;transactionHistogram&quot;:[0,0,24,4,2,8,3],&quot;connectionHoldTimeHistogram&quot;:[0,0,13,15,2,5,6],&quot;sqlList&quot;:[{&quot;sql&quot;:&quot;SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = &#39;MyScheduler&#39;&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:52275,&quot;executeMillisTotal&quot;:138884,&quot;executeHistogram&quot;:[0,0,18,1,0,3],&quot;executeAndResultHoldHistogram&quot;:[22],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:22,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,22],&quot;inTransactionCount&quot;:21},{&quot;sql&quot;:&quot;UPDATE QRTZ_SCHEDULER_STATE SET LAST_CHECKIN_TIME = ? WHERE SCHED_NAME = &#39;MyScheduler&#39; AND INSTANCE_NAME = ?&quot;,&quot;executeCount&quot;:22,&quot;executeMillisMax&quot;:64149,&quot;executeMillisTotal&quot;:118730,&quot;executeHistogram&quot;:[0,0,18,0,1,3],&quot;executeAndResultHoldHistogram&quot;:[0,0,18,0,1,3],&quot;concurrentMax&quot;:1,&quot;updateCount&quot;:22,&quot;updateCountMax&quot;:1,&quot;updateHistogram&quot;:[0,22],&quot;inTransactionCount&quot;:22},{&quot;sql&quot;:&quot;SELECT COUNT(TRIGGER_NAME) FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND NOT (MISFIRE_INSTR = -1) AND NEXT_FIRE_TIME &lt; ? AND TRIGGER_STATE = ?&quot;,&quot;executeCount&quot;:8,&quot;executeMillisMax&quot;:86340,&quot;executeMillisTotal&quot;:258166,&quot;executeHistogram&quot;:[0,0,3,0,1,4],&quot;executeAndResultHoldHistogram&quot;:[8],&quot;concurrentMax&quot;:1,&quot;fetchRowCount&quot;:8,&quot;fetchRowCountMax&quot;:1,&quot;fetchRowHistogram&quot;:[0,8],&quot;inTransactionCount&quot;:8},{&quot;sql&quot;:&quot;SELECT TRIGGER_NAME, TRIGGER_GROUP, NEXT_FIRE_TIME, PRIORITY FROM QRTZ_TRIGGERS WHERE SCHED_NAME = &#39;MyScheduler&#39; AND TRIGGER_STATE = ? AND NEXT_FIRE_TIME &lt;= ? AND (MISFIRE_INSTR = -1 OR (MISFIRE_INSTR != -1 AND NEXT_FIRE_TIME &gt;= ?)) ORDER BY NEXT_FIRE_TIME ASC, PRIORITY DESC&quot;,&quot;executeCount&quot;:10,&quot;executeMillisMax&quot;:86330,&quot;executeMillisTotal&quot;:195825,&quot;executeHistogram&quot;:[0,0,7,0,0,3],&quot;executeAndResultHoldHistogram&quot;:[10],&quot;concurrentMax&quot;:1,&quot;inTransactionCount&quot;:10}]}</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DruidDataSourceStatLoggerImpl.java</td>
+<td class="LineOfCaller">77</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:55,469</td>
+<td class="Message">Scheduler MyScheduler_$_YRK1620374420780 paused.</td>
+<td class="MethodOfCaller">standby</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">585</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,695</td>
+<td class="Message">Shutting down ExecutorService &#39;applicationTaskExecutor&#39;</td>
+<td class="MethodOfCaller">shutdown</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">218</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,702</td>
+<td class="Message">Shutting down Quartz Scheduler</td>
+<td class="MethodOfCaller">destroy</td>
+<td class="FileOfCaller">SchedulerFactoryBean.java</td>
+<td class="LineOfCaller">845</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,702</td>
+<td class="Message">Scheduler MyScheduler_$_YRK1620374420780 shutting down.</td>
+<td class="MethodOfCaller">shutdown</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">666</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,702</td>
+<td class="Message">Scheduler MyScheduler_$_YRK1620374420780 paused.</td>
+<td class="MethodOfCaller">standby</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">585</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,703</td>
+<td class="Message">Scheduler MyScheduler_$_YRK1620374420780 shutdown complete.</td>
+<td class="MethodOfCaller">shutdown</td>
+<td class="FileOfCaller">QuartzScheduler.java</td>
+<td class="LineOfCaller">740</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,863</td>
+<td class="Message">dynamic-datasource start closing ....</td>
+<td class="MethodOfCaller">destroy</td>
+<td class="FileOfCaller">DynamicRoutingDataSource.java</td>
+<td class="LineOfCaller">217</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,869</td>
+<td class="Message">{dataSource-1} closing ...</td>
+<td class="MethodOfCaller">close</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">2029</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,872</td>
+<td class="Message">{dataSource-1} closed</td>
+<td class="MethodOfCaller">close</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">2101</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2021-05-07 18:25:56,873</td>
+<td class="Message">dynamic-datasource all closed success,bye</td>
+<td class="MethodOfCaller">destroy</td>
+<td class="FileOfCaller">DynamicRoutingDataSource.java</td>
+<td class="LineOfCaller">221</td>
+</tr>
