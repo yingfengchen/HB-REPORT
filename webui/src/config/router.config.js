@@ -5,7 +5,6 @@ import { UserLayout, TabLayout, RouteView, BlankLayout, PageView } from '@/compo
  * @type {[null,null]}
  */
 export const asyncRouterMap = [
-
   {
     path: '/',
     name: 'dashboard',

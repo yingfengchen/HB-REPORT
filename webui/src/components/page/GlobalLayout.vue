@@ -325,7 +325,7 @@
           display: inline-block;
           transition: all .3s;
           vertical-align: top;
-          height: 70%;
+          height: 100%;
           line-height: 46px;
 
           &.action-full {

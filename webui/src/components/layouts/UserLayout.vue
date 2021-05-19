@@ -91,6 +91,7 @@
             vertical-align: top;
             margin-right: 16px;
             border-style: none;
+            margin-top: 6px;
           }
 
           .title {

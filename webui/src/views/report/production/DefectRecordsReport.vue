@@ -37,6 +37,32 @@
         </vxe-form>
       </a-col>
     </a-row>
+    <a-row :gutter="6">
+      <a-col :span='12'>
+        <a-card title='不良趋势'>
+          <div :style="{height: (height * 0.5)+'px'}">
+            <a-row>
+              <a-col :span='12'>
+                <a-radio-group :value='switchWIPTimeUnit' @change='handlerTimeUnitChange'>
+                  <a-radio-button value='%Y-%m-%d %H'>时</a-radio-button>
+                  <a-radio-button value='%Y-%m-%d'>日</a-radio-button>
+                </a-radio-group>
+              </a-col>
+            </a-row>
+            <line-chart class='cold-capacity-chart' id='WIPTrendLine' :show-split-line='true'
+                        :x-axis='waterUseChartLegend'
+                        :series-data='waterUseChartSeries' :y-axis='yAxis' />
+          </div>
+        </a-card>
+      </a-col>
+      <a-col :span='12'>
+        <a-card title='各不良类型占比'>
+          <div :style="{height: (height * 0.5)+'px'}">
+            <pie-chart id='WIPPie' :datasource='PieDatasource' :legend-list='PieLegend' :total-value='WIPTotalValue' unit='片' text='总产品数'></pie-chart>
+          </div>
+        </a-card>
+      </a-col>
+    </a-row>
     <a-spin :spinning="loading" tip="查询中...">
       <data-table
         title='产品信息表'
@@ -49,12 +75,10 @@
 </template>
 
 <script>
-import BarChart from "@comp/chart/BarChart";
 import QuerySelect from "@comp/QuerySelect";
 import LineChart from "@comp/chart/LineChart";
-import {getCumulative, getInstantaneous} from "@api/energyApi"
-import {transferStringToArray} from "@/utils/util";
 import DataTable from '@comp/DataTable'
+import PieChart from '@comp/chart/PieChart'
 import { postAction } from '@api/manage'
 
 export default {
@@ -63,7 +87,7 @@ export default {
     DataTable,
     LineChart,
     QuerySelect,
-    BarChart
+    PieChart
   },
   computed: {
     height() {
@@ -86,9 +110,7 @@ export default {
           {required: true}
         ]
       },
-      switchWaterUseUnit: '%Y-%m-%d',
-      switchCOPUnit: '%Y-%m-%d',
-      switchElcUnit: '%Y-%m-%d',
+      switchWIPTimeUnit: '%Y-%m-%d',
       loading: false,
       macDurationXAxis: [],
       waterUseChartSeries: [],
@@ -96,7 +118,7 @@ export default {
       elcChartSeries: [],
       yAxis: [
         {
-          name: 'KWh',
+          name: '%',
           axisLabel: {
             formatter: '{value}',
             color: '#999',
@@ -125,7 +147,6 @@ export default {
       COPChartLegend: [],
       elcChartLegend: [],
       switchArea: 'T',
-      areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
         {title: '产品 ID', field: 'name', align: 'center', sortable: true},
         {title: '工单号', field: 'product_request_name', align: 'center'},
@@ -138,7 +159,10 @@ export default {
         {title: '站点名称', field: 'prc_desc', align: 'center'},
         {title: '操作员 No', field: 'last_event_user', align: 'center'}
       ],
-      datasource: []
+      datasource: [],
+      PieDatasource: [],
+      PieLegend: [],
+      WIPTotalValue: 0
     }
   },
   methods: {
@@ -148,13 +172,31 @@ export default {
     handlerWaterUseChartSubmit() {
       let _this = this
       let params = _this.form
-      params['sql_name'] = 'getAllProductInfos'
+      this.loading = true
 
+      params['sql_name'] = 'getAllProductInfos'
       postAction('/common/executeSql', params).then(res => {
         _this.datasource = res['result']
       }).catch(error => {
         this.$message.error(error)
       })
+
+      this.PieDatasource = [
+        {value: 335, name: 'E101'},
+        {value: 310, name: 'E102'},
+        {value: 234, name: 'E103'}
+      ]
+      this.PieLegend = ['E101', 'E102', 'E103']
+      this.waterUseChartLegend = ['2021-04-15', '2021-04-16', '2021-04-17', '2021-04-18', '2021-04-19', '2021-04-20', '2021-04-21', '2021-04-22', '2021-04-23']
+      this.waterUseChartSeries = [
+        { name: '不良率', data: [12, 13, 15, 10, 14, 12, 24, 20, 22, 23] }
+      ]
+      this.WIPTotalValue = 66
+
+      this.loading = false
+    },
+    handlerTimeUnitChange() {
+      console.log('OK')
     }
   }
 }

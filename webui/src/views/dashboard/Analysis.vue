@@ -2,7 +2,7 @@
   <div class="page-header-index-wide">
     <a-row :gutter="10" class="card-area">
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="日总耗电" :total="cardData.PEMS_CH_PowerT.DayTotalElc + ' KWh'">
+        <chart-card :loading="loading" title="今日产能" :total="cardData.PEMS_CH_PowerT.DayTotalElc + ' 片'">
           <a-tooltip title="详细图表" slot="action">
             <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_CH_PowerT')" />
           </a-tooltip>
@@ -12,42 +12,42 @@
               {{ cardData.PEMS_CH_PowerT.DayDiff }}%
             </trend>
           </div>
-          <template slot="footer">月消耗总电量<span> {{ cardData.PEMS_CH_PowerT.MonthTotalElc }} KWh</span></template>
+          <template slot="footer">月总产能<span> {{ cardData.PEMS_CH_PowerT.MonthTotalElc }} 片</span></template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="低温系统日消耗电量" :total="cardData.PEMS_LCHW_PowerT.DayTotalElc + ' KWh'">
+        <chart-card :loading="loading" title="今日出货数量" :total="cardData.PEMS_LCHW_PowerT.DayTotalElc + ' 片'">
           <a-tooltip title="详细图表" slot="action">
             <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_LCHW_PowerT')" />
           </a-tooltip>
           <div>
             <mini-area :data-source="cardData.PEMS_LCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
-          <template slot="footer">低温系统月消耗电量<span> {{ cardData.PEMS_LCHW_PowerT.MonthTotalElc }} KWh</span>
+          <template slot="footer">月出货数量<span> {{ cardData.PEMS_LCHW_PowerT.MonthTotalElc }} 片</span>
           </template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="中温系统日消耗电量" :total="cardData.PEMS_MCHW_PowerT.DayTotalElc + ' KWh'">
+        <chart-card :loading="loading" title="今日良率" :total="cardData.PEMS_MCHW_PowerT.DayTotalElc + ' %'">
           <a-tooltip title="详细图表" slot="action">
             <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_MCHW_PowerT')" />
           </a-tooltip>
           <div>
             <mini-area :data-source="cardData.PEMS_MCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
-          <template slot="footer">中温系统月消耗电量<span>  {{ cardData.PEMS_MCHW_PowerT.MonthTotalElc }} KWh</span>
+          <template slot="footer">月良率<span>  {{ cardData.PEMS_MCHW_PowerT.MonthTotalElc }} %</span>
           </template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="热水系统日消耗电量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' KWh'">
+        <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
           <a-tooltip title="详细图表" slot="action">
             <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_RCHW_PowerT')" />
           </a-tooltip>
           <div>
             <mini-area :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
-          <template slot="footer">热水系统月消耗电量<span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} KWh</span>
+          <template slot="footer">月 Alarm 数量<span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
           </template>
         </chart-card>
       </a-col>
