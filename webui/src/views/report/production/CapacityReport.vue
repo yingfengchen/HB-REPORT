@@ -16,37 +16,23 @@
           <vxe-form-item span='5' title='结束时间' field='endTime'>
             <vxe-input v-model='form.endTime' placeholder='日期选择' type='date'></vxe-input>
           </vxe-form-item>
-          <vxe-form-item span='5' title='设备' field='machine'>
-            <a-select
-              mode='multiple'
-              :default-value="['1', '2']"
-              :maxTagCount='2'
-              :maxTagTextLength='3'
-            >
-              <a-select-option key='1'>CUT</a-select-option>
-              <a-select-option key='2'>BINDING</a-select-option>
-              <a-select-option key='3'>BENDING</a-select-option>
-            </a-select>
-          </vxe-form-item>
-          <vxe-form-item span='5' title='操作员' field='operator'>
-            <a-select
-              default-value='1'
-              allowClear
-            >
-              <a-select-option key='1'>谢青春</a-select-option>
-              <a-select-option key='2'>张有限</a-select-option>
-              <a-select-option key='3'>王春</a-select-option>
-            </a-select>
+          <vxe-form-item span='5' title='站点' field='operation'>
+            <query-select
+              v-model="form.operation"
+              url="/common/executeSql"
+              method="post"
+              :params="{sql_name: 'getAllOperations'}"
+              :option-config="{label: 'description', value: 'name'}"
+            />
           </vxe-form-item>
           <vxe-form-item span='5' title='产品规格' field='spec'>
-            <a-select
-              default-value='1'
-              allowClear
-            >
-              <a-select-option key='1'>BK798</a-select-option>
-              <a-select-option key='2'>BK752</a-select-option>
-              <a-select-option key='3'>BK769</a-select-option>
-            </a-select>
+            <query-select
+              v-model="form.spec"
+              url="/common/executeSql"
+              method="post"
+              :params="{sql_name: 'getAllProductSpec'}"
+              :option-config="{label: 'name', value: 'value'}"
+            />
           </vxe-form-item>
           <vxe-form-item>
             <template #default>
@@ -135,8 +121,8 @@ export default {
       form: {
         startTime: '',
         endTime: '',
-        machine: '',
-        operator: ''
+        operation: '',
+        spec: ''
       },
       formRules: {
         startTime: [
