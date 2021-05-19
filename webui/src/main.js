@@ -51,6 +51,8 @@ import '@/assets/less/JAreaLinkage.less'
 import VueAreaLinkage from 'vue-area-linkage'
 //表单验证
 import {rules} from '@/utils/rules'
+//按需引入DV
+import { decoration2, decoration3, decoration6, decoration8, borderBox11, scrollBoard} from '@jiaminghi/data-view'
 
 Vue.prototype.rules = rules
 Vue.config.productionTip = false
@@ -66,6 +68,12 @@ Vue.use(vueBus);
 Vue.use(JeecgComponents);
 Vue.use(VueAreaLinkage);
 Vue.use(VXETable)
+Vue.use(decoration2)
+Vue.use(decoration3)
+Vue.use(decoration6)
+Vue.use(decoration8)
+Vue.use(borderBox11)
+Vue.use(scrollBoard)
 
 SSO.init(() => {
   main()

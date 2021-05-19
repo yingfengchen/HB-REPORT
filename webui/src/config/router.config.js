@@ -37,6 +37,19 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/dashboard',
+    component: RouteView,
+    redirect: '/dashboard/bigScreen',
+    hidden: true,
+    children: [
+      {
+        path: 'bigScreen',
+        name: 'bigScreen',
+        component: () => import(/* webpackChunkName: "user" */ '@/views/dashboard/BigScreen')
+      }
+    ]
+  },
+  {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   },
