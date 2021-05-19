@@ -571,3 +571,10 @@ export function transferStringToArray(str) {
   }
   return []
 }
+
+export function getObjArrayFieldToArray(input, field) {
+  const output = [];
+  for (let i=0; i < input.length ; ++i)
+    output.push(input[i][field]);
+  return output;
+}

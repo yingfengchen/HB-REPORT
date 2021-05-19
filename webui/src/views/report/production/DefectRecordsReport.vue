@@ -38,51 +38,53 @@
       </a-col>
     </a-row>
     <a-row :gutter="6">
-      <a-col :span='12'>
-        <a-card title='不良趋势'>
+      <a-col :span="12">
+        <a-card title="不良趋势">
           <div :style="{height: (height * 0.5)+'px'}">
             <a-row>
-              <a-col :span='12'>
-                <a-radio-group :value='switchWIPTimeUnit' @change='handlerTimeUnitChange'>
-                  <a-radio-button value='%Y-%m-%d %H'>时</a-radio-button>
-                  <a-radio-button value='%Y-%m-%d'>日</a-radio-button>
+              <a-col :span="12">
+                <a-radio-group :value="switchWIPTimeUnit" @change="handlerTimeUnitChange">
+                  <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
+                  <a-radio-button value="%Y-%m-%d">日</a-radio-button>
                 </a-radio-group>
               </a-col>
             </a-row>
-            <line-chart class='cold-capacity-chart' id='WIPTrendLine' :show-split-line='true'
-                        :x-axis='waterUseChartLegend'
-                        :series-data='waterUseChartSeries' :y-axis='yAxis' />
+            <line-chart class="cold-capacity-chart" id="WIPTrendLine" :show-split-line="true"
+                        :x-axis="WIPLineChartLegend"
+                        :series-data="WIPChartSeries" :y-axis="yAxis" />
           </div>
         </a-card>
       </a-col>
-      <a-col :span='12'>
-        <a-card title='各不良类型占比'>
+      <a-col :span="12">
+        <a-card title="各不良类型占比">
           <div :style="{height: (height * 0.5)+'px'}">
-            <pie-chart id='WIPPie' :datasource='PieDatasource' :legend-list='PieLegend' :total-value='WIPTotalValue' unit='片' text='总产品数'></pie-chart>
+            <pie-chart id="WIPPie" :datasource="PieDatasource" unit="片" text="总产品数"></pie-chart>
           </div>
         </a-card>
       </a-col>
     </a-row>
     <a-spin :spinning="loading" tip="查询中...">
       <data-table
-        title='产品信息表'
-        :height='height'
-        :columns='columns'
-        :datasource='datasource'
+        title="产品信息表"
+        :height="height"
+        :columns="columns"
+        :datasource="datasource"
+        :page-size="20"
       />
     </a-spin>
   </div>
 </template>
 
 <script>
-import QuerySelect from "@comp/QuerySelect";
-import LineChart from "@comp/chart/LineChart";
+import QuerySelect from '@comp/QuerySelect'
+import LineChart from '@comp/chart/LineChart'
 import DataTable from '@comp/DataTable'
 import PieChart from '@comp/chart/PieChart'
 import { postAction } from '@api/manage'
+import { getObjArrayFieldToArray } from '@/utils/util'
 
 export default {
-  name: "DefectRecordsReport",
+  name: 'DefectRecordsReport',
   components: {
     DataTable,
     LineChart,
@@ -104,16 +106,16 @@ export default {
       },
       formRules: {
         'startTime': [
-          {required: true}
+          { required: true }
         ],
         'endTime': [
-          {required: true}
+          { required: true }
         ]
       },
       switchWIPTimeUnit: '%Y-%m-%d',
       loading: false,
       macDurationXAxis: [],
-      waterUseChartSeries: [],
+      WIPChartSeries: [],
       COPChartSeries: [],
       elcChartSeries: [],
       yAxis: [
@@ -143,60 +145,68 @@ export default {
           }
         }
       ],
-      waterUseChartLegend: [],
+      WIPLineChartLegend: [],
       COPChartLegend: [],
       elcChartLegend: [],
       switchArea: 'T',
       columns: [
-        {title: '产品 ID', field: 'name', align: 'center', sortable: true},
-        {title: '工单号', field: 'product_request_name', align: 'center'},
-        {title: '不良代码', field: 'fg_code', align: 'center'},
-        {title: '不良描述', field: 'defect_description', align: 'center'},
-        {title: '等级', field: 'grade', align: 'center'},
-        {title: '最新事件', field: 'last_event_name', align: 'center'},
-        {title: '事件发生时间', field: 'last_event_time', align: 'center'},
-        {title: '所在站点', field: 'process_operation_name', align: 'center', sortable: true},
-        {title: '站点名称', field: 'prc_desc', align: 'center'},
-        {title: '操作员 No', field: 'last_event_user', align: 'center'}
+        { title: '产品 ID', field: 'name', align: 'center', sortable: true },
+        { title: '工单号', field: 'product_request_name', align: 'center' },
+        { title: '不良代码', field: 'fg_code', align: 'center' },
+        { title: '不良描述', field: 'defect_description', align: 'center' },
+        { title: '等级', field: 'grade', align: 'center' },
+        { title: '最新事件', field: 'last_event_name', align: 'center' },
+        { title: '事件发生时间', field: 'last_event_time', align: 'center' },
+        { title: '所在站点', field: 'process_operation_name', align: 'center', sortable: true },
+        { title: '站点名称', field: 'prc_desc', align: 'center' },
+        { title: '操作员 No', field: 'last_event_user', align: 'center' }
       ],
       datasource: [],
-      PieDatasource: [],
-      PieLegend: [],
-      WIPTotalValue: 0
+      PieDatasource: []
     }
   },
   methods: {
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
-    handlerWaterUseChartSubmit() {
-      let _this = this
-      let params = _this.form
+    async handlerWaterUseChartSubmit() {
+      let params = this.form
       this.loading = true
 
       params['sql_name'] = 'getAllProductInfos'
-      postAction('/common/executeSql', params).then(res => {
-        _this.datasource = res['result']
-      }).catch(error => {
-        this.$message.error(error)
-      })
+      const table_res = await postAction('/common/executeSql', params)
+      this.datasource = table_res['result']
 
-      this.PieDatasource = [
-        {value: 335, name: 'E101'},
-        {value: 310, name: 'E102'},
-        {value: 234, name: 'E103'}
+      params['sql_name'] = 'getRateOfDefectCode'
+      const pie_data = await postAction('/common/executeSql', params)
+      this.PieDatasource = pie_data['result']
+
+      params['sql_name'] = 'getTrendOfDefectRate'
+      params['unit'] = this.switchWIPTimeUnit
+      const line_result = await postAction('/common/executeSql', params)
+      const line_data = line_result['result']
+
+      this.WIPLineChartLegend = getObjArrayFieldToArray(line_data, 'datehour')
+      this.WIPChartSeries = [
+        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate')}
       ]
-      this.PieLegend = ['E101', 'E102', 'E103']
-      this.waterUseChartLegend = ['2021-04-15', '2021-04-16', '2021-04-17', '2021-04-18', '2021-04-19', '2021-04-20', '2021-04-21', '2021-04-22', '2021-04-23']
-      this.waterUseChartSeries = [
-        { name: '不良率', data: [12, 13, 15, 10, 14, 12, 24, 20, 22, 23] }
-      ]
-      this.WIPTotalValue = 66
 
       this.loading = false
     },
-    handlerTimeUnitChange() {
-      console.log('OK')
+    async handlerTimeUnitChange(e) {
+      this.switchWIPTimeUnit = e.target.value
+
+      //render line chart
+      let params = this.form
+      params['sql_name'] = 'getTrendOfDefectRate'
+      params['unit'] = this.switchWIPTimeUnit
+      const line_result = await postAction('/common/executeSql', params)
+      const line_data = line_result['result']
+
+      this.WIPLineChartLegend = getObjArrayFieldToArray(line_data, 'datehour')
+      this.WIPChartSeries = [
+        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate')}
+      ]
     }
   }
 }
@@ -205,6 +215,7 @@ export default {
 <style lang="less" scoped>
 .trend-of-water-use-div {
   margin: -6px -12px 0 0;
+
   /deep/ .ant-card {
     margin-bottom: 8px;
 

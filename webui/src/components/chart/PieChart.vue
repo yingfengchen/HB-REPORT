@@ -1,8 +1,8 @@
 <template>
-  <div class='main-pie-div'>
+  <div class="main-pie-div">
     <a-row>
-      <a-col :span='24'>
-        <div style='height: 100%; width: 100%; display: inline-block' :id='id'></div>
+      <a-col :span="24">
+        <div style="height: 100%; width: 100%; display: inline-block" :id="id"></div>
       </a-col>
     </a-row>
   </div>
@@ -23,18 +23,10 @@ export default {
     datasource: {
       type: Array,
       default: () => [
-        {value: 335, name: '低温系统耗电'},
-        {value: 310, name: '中温系统耗电'},
-        {value: 234, name: '热水系统耗电'}
+        { value: 335, name: '低温系统耗电' },
+        { value: 310, name: '中温系统耗电' },
+        { value: 234, name: '热水系统耗电' }
       ]
-    },
-    legendList: {
-      type: Array,
-      default: () => ['低温系统耗电', '中温系统耗电', '热水系统耗电']
-    },
-    totalValue: {
-      type: Number,
-      default: 0
     },
     text: {
       type: String,
@@ -48,12 +40,23 @@ export default {
   components: {
     RankList
   },
+  data() {
+    return {
+      totalValue: 0,
+      legendList: ['低温系统耗电', '中温系统耗电', '热水系统耗电']
+    }
+  },
   watch: {
     'datasource': function(val) {
+      this.totalValue = this.getTotalValue(val)
+      this.legendList = this.getLegend(val)
       this.initPieChart(this.id, this.legendList, val)
+      console.log(this.totalValue)
     }
   },
   mounted() {
+    this.totalValue = this.getTotalValue(this.datasource)
+    this.legendList = this.getLegend(this.datasource)
     this.initPieChart(this.id, this.legendList, this.datasource)
   },
   methods: {
@@ -71,7 +74,13 @@ export default {
             top: '3%',
             left: '12px',
             right: '12px',
+            width: '70%',
             data: legend
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
           },
           graphic: [
             {
@@ -140,23 +149,39 @@ export default {
 
         this.chart.setOption(optionData)
         window.addEventListener('resize', function() {
-          if(!that.chart.isDisposed()) {
+          if (!that.chart.isDisposed()) {
             that.chart.resize()
           }
         })
       }
+    },
+    getTotalValue(data) {
+      let value = 0
+      data.forEach(d => {
+        value += d['value']
+      })
+      return value
+    },
+    getLegend(data) {
+      let legend = []
+      data.forEach(d => {
+        legend.push(d['name'])
+      })
+      return legend
     }
   }
 }
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .main-pie-div {
   width: 100%;
   height: 100%;
+
   /deep/ .ant-row {
     height: 100%;
   }
+
   /deep/ .ant-col {
     height: 100%;
   }

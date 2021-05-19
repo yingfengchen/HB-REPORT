@@ -10,21 +10,29 @@
           :rules='formRules'
           @submit='handlerSubmit'
         >
-          <vxe-form-item span='5' title='Lot ID' field='machine'>
-            <vxe-input placeholder='请输入' type='text'></vxe-input>
+          <vxe-form-item span='5' title='Lot ID' field='lot'>
+            <vxe-input v-model="form.lot" placeholder='请输入' type='text'></vxe-input>
           </vxe-form-item>
-          <vxe-form-item span='5' title='Product ID' field='operator'>
-            <vxe-input placeholder='请输入' type='text'></vxe-input>
+          <vxe-form-item span='5' title='Product ID' field='product'>
+            <vxe-input v-model="form.product" placeholder='请输入' type='text'></vxe-input>
           </vxe-form-item>
-          <vxe-form-item span='5' title='站点' field='operator'>
-            <a-select
-              :maxTagCount='2'
-              :maxTagTextLength='3'
-            >
-              <a-select-option key='1'>CUT</a-select-option>
-              <a-select-option key='2'>BINDING</a-select-option>
-              <a-select-option key='3'>BENDING</a-select-option>
-            </a-select>
+          <vxe-form-item span='5' title='站点' field='operation'>
+            <query-select
+              v-model="form.operation"
+              url="/common/executeSql"
+              method="post"
+              :params="{sql_name: 'getAllOperations'}"
+              :option-config="{label: 'description', value: 'name'}"
+            />
+          </vxe-form-item>
+          <vxe-form-item span='5' title='产品规格' field='spec'>
+            <query-select
+              v-model="form.spec"
+              url="/common/executeSql"
+              method="post"
+              :params="{sql_name: 'getAllProductSpec'}"
+              :option-config="{label: 'name', value: 'value'}"
+            />
           </vxe-form-item>
           <vxe-form-item>
             <template #default>
@@ -67,6 +75,7 @@
         :height='890'
         :columns='columns'
         :datasource='datasource'
+        :page-size="24"
       />
     </a-spin>
   </div>
@@ -77,9 +86,10 @@ import BarChart from '@comp/chart/BarChart'
 import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
 import { getCumulative, getInstantaneous } from '@api/energyApi'
-import { transferStringToArray } from '@/utils/util'
+import { getObjArrayFieldToArray, transferStringToArray } from '@/utils/util'
 import DataTable from '@comp/DataTable'
 import PieChart from '@comp/chart/PieChart'
+import { postAction } from '@api/manage'
 
 export default {
   name: 'WIPSearchReport',
@@ -98,10 +108,10 @@ export default {
   data() {
     return {
       form: {
-        startTime: '',
-        endTime: '',
-        machine: '',
-        operator: ''
+        lot: '',
+        product: '',
+        spec: '',
+        operation: ''
       },
       formRules: {},
       switchWaterUseUnit: '%Y-%m-%d',
@@ -145,20 +155,26 @@ export default {
       switchArea: 'T',
       areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        { title: '产品ID', field: 'ID', align: 'center', sortable: true },
-        { title: '所在站点', field: 'Name', align: 'center' },
-        { title: '所属Lot', field: 'suplyer', align: 'center' },
-        { title: '所属工单', field: 'productionDate', align: 'center' },
-        { title: '等级', field: 'inWMSDate', align: 'center' },
-        { title: '不良Code', field: 'reciver', align: 'center' },
-        { title: '是否返工', field: 'useTime', align: 'center' },
-        { title: '上次操作时间', field: 'productionID', align: 'center', sortable: true },
-        { title: '上次操作事件', field: 'desc', align: 'center' }
+        { title: '产品ID', field: 'name', align: 'center', sortable: true },
+        { title: '所在站点', field: 'process_operation_name', align: 'center' },
+        { title: '所属Lot', field: 'lot_name', align: 'center' },
+        { title: '所属工单', field: 'product_request_name', align: 'center' },
+        { title: '等级', field: 'grade', align: 'center' },
+        { title: '不良Code', field: 'fg_code', align: 'center' },
+        { title: '是否返工', field: 'rework_state', align: 'center' },
+        { title: '上次操作事件', field: 'last_event_name', align: 'center' },
+        { title: '上次操作时间', field: 'last_event_time', align: 'center', sortable: true }
       ],
       datasource: [],
       PieDatasource: [],
       PieLegend: []
     }
+  },
+  mounted() {
+    let _this = this
+    setTimeout(() => {
+      _this.handlerWaterUseChartSubmit()
+    }, 300)
   },
   methods: {
     handlerWaterUseUnitChange(e) {
@@ -205,239 +221,25 @@ export default {
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
-    handlerWaterUseChartSubmit() {
+    async handlerWaterUseChartSubmit() {
+      let params = this.form
       this.loading = true
-      this.waterUseChartLegend = ['C011', 'C012', 'OQ01', 'C013', 'C014', 'C015', 'C016', 'OQ02', 'S001']
+
+      params['sql_name'] = 'getWIPOperationCount'
+      const line_res = await postAction('/common/executeSql', params)
+      this.waterUseChartLegend = getObjArrayFieldToArray(line_res['result'], 'name')
       this.waterUseChartSeries = [
-        { name: '当前产品数量', data: [120, 24, 95, 21, 15, 16, 56, 122, 8, 6] }
+        { name: '当前产品数量', data: getObjArrayFieldToArray(line_res['result'], 'value') }
       ]
-      this.datasource = [
-        {
-          ID: 'EZ2021042126',
-          Name: 'C011',
-          productionDate: 'WO2021030521',
-          suplyer: 'TY20210415124568',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'Y',
-          productionID: '2021-04-30 14:30:45',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021031802',
-          Name: 'C011',
-          productionDate: 'WO2021041845',
-          suplyer: 'TY20210418525898',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-04-30 14:32:25',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021050578',
-          Name: 'C011',
-          productionDate: 'WO2021041635',
-          suplyer: 'TY20210501458974',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-04-30 14:35:23',
-          desc: 'TrackOut'
-        },
-        {
-          ID: 'EZ2021042174',
-          Name: 'C011',
-          productionDate: 'WO2021041635',
-          suplyer: 'TY20210415425898',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-04-29 14:36:33',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021031952',
-          Name: 'C011',
-          productionDate: 'WO2021041635',
-          suplyer: 'TY20210419533589',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-05-07 14:38:45',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021050325',
-          Name: 'C011',
-          productionDate: 'WO2021030521',
-          suplyer: 'TY20210501258967',
-          inWMSDate: 'C',
-          reciver: 'E012',
-          useTime: 'Y',
-          productionID: '2021-05-06 14:42:56',
-          desc: 'TrackOut'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: 'C011',
-          productionDate: 'WO2021041845',
-          suplyer: 'TY20210501258975',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-05-08 14:45:20',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: 'C011',
-          productionDate: 'WO2021041845',
-          suplyer: 'TY20210430145896',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-05-08 14:47:58',
-          desc: 'TrackIn'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: 'C011',
-          productionDate: 'WO2021030521',
-          suplyer: 'TY20210430145896',
-          inWMSDate: 'A',
-          reciver: '',
-          useTime: 'N',
-          productionID: '2021-05-08 14:47:58',
-          desc: 'SetJudge'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: 'C011',
-          suplyer: 'OQC01',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050678',
-          useTime: '2021-05-06 14:35:23'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '李春梅',
-          suplyer: 'OQC01',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050619',
-          useTime: '2021-05-06 14:36:33'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '李春梅',
-          suplyer: 'OQC01',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050635',
-          useTime: '2021-05-06 14:38:45'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '李春梅',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050625',
-          useTime: '2021-05-06 14:42:56'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '李春梅',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050201',
-          useTime: '2021-05-06 14:45:20'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '李春梅',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050256',
-          useTime: '2021-05-06 14:47:58'
-        },
-        {
-          ID: 'EZ2021042126',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050678',
-          useTime: '2021-05-06 14:35:23'
-        },
-        {
-          ID: '78552687',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050619',
-          useTime: '2021-05-06 14:36:33'
-        },
-        {
-          ID: '78552687',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050635',
-          useTime: '2021-05-06 14:38:45'
-        },
-        {
-          ID: '78552687',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050625',
-          useTime: '2021-05-06 14:42:56'
-        },
-        {
-          ID: '78552687',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050201',
-          useTime: '2021-05-06 14:45:20'
-        },
-        {
-          ID: '78552687',
-          Name: '贴附薄膜',
-          suplyer: '深圳龙翔材料有限公司',
-          productionDate: '2021-04-30',
-          inWMSDate: '2021-05-01',
-          reciver: '张旭',
-          productionID: 'UYT2021050256',
-          useTime: '2021-05-06 14:47:58'
-        }
-      ]
-      this.PieDatasource = [
-        {value: 335, name: 'FGY025846'},
-        {value: 310, name: 'FGY078954'},
-        {value: 234, name: 'FGY036548'}
-      ]
-      this.PieLegend = ['FGY025846', 'FGY078954', 'FGY036548']
+
+      params['sql_name'] = 'getWIPInfoByParams'
+      const table_res = await postAction('/common/executeSql', params)
+      this.datasource = table_res['result']
+
+      params['sql_name'] = 'getWIPSpecRateByParams'
+      const pie_res = await postAction('/common/executeSql', params)
+      this.PieDatasource = pie_res['result']
+
       this.loading = false
     }
   }
