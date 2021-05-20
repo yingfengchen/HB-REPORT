@@ -9,24 +9,34 @@
           :data="form"
           :rules="formRules"
           @submit="handlerSubmit"
+          @reset="handleReset"
         >
-          <vxe-form-item span="5" title="开始时间" field="startTime">
-            <vxe-input v-model="form.startTime" placeholder="时间选择" type="datetime"></vxe-input>
+          <vxe-form-item span="5" title="开始时间" field="startTime" :item-render="{}" title-overflow="ellipsis">
+            <template #default>
+              <vxe-input v-model="form.startTime" placeholder="时间选择" type="datetime" clearable />
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="结束时间" field="endTime">
-            <vxe-input v-model="form.endTime" placeholder="时间选择" type="datetime"></vxe-input>
+          <vxe-form-item span="5" title="结束时间" field="endTime" :item-render="{}" title-overflow="ellipsis">
+            <template #default>
+              <vxe-input v-model="form.endTime" placeholder="时间选择" type="datetime"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="产品ID" field="productID">
-            <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text"></vxe-input>
+          <vxe-form-item span="5" title="产品ID" field="product" :item-render="{}" title-overflow="ellipsis">
+            <template #default>
+              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="站点" field="operation">
-            <query-select
-              v-model="form.operation"
-              url="/common/executeSql"
-              method="post"
-              :params="{sql_name: 'getAllOperations'}"
-              :option-config="{label: 'description', value: 'name'}"
-            />
+          <vxe-form-item span="5" title="站点" field="operation" :item-render="{}" title-overflow="ellipsis">
+            <template #default>
+              <query-select
+                ref="QSOfPH"
+                v-model="form.operation"
+                url="/common/executeSql"
+                method="post"
+                :params="{sql_name: 'getAllOperations'}"
+                :option-config="{label: 'description', value: 'name'}"
+              />
+            </template>
           </vxe-form-item>
           <vxe-form-item>
             <template #default>
@@ -39,26 +49,26 @@
     </a-row>
     <a-spin :spinning="loading" tip="查询中...">
       <data-table
-        title='产品信息表'
-        :height='height'
-        :columns='columns'
-        :datasource='datasource'
+        title="产品信息表"
+        :height="height"
+        :columns="columns"
+        :datasource="datasource"
       />
     </a-spin>
   </div>
 </template>
 
 <script>
-import BarChart from "@comp/chart/BarChart";
-import QuerySelect from "@comp/QuerySelect";
-import LineChart from "@comp/chart/LineChart";
-import {getCumulative, getInstantaneous} from "@api/energyApi"
-import {transferStringToArray} from "@/utils/util";
+import BarChart from '@comp/chart/BarChart'
+import QuerySelect from '@comp/QuerySelect'
+import LineChart from '@comp/chart/LineChart'
+import { getCumulative, getInstantaneous } from '@api/energyApi'
+import { transferStringToArray } from '@/utils/util'
 import DataTable from '@comp/DataTable'
 import { postAction } from '@api/manage'
 
 export default {
-  name: "DefectRecordsReport",
+  name: 'DefectRecordsReport',
   components: {
     DataTable,
     LineChart,
@@ -80,10 +90,10 @@ export default {
       },
       formRules: {
         'startTime': [
-          {required: true}
+          { required: true }
         ],
         'endTime': [
-          {required: true}
+          { required: true }
         ]
       },
       switchWaterUseUnit: '%Y-%m-%d',
@@ -127,27 +137,27 @@ export default {
       switchArea: 'T',
       areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        {title: '时间戳', field: 'timekey', align: 'center', sortable: true, width: 150},
-        {title: '产品 ID', field: 'name', align: 'center', sortable: true, width: 150},
-        {title: '工厂', field: 'factory_name', align: 'center', sortable: true, width: 150},
-        {title: '返厂次数', field: 'fab_in_count', align: 'center', width: 150},
-        {title: '事件名称', field: 'last_event_name', align: 'center', width: 150},
-        {title: '事件时间', field: 'last_event_time', align: 'center', width: 150},
-        {title: '事件操作员', field: 'last_event_user', align: 'center', width: 150},
-        {title: '不良描述', field: 'defect_description', align: 'center', width: 150},
-        {title: '创建时间', field: 'create_time', align: 'center', width: 150},
-        {title: '创建者', field: 'create_user', align: 'center', width: 150},
-        {title: '产品状态', field: 'product_state', align: 'center', width: 150},
-        {title: '工艺状态', field: 'process_state', align: 'center', width: 150},
-        {title: '产品种类', field: 'product_spec_name', align: 'center', width: 150},
-        {title: '所在站点', field: 'process_operation_name', align: 'center', width: 150},
-        {title: '所属工单', field: 'product_request_name', align: 'center', width: 150},
-        {title: '等级', field: 'grade', align: 'center', width: 150},
-        {title: '不良代码', field: 'fg_code', align: 'center', width: 150},
-        {title: 'Hold 状态', field: 'hold_state', align: 'center', width: 150},
-        {title: '入厂时间', field: 'initial_trackin_time', align: 'center', sortable: true, width: 150},
-        {title: '判定结果', field: 'judge', align: 'center', width: 150},
-        {title: '返工次数', field: 'rework_count', align: 'center', width: 150}
+        { title: '时间戳', field: 'timekey', align: 'center', sortable: true, width: 150 },
+        { title: '产品 ID', field: 'name', align: 'center', sortable: true, width: 150 },
+        { title: '工厂', field: 'factory_name', align: 'center', sortable: true, width: 150 },
+        { title: '返厂次数', field: 'fab_in_count', align: 'center', width: 150 },
+        { title: '事件名称', field: 'last_event_name', align: 'center', width: 150 },
+        { title: '事件时间', field: 'last_event_time', align: 'center', width: 150 },
+        { title: '事件操作员', field: 'last_event_user', align: 'center', width: 150 },
+        { title: '不良描述', field: 'defect_description', align: 'center', width: 150 },
+        { title: '创建时间', field: 'create_time', align: 'center', width: 150 },
+        { title: '创建者', field: 'create_user', align: 'center', width: 150 },
+        { title: '产品状态', field: 'product_state', align: 'center', width: 150 },
+        { title: '工艺状态', field: 'process_state', align: 'center', width: 150 },
+        { title: '产品种类', field: 'product_spec_name', align: 'center', width: 150 },
+        { title: '所在站点', field: 'process_operation_name', align: 'center', width: 150 },
+        { title: '所属工单', field: 'product_request_name', align: 'center', width: 150 },
+        { title: '等级', field: 'grade', align: 'center', width: 150 },
+        { title: '不良代码', field: 'fg_code', align: 'center', width: 150 },
+        { title: 'Hold 状态', field: 'hold_state', align: 'center', width: 150 },
+        { title: '入厂时间', field: 'initial_trackin_time', align: 'center', sortable: true, width: 150 },
+        { title: '判定结果', field: 'judge', align: 'center', width: 150 },
+        { title: '返工次数', field: 'rework_count', align: 'center', width: 150 }
       ],
       datasource: []
     }
@@ -166,6 +176,9 @@ export default {
       }).catch(error => {
         this.$message.error(error)
       })
+    },
+    handleReset() {
+      this.$refs.QSOfPH.clear()
     }
   }
 }
@@ -174,6 +187,7 @@ export default {
 <style lang="less" scoped>
 .trend-of-water-use-div {
   margin: -6px -12px 0 0;
+
   /deep/ .ant-card {
     margin-bottom: 8px;
 
