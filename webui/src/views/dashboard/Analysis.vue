@@ -242,10 +242,10 @@ export default {
     setTimeout(() => {
       this.loading = !this.loading
     }, 600)
-    this.initData()
+    // this.initData()
   },
   mounted() {
-    this.refreshDashboardLine()
+    // this.refreshDashboardLine()
   },
   methods: {
     initData() {
