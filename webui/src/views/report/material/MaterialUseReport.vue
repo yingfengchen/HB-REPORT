@@ -195,13 +195,6 @@ export default {
         this.datasource = res['result']
       })
     }
-    // handlerRecharge(){
-    //   Vue.set(this.form,"endTime",'');
-    //   Vue.set(this.form,"startTime",'');
-    //   Vue.set(this.form,"productID",'');
-    //   Vue.set(this.form,"materialID",'');
-    //   this.datasource = [];
-    // }
   }
 }
 </script>
