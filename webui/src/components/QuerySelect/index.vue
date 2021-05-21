@@ -1,17 +1,17 @@
 <template>
   <vxe-select
-    v-model='model'
-    placeholder='请选择'
+    v-model="model"
+    placeholder="请选择"
     clearable
-    style='width: 100%'
-    @clear='handleClear'
-    @change='handleChange'
+    style="width: 100%"
+    @clear="handleClear"
+    @change="handleChange"
   >
     <vxe-option
-      v-for='option in optionsList'
-      :key='option[optionConfig.value]'
-      :value='option[optionConfig.value]'
-      :label='option[optionConfig.label]'
+      v-for="option in optionsList"
+      :key="option[optionConfig.value]"
+      :value="option[optionConfig.value]"
+      :label="option[optionConfig.label]"
     />
   </vxe-select>
 </template>
@@ -26,7 +26,7 @@ export default {
     event: 'changed'
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['optionConfig', 'url', 'params', 'options', 'method'],
+  props: ['optionConfig', 'url', 'params', 'options', 'method', 'displayFirstDefault'],
   data() {
     return {
       optionsList: [],
@@ -45,6 +45,9 @@ export default {
     'options': {
       handler(n, o) {
         this.optionsList = n['options']
+        if (this.displayFirstDefault && this.optionsList.length > 0) {
+          this.model = this.optionsList[0][this.optionConfig.value]
+        }
       },
       deep: true
     }
@@ -57,7 +60,7 @@ export default {
     queryResult() {
       let that = this
       if (this.url) {
-        httpAction(this.url, this.params_real, this.method||'get').then(res => {
+        httpAction(this.url, this.params_real, this.method || 'get').then(res => {
           if (res.result && res.result.records) {
             that.optionsList = res.result.records
           } else {

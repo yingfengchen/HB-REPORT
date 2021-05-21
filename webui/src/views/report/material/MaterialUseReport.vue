@@ -54,11 +54,7 @@
 import BarChart from '@comp/chart/BarChart'
 import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
-import { getCumulative, getInstantaneous } from '@api/energyApi'
-import { transferStringToArray } from '@/utils/util'
-import { postAction } from '@api/manage'
 import DataTable from '@comp/DataTable'
-import Vue from 'vue'
 import { executeSQL } from '@api/api'
 
 export default {

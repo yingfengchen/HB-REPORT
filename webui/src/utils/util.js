@@ -578,3 +578,14 @@ export function getObjArrayFieldToArray(input, field) {
     output.push(input[i][field]);
   return output;
 }
+
+
+export function getRangeOfTime(time) {
+  if(time) {
+    let now = new Date().getTime()
+    let oldTime = new Date(time.toString().replaceAll('-', '/').replaceAll(/(\.\d+)?/g, "")).getTime()
+    let cha = now - oldTime
+    return Math.floor(cha / (24 * 3600 * 1000));
+  }
+  return 0
+}

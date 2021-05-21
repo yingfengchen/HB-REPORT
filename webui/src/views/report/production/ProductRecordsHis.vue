@@ -62,8 +62,6 @@
 import BarChart from '@comp/chart/BarChart'
 import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
-import { getCumulative, getInstantaneous } from '@api/energyApi'
-import { transferStringToArray } from '@/utils/util'
 import DataTable from '@comp/DataTable'
 import { postAction } from '@api/manage'
 

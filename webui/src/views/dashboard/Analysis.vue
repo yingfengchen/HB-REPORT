@@ -2,29 +2,17 @@
   <div class="page-header-index-wide">
     <a-row :gutter="10" class="card-area">
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="今日产能" :total="cardData.PEMS_CH_PowerT.DayTotalElc + ' 片'">
+        <chart-card :loading="loading" title="今日出货数量" :total="cardData.TotalCapacity.DaliyCapacity + ' 片'">
           <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_CH_PowerT')" />
+            <a-icon type="area-chart" @click="handlerChangeCurrentTag('TotalCapacity')" />
           </a-tooltip>
           <div>
-            <trend :flag="(cardData.PEMS_CH_PowerT.DayDiff > 100)?'up':'down'">
+            <trend :flag="(cardData.TotalCapacity.DayDiff > 100)?'up':'down'">
               <span slot="term">日同比</span>
-              {{ cardData.PEMS_CH_PowerT.DayDiff }}%
+              {{ cardData.TotalCapacity.DayDiff }}%
             </trend>
           </div>
-          <template slot="footer">月总产能<span> {{ cardData.PEMS_CH_PowerT.MonthTotalElc }} 片</span></template>
-        </chart-card>
-      </a-col>
-      <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="今日出货数量" :total="cardData.PEMS_LCHW_PowerT.DayTotalElc + ' 片'">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_LCHW_PowerT')" />
-          </a-tooltip>
-          <div>
-            <mini-area :data-source="cardData.PEMS_LCHW_PowerT.TrendDataSource" x="date" y="value" />
-          </div>
-          <template slot="footer">月出货数量<span> {{ cardData.PEMS_LCHW_PowerT.MonthTotalElc }} 片</span>
-          </template>
+          <template slot="footer">月总出货数量<span> {{ cardData.TotalCapacity.MonthCapacity }} 片</span></template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
@@ -52,36 +40,37 @@
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="低温系统COP" :total="cardData.PEMS_LCHW_COP.COP.toString()">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_LCHW_COP', false)" />
+        <chart-card :loading="loading" title="当前在制产品数量" :total="cardData.WIPProd.Count.toString() + ' 片'">
+          <a-tooltip title="转到详细报表" slot="action">
+            <router-link to="/production/WIPSearchReport">
+              <a-icon type="arrow-right" />
+            </router-link>
           </a-tooltip>
           <div>
-            <mini-bar :height="40" :data-source="cardData.PEMS_LCHW_COP.COPTrendDataSource" x="date" y="value" />
+            <trend :flag="(cardData.WIPProd.DelayCount > 0)?'up':'down'">
+              <span slot="term">疑似滞留</span>
+              {{ cardData.WIPProd.DelayCount }} 片
+            </trend>
           </div>
-          <template slot="footer">低温系统COP</template>
+          <template slot="footer">WIP 数据</template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="中温系统COP" :total="cardData.PEMS_MCHW_COP.COP.toString()">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_MCHW_COP', false)" />
+        <chart-card :loading="loading" title="今日不良品数量" :total="cardData.PEMS_MCHW_COP.COP.toString()">
+          <a-tooltip title="转到详细报表" slot="action">
+            <router-link to="/production/DefectRecordsReport">
+              <a-icon type="arrow-right" />
+            </router-link>
           </a-tooltip>
           <div>
             <mini-bar :height="40" :data-source="cardData.PEMS_MCHW_COP.COPTrendDataSource" x="date" y="value" />
           </div>
-          <template slot="footer">中温系统COP</template>
-        </chart-card>
-      </a-col>
-      <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="热水系统COP" :total="cardData.PEMS_RCHW_COP.COP.toString()">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_RCHW_COP', false)" />
-          </a-tooltip>
-          <div>
-            <mini-bar :height="40" :data-source="cardData.PEMS_RCHW_COP.COPTrendDataSource" x="date" y="value" />
-          </div>
-          <template slot="footer">热水系统COP</template>
+          <template slot="footer">
+            <div style="display: flex; justify-content: space-between;">
+              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当前在制产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
+              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
+            </div>
+          </template>
         </chart-card>
       </a-col>
     </a-row>
@@ -152,15 +141,9 @@ import MiniArea from '@comp/chart/MiniArea'
 import Trend from '@comp/Trend'
 import LineChart from '@comp/chart/LineChart'
 import PieChart from '@comp/chart/PieChart'
-import {
-  getCumulative,
-  getDayMonthDiffValueOfTags,
-  getInstantaneous,
-  getTrendOfOneTag24Hour,
-  getTwoDayDiffRateOfOnTag
-} from '@api/energyApi'
-import { transferStringToArray } from '@/utils/util'
+import { getRangeOfTime } from '@/utils/util'
 import moment from 'dayjs'
+import { executeSQL } from '@api/api'
 
 export default {
   name: 'IndexEnergy',
@@ -181,9 +164,9 @@ export default {
     return {
       loading: true,
       cardData: {
-        PEMS_CH_PowerT: {
-          DayTotalElc: 0,
-          MonthTotalElc: 0,
+        TotalCapacity: {
+          DaliyCapacity: 0,
+          MonthCapacity: 0,
           DayDiff: 0
         },
         PEMS_LCHW_PowerT: {
@@ -207,9 +190,9 @@ export default {
           COP: 0,
           COPTrendDataSource: []
         },
-        PEMS_LCHW_COP: {
-          COP: 0,
-          COPTrendDataSource: []
+        WIPProd: {
+          Count: 0,
+          DelayCount: 0
         },
         PEMS_MCHW_COP: {
           COP: 0,
@@ -222,7 +205,7 @@ export default {
       },
       switchUnit: '%Y-%m-%d',
       pieChartSwitchUnit: 'day_value',
-      currentTag: 'PEMS_CH_PowerT',
+      currentTag: 'TotalCapacity',
       startTime: moment(new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7)).format('YYYY-MM-DD'),
       endTime: moment(new Date()).format('YYYY-MM-DD'),
       lineChartData: {
@@ -242,85 +225,28 @@ export default {
     setTimeout(() => {
       this.loading = !this.loading
     }, 600)
-    // this.initData()
+    this.initData()
   },
   mounted() {
     // this.refreshDashboardLine()
   },
   methods: {
     initData() {
-      this.getDiffValue()
-      this.getInstantaneousValue()
-      this.get24HourTrend()
-      this.getDiffRate()
+      this.refreshWIPData()
     },
-    getDiffValue() {
+    refreshWIPData() {
       let params = {
-        tagList: '' +
-          'PEMS_LCHW_PowerT.VAL_Actl,' +
-          'PEMS_MCHW_PowerT.VAL_Actl,' +
-          'PEMS_RCHW_PowerT.VAL_Actl,' +
-          'PEMS_CH_PowerT.VAL_Actl'
+        sql_name: 'getWIPInfoByParams',
+        lot: '',
+        product: '',
+        operation: '',
+        spec: '',
+        flow: ''
       }
-      getDayMonthDiffValueOfTags(params).then(res => {
-        this.diffDataList = res
-        res.forEach(r => {
-          this.cardData[r['tag_name']]['DayTotalElc'] = r['day_value']
-          this.cardData[r['tag_name']]['MonthTotalElc'] = r['month_value']
-        })
-        this.refreshDashboardPie()
-      })
-    },
-    getInstantaneousValue() {
-      let params = {
-        tagList: '' +
-          'PEMS_LCHW_COP.VAL_Actl,' +
-          'PEMS_MCHW_COP.VAL_Actl,' +
-          'PEMS_RCHW_COP.VAL_Actl'
-      }
-      getInstantaneous(params).then(res => {
-        res.forEach(r => {
-          this.cardData[r['tag_name']]['COP'] = r['value']
-        })
-      })
-    },
-    get24HourTrend() {
-      let params = { diff_flag: true, tag: 'PEMS_LCHW_PowerT.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_LCHW_PowerT.TrendDataSource = res
-      })
-
-      params = { diff_flag: true, tag: 'PEMS_MCHW_PowerT.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_MCHW_PowerT.TrendDataSource = res
-      })
-
-      params = { diff_flag: true, tag: 'PEMS_RCHW_PowerT.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_RCHW_PowerT.TrendDataSource = res
-      })
-
-      params = { diff_flag: false, tag: 'PEMS_LCHW_COP.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_LCHW_COP.COPTrendDataSource = res
-      })
-
-      params = { diff_flag: false, tag: 'PEMS_MCHW_COP.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_MCHW_COP.COPTrendDataSource = res
-      })
-
-      params = { diff_flag: false, tag: 'PEMS_RCHW_COP.VAL_Actl' }
-      getTrendOfOneTag24Hour(params).then(res => {
-        this.cardData.PEMS_RCHW_COP.COPTrendDataSource = res
-      })
-    },
-    getDiffRate() {
-      let params = { tag: 'PEMS_CH_PowerT.VAL_Actl' }
-      getTwoDayDiffRateOfOnTag(params).then(res => {
-        if (res.length > 0) {
-          this.cardData.PEMS_CH_PowerT.DayDiff = (res[0]['y'] / res[1]['y'] * 100).toFixed(2)
-        }
+      executeSQL(params).then((res) => {
+        let product_infos = res['result']
+        this.cardData.WIPProd.Count = product_infos.length
+        this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {return getRangeOfTime(prod['last_event_time']) > 30})).length
       })
     },
     handlerUnitChange(e) {
@@ -344,45 +270,10 @@ export default {
       this.refreshDashboardLine()
     },
     refreshDashboardLine() {
-      const params = {
-        startTime: this.startTime,
-        endTime: this.endTime,
-        timeUnit: this.switchUnit,
-        tagList: this.currentTag + '.VAL_Actl',
-        diff_flag: this.currentDiffFlag
-      }
-      const seriesData = []
 
-      getCumulative(params).then(res => {
-        if (res.length > 0) {
-          this.lineChartData.legends = transferStringToArray(res[0]['unit'])
-          res.forEach(r => {
-            let ser = { name: r['tag_name'], data: transferStringToArray(r['value']) }
-            seriesData.push(ser)
-          })
-          this.lineChartData.series = seriesData
-        }
-      })
     },
     refreshDashboardPie() {
-      let tagListScoped = [
-        'PEMS_LCHW_PowerT',
-        'PEMS_MCHW_PowerT',
-        'PEMS_RCHW_PowerT'
-      ]
-      let datasourcePie = []
-      let totalValue = 0
 
-      this.pieChartData.legends = tagListScoped
-      if (this.diffDataList.length > 0) {
-        let temp = this.diffDataList.filter(d => tagListScoped.indexOf(d['tag_name']) > -1)
-        temp.forEach(t => {
-          datasourcePie.push({ name: t['tag_name'], value: t[this.pieChartSwitchUnit] })
-          totalValue += t[this.pieChartSwitchUnit]
-        })
-      }
-      this.pieChartData.datasource = datasourcePie
-      this.pieChartData.totalValue = Number(totalValue.toFixed(1))
     }
   }
 }

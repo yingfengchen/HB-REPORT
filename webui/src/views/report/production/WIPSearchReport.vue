@@ -11,6 +11,24 @@
           @submit="handlerSubmit"
           @reset="handlerReset"
         >
+          <vxe-form-item span="5" title="Flow" field="flow">
+            <query-select
+              ref="xLine"
+              v-model="form.flow"
+              :options="flowOptions"
+              :option-config="{label: 'process_flow_name', value: 'process_flow_name'}"
+              :display-first-default="displayFirst"
+              @change="handlerLineChange"
+            />
+          </vxe-form-item>
+          <vxe-form-item span="5" title="站点" field="operation">
+            <query-select
+              ref="xOperation"
+              v-model="form.operation"
+              :options="operationOptions"
+              :option-config="{label: 'description', value: 'name'}"
+            />
+          </vxe-form-item>
           <vxe-form-item span="5" title="Lot ID" field="lot" :item-render="{}">
             <template #default>
               <vxe-input v-model="form.lot" placeholder="请输入" type="text" />
@@ -21,17 +39,7 @@
               <vxe-input v-model="form.product" placeholder="请输入" type="text"></vxe-input>
             </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="站点" field="operation">
-            <query-select
-              ref="xOperation"
-              v-model="form.operation"
-              url="/common/executeSql"
-              method="post"
-              :params="{sql_name: 'getAllOperations'}"
-              :option-config="{label: 'description', value: 'name'}"
-            />
-          </vxe-form-item>
-          <vxe-form-item span="5" title="产品规格" field="spec">
+          <vxe-form-item span="5" title="产品规格" field="spec" folding>
             <query-select
               ref="xSpec"
               v-model="form.spec"
@@ -41,7 +49,7 @@
               :option-config="{label: 'name', value: 'value'}"
             />
           </vxe-form-item>
-          <vxe-form-item>
+          <vxe-form-item collapse-node>
             <template #default>
               <vxe-button type="submit" status="primary">查询</vxe-button>
               <vxe-button type="reset">重置</vxe-button>
@@ -53,10 +61,10 @@
     <a-spin :spinning="loading" tip="查询中...">
       <a-row>
         <a-col :span="12">
-          <a-card title="各站点产品堆积情况">
+          <a-card :title="'各站点产品堆积情况 -- ' + this.form.flow">
             <div :style="{height: (height * 0.5)+'px'}">
               <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
-                          :x-axis="waterUseChartLegend"
+                          :x-axis="waterUseChartLegend" :boundary-gap="true"
                           :series-data="waterUseChartSeries" :y-axis="yAxis" />
             </div>
           </a-card>
@@ -71,11 +79,12 @@
         </a-col>
       </a-row>
       <data-table
-        title="在制 Product 列表"
+        title="在制 Product 列表 (30 天未操作视为滞留)"
         :height="890"
         :columns="columns"
         :datasource="datasource"
         :page-size="24"
+        :cell-style="handlerRowStyle"
       />
     </a-spin>
   </div>
@@ -85,11 +94,11 @@
 import BarChart from '@comp/chart/BarChart'
 import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
-import { getCumulative, getInstantaneous } from '@api/energyApi'
-import { getObjArrayFieldToArray, transferStringToArray } from '@/utils/util'
+import { getObjArrayFieldToArray, getRangeOfTime } from '@/utils/util'
 import DataTable from '@comp/DataTable'
 import PieChart from '@comp/chart/PieChart'
 import { postAction } from '@api/manage'
+import { executeSQL } from '@api/api'
 
 export default {
   name: 'WIPSearchReport',
@@ -111,9 +120,14 @@ export default {
         lot: '',
         product: '',
         spec: '',
+        flow: '',
         operation: ''
       },
-      formRules: {},
+      formRules: {
+        flow: [
+          {required: true, message: '请选择工艺Flow'}
+        ]
+      },
       switchCOPUnit: '%Y-%m-%d',
       switchElcUnit: '%Y-%m-%d',
       loading: false,
@@ -166,58 +180,46 @@ export default {
       ],
       datasource: [],
       PieDatasource: [],
-      PieLegend: []
+      PieLegend: [],
+      flowOptions: { options: [] },
+      operationOptions: { options: [] },
+      displayFirst: true
     }
   },
   mounted() {
     let _this = this
+    _this.initData()
     setTimeout(() => {
-      _this.handlerWaterUseChartSubmit()
-    }, 300)
+      _this.handlerSubmit()
+    }, 600)
   },
   methods: {
-    handlerCOPUnitChange(e) {
-      let that = this
-      this.switchCOPUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerCOPChartSubmit()
-      }
-    },
-    handlerElcUnitChange(e) {
-      let that = this
-      this.switchElcUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerElcChartSubmit()
-      }
-    },
-    handlerAreaChange(e) {
-      let that = this
-      this.switchArea = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        switch (this.switchArea) {
-          case 'T':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl'
-            break
-          case '1':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity1T.VAL_Actl,PEMS_MCHW_ColdCapacity1T.VAL_Actl,PEMS_RCHW_ColdCapacity1T.VAL_Actl'
-            break
-          case '2':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity2T.VAL_Actl,PEMS_MCHW_ColdCapacity2T.VAL_Actl,PEMS_RCHW_ColdCapacity2T.VAL_Actl'
-            break
-          default:
-            break
+    initData() {
+      let _this = this
+      executeSQL({ sql_name: 'getFlowOperations' }).then(res => {
+        if (res && res['code'] === 200) {
+          _this.flowOptions['options'] = res['result']
+          if(_this.displayFirst && _this.flowOptions['options'].length > 0){
+            let first = _this.flowOptions['options'][0]
+            if (first) {
+              _this.operationOptions['options'] = JSON.parse(first['operations'])
+              this.form.flow = first['process_flow_name']
+            }
+          }
+        } else {
+          _this.$message.error(res['message'])
         }
-        this.handlerWaterUseChartSubmit()
-      }
+      })
     },
     handlerSubmit() {
-      this.handlerWaterUseChartSubmit()
+      this.handlerWIPChartSubmit()
     },
     handlerReset() {
+      this.$refs.xLine.clear()
       this.$refs.xOperation.clear()
       this.$refs.xSpec.clear()
     },
-    async handlerWaterUseChartSubmit() {
+    async handlerWIPChartSubmit() {
       let params = this.form
       this.loading = true
 
@@ -225,7 +227,7 @@ export default {
       const line_res = await postAction('/common/executeSql', params)
       this.waterUseChartLegend = getObjArrayFieldToArray(line_res['result'], 'name')
       this.waterUseChartSeries = [
-        { name: '当前产品数量', data: getObjArrayFieldToArray(line_res['result'], 'value') }
+        { name: '当前产品数量', type: 'bar', data: getObjArrayFieldToArray(line_res['result'], 'value') }
       ]
 
       params['sql_name'] = 'getWIPInfoByParams'
@@ -237,6 +239,22 @@ export default {
       this.PieDatasource = pie_res['result']
 
       this.loading = false
+    },
+    handlerLineChange(data) {
+      let list = this.flowOptions['options'].filter((l) => {
+        return l['process_flow_name'] === data
+      })
+      if (list.length > 0) {
+        this.operationOptions['options'] = JSON.parse(list[0]['operations'])
+      }
+      this.$refs.xOperation.clear()
+    },
+    handlerRowStyle({ row }) {
+      if(getRangeOfTime(row['last_event_time']) >= 30){
+        return {
+          color: '#ff3b3b'
+        }
+      }
     }
   }
 }
