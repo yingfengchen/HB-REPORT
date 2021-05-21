@@ -2,6 +2,9 @@ import { getAction, deleteAction, putAction, postAction, httpAction } from '@/ap
 import Vue from 'vue'
 import {UI_CACHE_DB_DICT_DATA } from "@/store/mutation-types"
 
+//sql 执行接口
+const executeSQL = (params) => postAction("/common/executeSql", params);
+
 //角色管理
 const addRole = (params)=>postAction("/sys/role/add",params);
 const editRole = (params)=>putAction("/sys/role/edit",params);
@@ -103,6 +106,7 @@ export const transitRESTful = {
 export {
   // imgView,
   // doMian,
+  executeSQL,
   addRole,
   editRole,
   checkRoleCode,
