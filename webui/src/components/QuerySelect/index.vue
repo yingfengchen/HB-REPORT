@@ -41,6 +41,12 @@ export default {
         this.queryResult()
       },
       deep: true
+    },
+    'options': {
+      handler(n, o) {
+        this.optionsList = n['options']
+      },
+      deep: true
     }
   },
   created() {
@@ -52,7 +58,6 @@ export default {
       let that = this
       if (this.url) {
         httpAction(this.url, this.params_real, this.method||'get').then(res => {
-          console.log(res)
           if (res.result && res.result.records) {
             that.optionsList = res.result.records
           } else {
