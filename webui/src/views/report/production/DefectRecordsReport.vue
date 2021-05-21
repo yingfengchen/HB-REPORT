@@ -9,18 +9,26 @@
           :data="form"
           :rules="formRules"
           @submit="handlerSubmit"
+          @reset="handlerReset"
         >
-          <vxe-form-item span="5" title="开始时间" field="startTime">
-            <vxe-input v-model="form.startTime" placeholder="时间选择" type="datetime"></vxe-input>
+          <vxe-form-item span="5" title="开始时间" field="startTime" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.startTime" placeholder="时间选择" type="datetime"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="结束时间" field="endTime">
-            <vxe-input v-model="form.endTime" placeholder="时间选择" type="datetime"></vxe-input>
+          <vxe-form-item span="5" title="结束时间" field="endTime" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.endTime" placeholder="时间选择" type="datetime"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="产品ID" field="productID">
-            <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text"></vxe-input>
+          <vxe-form-item span="5" title="产品ID" field="product" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="站点" field="operation">
+          <vxe-form-item span="5" title="站点" field="operation" :item-render="{}">
             <query-select
+              ref="xOperation"
               v-model="form.operation"
               url="/common/executeSql"
               method="post"
@@ -169,6 +177,9 @@ export default {
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
+    handlerReset() {
+      this.$refs.xOperation.clear()
+    },
     async handlerWaterUseChartSubmit() {
       let params = this.form
       this.loading = true
@@ -188,7 +199,7 @@ export default {
 
       this.WIPLineChartLegend = getObjArrayFieldToArray(line_data, 'datehour')
       this.WIPChartSeries = [
-        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate')}
+        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate') }
       ]
 
       this.loading = false
@@ -205,7 +216,7 @@ export default {
 
       this.WIPLineChartLegend = getObjArrayFieldToArray(line_data, 'datehour')
       this.WIPChartSeries = [
-        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate')}
+        { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate') }
       ]
     }
   }

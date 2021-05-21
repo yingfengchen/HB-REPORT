@@ -1,23 +1,29 @@
 <template>
-  <div class='trend-of-water-use-div'>
-    <a-row class='params-panel'>
-      <a-col :span='24'>
+  <div class="trend-of-water-use-div">
+    <a-row class="params-panel">
+      <a-col :span="24">
         <vxe-form
-          ref='xWaterUseForm'
-          title-width='100px'
-          :loading='loading'
-          :data='form'
-          :rules='formRules'
-          @submit='handlerSubmit'
+          ref="xWaterUseForm"
+          title-width="100px"
+          :loading="loading"
+          :data="form"
+          :rules="formRules"
+          @submit="handlerSubmit"
+          @reset="handlerReset"
         >
-          <vxe-form-item span='5' title='Lot ID' field='lot'>
-            <vxe-input v-model="form.lot" placeholder='请输入' type='text'></vxe-input>
+          <vxe-form-item span="5" title="Lot ID" field="lot" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.lot" placeholder="请输入" type="text" />
+            </template>
           </vxe-form-item>
-          <vxe-form-item span='5' title='Product ID' field='product'>
-            <vxe-input v-model="form.product" placeholder='请输入' type='text'></vxe-input>
+          <vxe-form-item span="5" title="Product ID" field="product" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.product" placeholder="请输入" type="text"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span='5' title='站点' field='operation'>
+          <vxe-form-item span="5" title="站点" field="operation">
             <query-select
+              ref="xOperation"
               v-model="form.operation"
               url="/common/executeSql"
               method="post"
@@ -25,8 +31,9 @@
               :option-config="{label: 'description', value: 'name'}"
             />
           </vxe-form-item>
-          <vxe-form-item span='5' title='产品规格' field='spec'>
+          <vxe-form-item span="5" title="产品规格" field="spec">
             <query-select
+              ref="xSpec"
               v-model="form.spec"
               url="/common/executeSql"
               method="post"
@@ -36,45 +43,38 @@
           </vxe-form-item>
           <vxe-form-item>
             <template #default>
-              <vxe-button type='submit' status='primary'>查询</vxe-button>
-              <vxe-button type='reset'>重置</vxe-button>
+              <vxe-button type="submit" status="primary">查询</vxe-button>
+              <vxe-button type="reset">重置</vxe-button>
             </template>
           </vxe-form-item>
         </vxe-form>
       </a-col>
     </a-row>
-    <a-spin :spinning='loading' tip='查询中...'>
+    <a-spin :spinning="loading" tip="查询中...">
       <a-row>
-        <a-col :span='12'>
-          <a-card title='各站点产品堆积情况'>
+        <a-col :span="12">
+          <a-card title="各站点产品堆积情况">
             <div :style="{height: (height * 0.5)+'px'}">
-              <a-row>
-                <a-col :span='12'>
-                  <a-radio-group :value='switchWaterUseUnit' @change='handlerWaterUseUnitChange'>
-                    <a-radio-button value='%Y-%m-%d %H'>Line1</a-radio-button>
-                    <a-radio-button value='%Y-%m-%d'>Line2</a-radio-button>
-                  </a-radio-group>
-                </a-col>
-              </a-row>
-              <line-chart class='cold-capacity-chart' id='trendWaterUse' :show-split-line='true'
-                          :x-axis='waterUseChartLegend'
-                          :series-data='waterUseChartSeries' :y-axis='yAxis' />
+              <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
+                          :x-axis="waterUseChartLegend"
+                          :series-data="waterUseChartSeries" :y-axis="yAxis" />
             </div>
           </a-card>
         </a-col>
-        <a-col :span='12'>
-        <a-card title='各产品规格占比'>
-          <div :style="{height: (height * 0.5)+'px'}">
-            <pie-chart id='PersonErrorPie' :datasource='PieDatasource' :legend-list='PieLegend' :total-value='879' unit='片' text='总产品数'></pie-chart>
-          </div>
-        </a-card>
-      </a-col>
+        <a-col :span="12">
+          <a-card title="各产品规格占比">
+            <div :style="{height: (height * 0.5 + 8)+'px'}">
+              <pie-chart id="PersonErrorPie" :datasource="PieDatasource" :legend-list="PieLegend" :total-value="879"
+                         unit="片" text="总产品数"></pie-chart>
+            </div>
+          </a-card>
+        </a-col>
       </a-row>
       <data-table
-        title='在制 Product 列表'
-        :height='890'
-        :columns='columns'
-        :datasource='datasource'
+        title="在制 Product 列表"
+        :height="890"
+        :columns="columns"
+        :datasource="datasource"
         :page-size="24"
       />
     </a-spin>
@@ -114,7 +114,6 @@ export default {
         operation: ''
       },
       formRules: {},
-      switchWaterUseUnit: '%Y-%m-%d',
       switchCOPUnit: '%Y-%m-%d',
       switchElcUnit: '%Y-%m-%d',
       loading: false,
@@ -177,13 +176,6 @@ export default {
     }, 300)
   },
   methods: {
-    handlerWaterUseUnitChange(e) {
-      let that = this
-      this.switchWaterUseUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerWaterUseChartSubmit()
-      }
-    },
     handlerCOPUnitChange(e) {
       let that = this
       this.switchCOPUnit = e.target.value
@@ -221,6 +213,10 @@ export default {
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
+    handlerReset() {
+      this.$refs.xOperation.clear()
+      this.$refs.xSpec.clear()
+    },
     async handlerWaterUseChartSubmit() {
       let params = this.form
       this.loading = true
@@ -246,7 +242,7 @@ export default {
 }
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .trend-of-water-use-div {
   /deep/ .ant-card {
     margin-bottom: 8px;

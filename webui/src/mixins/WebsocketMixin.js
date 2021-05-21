@@ -23,11 +23,11 @@ export const WebsocketMixin = {
         this.socketUrl = this.socketUrl + '/'
       }
       var url = window._CONFIG['domianURL'].replace("https://","wss://").replace("http://","ws://") + this.socketUrl + userId + "/" + token;
-      this.websock = new WebSocket(url);
-      this.websock.onopen = this.websocketOnopen;
-      this.websock.onerror = this.websocketOnerror;
-      this.websock.onmessage = this.websocketOnmessage;
-      this.websock.onclose = this.websocketOnclose;
+      // this.websock = new WebSocket(url);
+      // this.websock.onopen = this.websocketOnopen;
+      // this.websock.onerror = this.websocketOnerror;
+      // this.websock.onmessage = this.websocketOnmessage;
+      // this.websock.onclose = this.websocketOnclose;
     },
     websocketOnopen: function () {
       console.log("WebSocket连接成功");

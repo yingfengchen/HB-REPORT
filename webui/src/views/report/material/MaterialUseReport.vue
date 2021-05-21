@@ -59,6 +59,7 @@ import { transferStringToArray } from '@/utils/util'
 import { postAction } from '@api/manage'
 import DataTable from '@comp/DataTable'
 import Vue from 'vue'
+import { executeSQL } from '@api/api'
 
 export default {
   name: 'MaterialUseReport',
@@ -143,47 +144,6 @@ export default {
     }
   },
   methods: {
-    handlerWaterUseUnitChange(e) {
-      let that = this
-      this.switchWaterUseUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerWaterUseChartSubmit()
-      }
-    },
-    handlerCOPUnitChange(e) {
-      let that = this
-      this.switchCOPUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerCOPChartSubmit()
-      }
-    },
-    handlerElcUnitChange(e) {
-      let that = this
-      this.switchElcUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerElcChartSubmit()
-      }
-    },
-    handlerAreaChange(e) {
-      let that = this
-      this.switchArea = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        switch (this.switchArea) {
-          case 'T':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl'
-            break
-          case '1':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity1T.VAL_Actl,PEMS_MCHW_ColdCapacity1T.VAL_Actl,PEMS_RCHW_ColdCapacity1T.VAL_Actl'
-            break
-          case '2':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity2T.VAL_Actl,PEMS_MCHW_ColdCapacity2T.VAL_Actl,PEMS_RCHW_ColdCapacity2T.VAL_Actl'
-            break
-          default:
-            break
-        }
-        this.handlerWaterUseChartSubmit()
-      }
-    },
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
@@ -191,7 +151,7 @@ export default {
       let params = this.form
 
       params['sql_name'] = 'getMaterialUseRecordings'
-      postAction('/common/executeSql', params).then((res) => {
+      executeSQL(params).then((res) => {
         this.datasource = res['result']
       })
     }

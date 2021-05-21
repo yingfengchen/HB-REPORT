@@ -1,32 +1,46 @@
 <template>
-  <div class='trend-of-water-use-div'>
-    <a-row class='params-panel'>
-      <a-col :span='24'>
+  <div class="trend-of-water-use-div">
+    <a-row class="params-panel">
+      <a-col :span="24">
         <vxe-form
-          ref='xWaterUseForm'
-          title-width='100px'
-          :loading='loading'
-          :data='form'
-          :rules='formRules'
-          @submit='handlerSubmit'
+          ref="xWaterUseForm"
+          title-width="100px"
+          :loading="loading"
+          :data="form"
+          :rules="formRules"
+          @submit="handlerSubmit"
+          @reset="handlerReset"
         >
-          <vxe-form-item span='5' title='开始时间' field='startTime'>
-            <vxe-input v-model='form.startTime' placeholder='日期选择' type='date'></vxe-input>
+          <vxe-form-item span="5" title="开始时间" field="startTime" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.startTime" placeholder="日期选择" type="date"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span='5' title='结束时间' field='endTime'>
-            <vxe-input v-model='form.endTime' placeholder='日期选择' type='date'></vxe-input>
+          <vxe-form-item span="5" title="结束时间" field="endTime" :item-render="{}">
+            <template #default>
+              <vxe-input v-model="form.endTime" placeholder="日期选择" type="date"></vxe-input>
+            </template>
           </vxe-form-item>
-          <vxe-form-item span='5' title='站点' field='operation'>
+          <vxe-form-item span="5" title="拉线" field="line">
             <query-select
+              ref="xLine"
+              v-model="form.line"
+              :options="lineOptions"
+              :option-config="{label: 'description', value: 'name'}"
+              @change="handlerLineChange"
+            />
+          </vxe-form-item>
+          <vxe-form-item span="5" title="设备" field="operation">
+            <query-select
+              ref="xOperation"
               v-model="form.operation"
-              url="/common/executeSql"
-              method="post"
-              :params="{sql_name: 'getAllOperations'}"
+              :options="operationOptions"
               :option-config="{label: 'description', value: 'name'}"
             />
           </vxe-form-item>
-          <vxe-form-item span='5' title='产品规格' field='spec'>
+          <vxe-form-item span="5" title="产品规格" field="spec" folding>
             <query-select
+              ref="xSpec"
               v-model="form.spec"
               url="/common/executeSql"
               method="post"
@@ -34,63 +48,45 @@
               :option-config="{label: 'name', value: 'value'}"
             />
           </vxe-form-item>
-          <vxe-form-item>
+          <vxe-form-item collapse-node>
             <template #default>
-              <vxe-button type='submit' status='primary'>查询</vxe-button>
-              <vxe-button type='reset'>重置</vxe-button>
+              <vxe-button type="submit" status="primary">查询</vxe-button>
+              <vxe-button type="reset">重置</vxe-button>
             </template>
           </vxe-form-item>
         </vxe-form>
       </a-col>
     </a-row>
-    <a-spin :spinning='loading' tip='查询中...'>
-      <a-card title='设备产能趋势'>
+    <a-spin :spinning="loading" tip="查询中...">
+      <a-card title="设备产能趋势">
         <div :style="{height: (height * 0.5)+'px'}">
           <a-row>
-            <a-col :span='12'>
-              <a-radio-group :value='switchWaterUseUnit' @change='handlerWaterUseUnitChange'>
-                <a-radio-button value='%Y-%m-%d %H'>时</a-radio-button>
-                <a-radio-button value='%Y-%m-%d'>日</a-radio-button>
-                <a-radio-button value='%Y-%m'>月</a-radio-button>
-              </a-radio-group>
-            </a-col>
-            <a-col :span='12' style='text-align: right'>
-              <a-radio-group :value='switchArea' @change='handlerAreaChange'>
-                <a-radio-button value='T'>总量</a-radio-button>
-                <a-radio-button value='1'>Line 1</a-radio-button>
-                <a-radio-button value='2'>Line 2</a-radio-button>
+            <a-col :span="12">
+              <a-radio-group :value="switchCapacityMacTrendUnit" @change="handlerCapacityMacTUChange">
+                <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
+                <a-radio-button value="%Y-%m-%d">日</a-radio-button>
+                <a-radio-button value="%Y-%m">月</a-radio-button>
               </a-radio-group>
             </a-col>
           </a-row>
-          <line-chart class='cold-capacity-chart' id='trendWaterUse' :show-split-line='true'
-                      :x-axis='waterUseChartLegend'
-                      :series-data='waterUseChartSeries' :y-axis='yAxis' />
+          <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
+                      :x-axis="capacityMacTLegend"
+                      :series-data="capacityMacTSeries" :y-axis="yAxis" />
         </div>
       </a-card>
-      <a-card title='AB 班组产能对比' style='width: calc(50% - 4px); display: inline-block; margin-right: 8px'>
+      <a-card title="AB 班组产能对比" style="width: 100%; display: inline-block; margin-right: 8px">
         <div :style="{height: (height * 0.5)+'px'}">
           <a-row>
-            <a-col :span='12'>
-              <a-radio-group :value='switchCOPUnit' @change='handlerCOPUnitChange'>
-                <a-radio-button value='%Y-%m-%d %H'>时</a-radio-button>
-                <a-radio-button value='%Y-%m-%d'>日</a-radio-button>
-                <a-radio-button value='%Y-%m'>月</a-radio-button>
+            <a-col :span="24">
+              <a-radio-group :value="switchCapacityGroupUnit" @change="handlerCapacityGroupUnitChange">
+                <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
+                <a-radio-button value="%Y-%m-%d">日</a-radio-button>
+                <a-radio-button value="%Y-%m">月</a-radio-button>
               </a-radio-group>
             </a-col>
           </a-row>
-          <line-chart class='cop-chart' id='COPReport' :show-split-line='true' :x-axis='COPChartLegend'
-                      :series-data='COPChartSeries' :y-axis='yAxis' />
-        </div>
-      </a-card>
-      <a-card title='操作员产能趋势' style='width: calc(50% - 4px); display: inline-block'>
-        <div :style="{height: (height * 0.5)+'px'}">
-          <a-row>
-            <a-col :span='12'>
-              <label>所属站点：</label><label style='font-weight: bolder'>OQC</label>
-            </a-col>
-          </a-row>
-          <line-chart class='cop-chart' id='elcReport' :show-split-line='true' :x-axis='elcChartLegend'
-                      :series-data='elcChartSeries' :y-axis='yAxis' />
+          <line-chart class="cop-chart" id="COPReport" :show-split-line="true" :x-axis="CapacityGroupLegend"
+                      :series-data="CapacityGroupSeries" :y-axis="yAxis" />
         </div>
       </a-card>
     </a-spin>
@@ -101,8 +97,9 @@
 import BarChart from '@comp/chart/BarChart'
 import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
-import { getCumulative, getInstantaneous } from '@api/energyApi'
-import { transferStringToArray } from '@/utils/util'
+import { cloneObject, transferStringToArray } from '@/utils/util'
+import { executeSQL } from '@api/api'
+import { postAction } from '@api/manage'
 
 export default {
   name: 'CapacityReport',
@@ -121,6 +118,7 @@ export default {
       form: {
         startTime: '',
         endTime: '',
+        line: '',
         operation: '',
         spec: ''
       },
@@ -130,15 +128,18 @@ export default {
         ],
         endTime: [
           { required: true, message: '请输入起始时间' }
+        ],
+        line: [
+          { required: true, message: '请输入Line' }
         ]
       },
-      switchWaterUseUnit: '%Y-%m-%d',
-      switchCOPUnit: '%Y-%m-%d',
+      switchCapacityMacTrendUnit: '%Y-%m-%d',
+      switchCapacityGroupUnit: '%Y-%m-%d',
       switchElcUnit: '%Y-%m-%d',
       loading: false,
       macDurationXAxis: [],
-      waterUseChartSeries: [],
-      COPChartSeries: [],
+      capacityMacTSeries: [],
+      CapacityGroupSeries: [],
       elcChartSeries: [],
       yAxis: [
         {
@@ -167,26 +168,39 @@ export default {
           }
         }
       ],
-      waterUseChartLegend: [],
-      COPChartLegend: [],
+      capacityMacTLegend: [],
+      CapacityGroupLegend: [],
       elcChartLegend: [],
-      switchArea: 'T',
-      areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl'
+      lineOptions: { options: [] },
+      operationOptions: { options: [] }
     }
   },
+  mounted() {
+    this.initData()
+  },
   methods: {
-    handlerWaterUseUnitChange(e) {
+    initData() {
+      let _this = this
+      executeSQL({ sql_name: 'getLinesAndOperations' }).then(res => {
+        if (res && res['code'] === 200) {
+          _this.lineOptions['options'] = res['result']
+        } else {
+          _this.$message.error(res['message'])
+        }
+      })
+    },
+    handlerCapacityMacTUChange(e) {
       let that = this
-      this.switchWaterUseUnit = e.target.value
+      this.switchCapacityMacTrendUnit = e.target.value
       if (this.form.startTime && this.form.endTime) {
-        this.handlerWaterUseChartSubmit()
+        this.handlerCapacityMacChartSubmit()
       }
     },
-    handlerCOPUnitChange(e) {
+    handlerCapacityGroupUnitChange(e) {
       let that = this
-      this.switchCOPUnit = e.target.value
+      this.switchCapacityGroupUnit = e.target.value
       if (this.form.startTime && this.form.endTime) {
-        this.handlerCOPChartSubmit()
+        this.handlerCapacityGroupSubmit()
       }
     },
     handlerElcUnitChange(e) {
@@ -196,62 +210,55 @@ export default {
         this.handlerElcChartSubmit()
       }
     },
-    handlerAreaChange(e) {
-      let that = this
-      this.switchArea = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        switch (this.switchArea) {
-          case 'T':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl'
-            break
-          case '1':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity1T.VAL_Actl,PEMS_MCHW_ColdCapacity1T.VAL_Actl,PEMS_RCHW_ColdCapacity1T.VAL_Actl'
-            break
-          case '2':
-            this.areaTagList = 'PEMS_LCHW_ColdCapacity2T.VAL_Actl,PEMS_MCHW_ColdCapacity2T.VAL_Actl,PEMS_RCHW_ColdCapacity2T.VAL_Actl'
-            break
-          default:
-            break
-        }
-        this.handlerWaterUseChartSubmit()
+    async handlerSubmit() {
+      this.loading = true
+      let series = []
+      const params = cloneObject(this.form)
+
+      params['sql_name'] = 'getCapacityTrend'
+      params['unit'] = this.switchCapacityMacTrendUnit
+      let returnV = await executeSQL(params)
+      let res = returnV['result']
+      this.capacityMacTLegend = transferStringToArray(res[0]['date'])
+      for (let resKey of res) {
+        let sery = {name: resKey['operation'], data: transferStringToArray(resKey['count'])}
+        series.push(sery)
       }
-    },
-    handlerSubmit() {
-      this.handlerWaterUseChartSubmit()
-      this.handlerCOPChartSubmit()
-      this.handlerElcChartSubmit()
-    },
-    handlerWaterUseChartSubmit() {
-      this.loading = true
-      this.waterUseChartLegend = ['2021-04-28', '2021-04-29', '2021-04-30', '2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05', '2021-05-06', '2021-05-07']
-      this.waterUseChartSeries = [
-        { name: 'CUT', data: [482, 568, 652, 356, 289, 980, 886, 756, 658, 589] },
-        { name: 'BINDING', data: [258, 369, 458, 425, 436, 520, 555, 612, 602, 458] }
-      ]
+      this.capacityMacTSeries = series
+
+      series = []
+      params['sql_name'] = 'getCapacityGroupTrend'
+      params['unit'] = this.switchCapacityGroupUnit
+      returnV = await executeSQL(params)
+      res = returnV['result']
+      this.CapacityGroupLegend = transferStringToArray(res[0]['datehour'])
+      for (let resKey of res) {
+        let sery = {name: resKey['value'], data: transferStringToArray(resKey['count'])}
+        series.push(sery)
+      }
+      this.CapacityGroupSeries = series
+
       this.loading = false
     },
-    handlerCOPChartSubmit() {
-      this.loading = true
-      this.COPChartLegend = ['2021-04-28', '2021-04-29', '2021-04-30', '2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05', '2021-05-06', '2021-05-07']
-      this.COPChartSeries = [
-        { name: 'A班[8:30 - 20:30]', data: [200, 320, 652, 569, 653, 589, 658, 486, 785, 720] },
-        { name: 'B班[20:30 - 8:30]', data: [258, 256, 458, 425, 436, 520, 485, 389, 458, 458] }
-      ]
-      this.loading = false
+    handlerReset() {
+      this.$refs.xLine.clear()
+      this.$refs.xOperation.clear()
+      this.$refs.xSpec.clear()
     },
-    handlerElcChartSubmit() {
-      this.loading = true
-      this.elcChartLegend = ['2021-04-28', '2021-04-29', '2021-04-30', '2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05', '2021-05-06', '2021-05-07']
-      this.elcChartSeries = [
-        { name: '谢青春', data: [200, 320, 452, 569, 653, 625, 590, 653, 635, 720] }
-      ]
-      this.loading = false
+    handlerLineChange(data) {
+      let list = this.lineOptions['options'].filter((l) => {
+        return l['name'] === data
+      })
+      if (list.length > 0) {
+        this.operationOptions['options'] = JSON.parse(list[0]['machines'])
+      }
+      this.$refs.xOperation.clear()
     }
   }
 }
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .trend-of-water-use-div {
   /deep/ .ant-card {
     margin-bottom: 8px;
