@@ -108,22 +108,22 @@ export default {
             smooth: true,
             yAxisIndex: s['yIndex'] || 0,
             lineStyle: {
-              color: color[i]
+              color: color[i%10]
             },
             itemStyle: {
               normal: {
-                color: color[i],
-                borderColor: color[i]
+                color: color[i%10],
+                borderColor: color[i%10]
               }
             },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                 offset: 0,
-                color: color[i] + 'b3'
+                color: color[i%10] + 'b3'
               },
                 {
                   offset: 1,
-                  color: color[i] + '03'
+                  color: color[i%10] + '03'
                 }
               ])
             },
