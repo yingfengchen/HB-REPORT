@@ -71,15 +71,32 @@
         </a-card>
       </a-col>
     </a-row>
-    <a-spin :spinning="loading" tip="查询中...">
-      <data-table
-        title="产品信息表"
-        :height="height"
-        :columns="columns"
-        :datasource="datasource"
-        :page-size="20"
-      />
-    </a-spin>
+    <a-row :gutter="6">
+      <a-col :span="6">
+        <a-spin :spinning="loading" tip="查询中...">
+          <data-table
+            title="不良分类列表"
+            :height="height"
+            :columns="defectColumns"
+            :datasource="defectDatasource"
+            :is-hide-pager="true"
+            @cell-click="handlerRowClick"
+          />
+        </a-spin>
+      </a-col>
+      <a-col :span="18">
+        <a-spin :spinning="loading" tip="查询中...">
+          <data-table
+            title="产品信息表"
+            :height="height"
+            :columns="columns"
+            :datasource="datasource"
+            :page-size="20"
+          />
+        </a-spin>
+      </a-col>
+    </a-row>
+
   </div>
 </template>
 
@@ -101,7 +118,7 @@ export default {
   },
   computed: {
     height() {
-      return this.$store.getters.bodyHeight - 175
+      return this.$store.getters.bodyHeight - 190
     }
   },
   data() {
@@ -158,18 +175,24 @@ export default {
       elcChartLegend: [],
       switchArea: 'T',
       columns: [
-        { title: '产品 ID', field: 'name', align: 'center', sortable: true },
-        { title: '工单号', field: 'product_request_name', align: 'center' },
-        { title: '不良代码', field: 'fg_code', align: 'center' },
-        { title: '不良描述', field: 'defect_description', align: 'center' },
-        { title: '等级', field: 'grade', align: 'center' },
-        { title: '最新事件', field: 'last_event_name', align: 'center' },
-        { title: '事件发生时间', field: 'last_event_time', align: 'center' },
-        { title: '所在站点', field: 'process_operation_name', align: 'center', sortable: true },
-        { title: '站点名称', field: 'prc_desc', align: 'center' },
-        { title: '操作员 No', field: 'last_event_user', align: 'center' }
+        { title: '产品 ID', field: 'name', align: 'center', sortable: true, width: 150 },
+        { title: '工单号', field: 'product_request_name', align: 'center', width: 150  },
+        { title: '不良代码', field: 'fg_code', align: 'center', width: 150  },
+        { title: '不良描述', field: 'defect_description', align: 'center', width: 150  },
+        { title: '等级', field: 'grade', align: 'center', width: 150  },
+        { title: '最新事件', field: 'last_event_name', align: 'center', width: 150  },
+        { title: '事件发生时间', field: 'last_event_time', align: 'center', width: 150  },
+        { title: '所在站点', field: 'process_operation_name', align: 'center', sortable: true, width: 150  },
+        { title: '站点名称', field: 'prc_desc', align: 'center', width: 150  },
+        { title: '操作员 No', field: 'last_event_user', align: 'center', width: 150  }
       ],
+      defectColumns: [
+        { title: '不良类别', field: 'defect_type', align: 'center' },
+        { title: '不良数量', field: 'count', align: 'center' }
+      ],
+      datasource_source: [],
       datasource: [],
+      defectDatasource: [],
       PieDatasource: []
     }
   },
@@ -184,9 +207,22 @@ export default {
       let params = this.form
       this.loading = true
 
+      params['sql_name'] = 'getAllProdInfosGroupType'
+      const table_gt_res = await postAction('/common/executeSql', params)
+      this.defectDatasource = table_gt_res['result']
+
       params['sql_name'] = 'getAllProductInfos'
       const table_res = await postAction('/common/executeSql', params)
-      this.datasource = table_res['result']
+      if(table_res && table_res['code'] === 200) {
+        this.datasource_source = table_res['result']
+        if (this.defectDatasource.length > 0) {
+          this.datasource = this.datasource_source.filter((p) => {
+            return p['defect_type'] === this.defectDatasource[0]['defect_type']
+          })
+        } else {
+          this.datasource = this.datasource_source
+        }
+      }
 
       params['sql_name'] = 'getRateOfDefectCode'
       const pie_data = await postAction('/common/executeSql', params)
@@ -218,6 +254,11 @@ export default {
       this.WIPChartSeries = [
         { name: '不良率', data: getObjArrayFieldToArray(line_data, 'rate') }
       ]
+    },
+    handlerRowClick(row){
+      this.datasource = this.datasource_source.filter((p) => {
+        return p['defect_type'] === row['defect_type']
+      })
     }
   }
 }
