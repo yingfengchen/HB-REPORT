@@ -67,7 +67,7 @@
           </div>
           <template slot="footer">
             <div style="display: flex; justify-content: space-between;">
-              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当前在制产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
+              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月不良品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
               <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
             </div>
           </template>

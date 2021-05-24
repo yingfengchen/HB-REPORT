@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import RankList from '@comp/chart/RankList'
 import * as echarts from 'echarts'
 import { randomUUID } from '@/utils/util'
 
@@ -36,9 +35,6 @@ export default {
       type: String,
       default: 'KWH'
     }
-  },
-  components: {
-    RankList
   },
   data() {
     return {
