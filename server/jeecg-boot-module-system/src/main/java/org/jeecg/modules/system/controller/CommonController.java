@@ -28,6 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 /**
  * <p>
  * 用户表 前端控制器
@@ -46,6 +49,9 @@ public class CommonController {
 
     @Value(value = "${jeecg.path.upload}")
     private String uploadpath;
+
+    @Value(value = "${jeecg.path.rpxUpload}")
+    private String rpxFilePath;
 
     /**
      * 本地：local minio：minio 阿里：alioss
@@ -117,6 +123,56 @@ public class CommonController {
     }
 
     /**
+     * RPX 文件上传方法
+     * @param request
+     * @param response
+     * @return
+     */
+    @PostMapping(value = "/rpxUpload")
+    public Result<?> rpxUpload(HttpServletRequest request, HttpServletResponse response) {
+        Result<?> result = new Result<>();
+        String savePath = "";
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile file = multipartRequest.getFile("file");// 获取上传文件对象
+        savePath = this.uploadRpxLocal(file);
+        if(oConvertUtils.isNotEmpty(savePath)){
+            result.setMessage(savePath);
+            result.setSuccess(true);
+        }else {
+            result.setMessage("上传失败！");
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    /**
+     * RPX 文件删除方法
+     * @return
+     */
+    @PostMapping(value = "/rpxDelete")
+    public Result<?> rpxDelete(@RequestBody Map<String, ?> map) {
+        Result<?> result = new Result<>();
+        ArrayList<String> fileNames = (ArrayList<String>) map.get("fileNames");
+        Boolean isSuccess = true;
+        for(String fileName:fileNames) {
+            File file = new File(rpxFilePath+'/'+fileName);
+            if(file.delete()) {
+                isSuccess = true;
+            }else{
+                isSuccess = false;
+            }
+        }
+        if(isSuccess){
+            result.setMessage("删除成功");
+            result.setSuccess(true);
+        }else{
+            result.setMessage("删除失败");
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    /**
      * 本地文件上传
      * @param mf 文件
      * @param bizPath  自定义路径
@@ -146,6 +202,35 @@ public class CommonController {
             }else{
                 dbpath = fileName;
             }
+            if (dbpath.contains("\\")) {
+                dbpath = dbpath.replace("\\", "/");
+            }
+            return dbpath;
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+        return "";
+    }
+
+    /**
+     * 上传润乾报表文件
+     * @param mf 文件
+     * @return
+     */
+    private String uploadRpxLocal(MultipartFile mf){
+        try {
+            String ctxPath = rpxFilePath;
+            String fileName = null;
+            File file = new File(ctxPath + File.separator );
+            if (!file.exists()) {
+                file.mkdirs();// 创建文件根目录
+            }
+            String orgName = mf.getOriginalFilename();// 获取文件名
+            fileName = CommonUtils.getFileName(orgName);
+            String savePath = file.getPath() + File.separator + fileName;
+            File savefile = new File(savePath);
+            FileCopyUtils.copy(mf.getBytes(), savefile);
+            String dbpath = fileName;
             if (dbpath.contains("\\")) {
                 dbpath = dbpath.replace("\\", "/");
             }
@@ -382,6 +467,26 @@ public class CommonController {
             log.debug("中转HTTP请求失败", e);
             return Result.error(e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/getRpxFileList", method = {RequestMethod.GET})
+    public Result<?> getFileList() {
+        File rpxFolder = new File(rpxFilePath);
+        File[] fileList = rpxFolder.listFiles();
+        List<Map<String, String>> result = new ArrayList<>();
+        assert fileList != null;
+        for(File file : fileList){
+            Map<String, String> fi = new HashMap<>();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            fi.put("file_name", file.getName());
+            fi.put("file_size", String.valueOf(file.length()));
+            Date date = new Date();
+            date.setTime(file.lastModified());
+            fi.put("last_modify_time", df.format(date));
+            fi.put("path", file.getPath());
+            result.add(fi);
+        }
+        return Result.OK(result);
     }
 
 }

@@ -187,6 +187,8 @@ jeecg :
     upload: D://opt//upFiles
     #webapp文件路径
     webapp: D://opt//webapp
+    #润乾报表文件上传路径
+    rpxUpload: E:\personalSpace\BAG06 - RaqSoft\raqreport\src\main\webapp\WEB-INF\reportFiles
   shiro:
     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**,/category/**,/visual/**,/map/**,/jmreport/bigscreen2/**,/dashboard/BigScreen
   #阿里云oss存储配置

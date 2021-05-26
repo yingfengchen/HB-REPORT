@@ -1,19 +1,21 @@
 <template>
-
-    <iframe  :id="id" :src="url" frameborder="0" width="100%" height="800px" scrolling="auto" style="background-color: #fff;"></iframe>
-
+  <div class="main-iframe">
+    <iframe  :id="id" :src="url" frameborder="0" width="100%" height="100%" scrolling="auto" ></iframe>
+  </div>
 </template>
 
 <script>
-  import PageLayout from '../page/PageLayout'
-  import RouteView from './RouteView'
-
   export default {
     name: "IframePageContent",
     data () {
       return {
         url: "",
         id:""
+      }
+    },
+    computed: {
+      height() {
+        return this.$store.getters.bodyHeight - 100
       }
     },
     created () {
@@ -43,5 +45,10 @@
   }
 </script>
 
-<style>
+<style lang="less" scoped>
+.main-iframe {
+  background-color: #FFFFFF;
+  margin: -12px -20px -12px -6px;
+  height: calc(100vh - 99px)
+}
 </style>
