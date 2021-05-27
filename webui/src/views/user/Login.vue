@@ -18,8 +18,8 @@
       </a-form-model-item>
 
       <a-form-item style="margin-top:24px">
-        <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="loginBtn"
-                  @click.stop.prevent="handleSubmit" :disabled="loginBtn">确定
+        <a-button size="large" type="primary" htmlType="submit" :class="{ 'login-button':true, 'reject-animation':isReject }" :loading="loginBtn"
+                  @click.stop.prevent="handleSubmit" :disabled="loginBtn" ref="login_button">确定
         </a-button>
       </a-form-item>
     </a-form-model>
@@ -79,7 +79,8 @@ export default {
       encryptedString: {
         key: '',
         iv: ''
-      }
+      },
+      isReject: false
     }
   },
   created() {
@@ -162,6 +163,7 @@ export default {
     },
     //账号密码登录
     loginByUsername() {
+      this.isReject = false
       this.validateFields(['username', 'password'], (err) => {
         if (!err) {
           let loginParams = {
@@ -175,9 +177,11 @@ export default {
             this.$refs.loginSelect.show(res.result)
           }).catch((err) => {
             this.requestFailed(err)
+            this.isReject = true
           })
         } else {
           this.loginBtn = false
+          this.isReject = true
         }
       })
     },
@@ -330,6 +334,11 @@ export default {
     font-size: 16px;
     height: 40px;
     width: 100%;
+  }
+
+  .reject-animation {
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
   }
 
   .user-login-other {

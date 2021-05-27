@@ -71,6 +71,8 @@
 
       .top {
         text-align: center;
+        -webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
         .header {
           height: 44px;
