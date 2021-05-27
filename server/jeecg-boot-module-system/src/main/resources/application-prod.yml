@@ -187,7 +187,7 @@ jeecg :
     #webapp文件路径
     webapp: /opt/jeecg-boot/webapp
     #润乾报表文件上传路径
-    rpxUpload: /opt/tomcat/apache-tomcat-9.0.46/webapps/raqreport/WEB-INF/reportFiles
+    rpxUpload: /opt/tomcat/webapps/raqreport/WEB-INF/reportFiles
   shiro:
      excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**,/category/**,/visual/**,/map/**,/jmreport/bigscreen2/**,/dashboard/BigScreen
   #阿里云oss存储配置

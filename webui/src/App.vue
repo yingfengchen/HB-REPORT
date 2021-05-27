@@ -41,9 +41,4 @@
   #app {
     height: 100%;
   }
-  @media screen and (max-width: 1500px) {
-    #app {
-      zoom: 0.8;
-    }
-  }
 </style>

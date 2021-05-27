@@ -67,14 +67,39 @@
           </div>
           <template slot="footer">
             <div style="display: flex; justify-content: space-between;">
-              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月不良品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
-              <label style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
+              <label
+                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月不良品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc
+              }} 个</span>
+              <label
+                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc
+              }} 个</span>
             </div>
           </template>
         </chart-card>
       </a-col>
     </a-row>
-
+    <a-card title="快捷导航" :bordered="false" class="link-row">
+      <a-row :gutter="8">
+        <a-col :span="4">
+          <div class="link-card" @click="handlerLinkClick">
+            <a-icon type="star" />
+            <label>加班申请</label>
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div class="link-card" @click="handlerLinkClick">
+            <a-icon type="file-protect" />
+            <label>休假申请</label>
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div class="link-card" @click="handlerLinkClick">
+            <a-icon type="file-add" />
+            <label>补卡申请</label>
+          </div>
+        </a-col>
+      </a-row>
+    </a-card>
     <a-row :gutter="5">
       <a-col :xl="16" :lg="16" :md="16" :sm="24" :xs="24">
         <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
@@ -131,6 +156,7 @@
         </a-card>
       </a-col>
     </a-row>
+    <form-modal :visible="formModalVisible" :title="formModalTitle" :form-json="formModalJson" @close="handlerFormModalClose" />
   </div>
 </template>
 
@@ -141,13 +167,15 @@ import MiniArea from '@comp/chart/MiniArea'
 import Trend from '@comp/Trend'
 import LineChart from '@comp/chart/LineChart'
 import PieChart from '@comp/chart/PieChart'
-import { getRangeOfTime } from '@/utils/util'
+import { getCurrentTime, getRangeOfTime } from '@/utils/util'
 import moment from 'dayjs'
 import { executeSQL } from '@api/api'
+import FormModal from '@views/dashboard/modal/FormModal'
 
 export default {
   name: 'IndexEnergy',
   components: {
+    FormModal,
     PieChart,
     LineChart,
     ChartCard,
@@ -218,7 +246,10 @@ export default {
         totalValue: 0
       },
       diffDataList: [],
-      currentDiffFlag: true
+      currentDiffFlag: true,
+      formModalVisible: false,
+      formModalTitle: '',
+      formModalJson: []
     }
   },
   created() {
@@ -246,7 +277,9 @@ export default {
       executeSQL(params).then((res) => {
         let product_infos = res['result']
         this.cardData.WIPProd.Count = product_infos.length
-        this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {return getRangeOfTime(prod['last_event_time']) > 30})).length
+        this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {
+          return getRangeOfTime(prod['last_event_time']) > 30
+        })).length
       })
     },
     handlerUnitChange(e) {
@@ -274,6 +307,157 @@ export default {
     },
     refreshDashboardPie() {
 
+    },
+    handlerLinkClick(e) {
+      let title = e.toElement.innerText
+      let userInfo = this.$store.getters.userInfo
+      let nowTime = getCurrentTime()
+
+      this.formModalTitle = title
+      switch (title) {
+        case '加班申请':
+          this.formModalJson = [
+            {
+              key: '1',
+              children: [
+                { type: 'label', value: '姓名', span: 6 },
+                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
+                { type: 'label', value: '部门', span: 6 },
+                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '2',
+              children: [
+                { type: 'label', value: '职务', span: 6 },
+                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
+                { type: 'label', value: '申请时间', span: 6, disabled: true },
+                { type: 'input', value: nowTime, span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '3',
+              children: [
+                { type: 'label', value: '加班时间段', span: 6 },
+                { type: 'rangePicker', span: 18, value: [] }
+              ]
+            },
+            {
+              key: '4',
+              children: [
+                { type: 'label', value: '加班事由', span: 6 },
+                { type: 'input', span: 18, value: '' }
+              ]
+            },
+            {
+              key: '5',
+              children: [
+                { type: 'label', value: '备注', span: 6, height: 52 },
+                { type: 'textarea', span: 18, height: 52, value: '' }
+              ]
+            }
+          ]
+          break
+        case '休假申请':
+          this.formModalJson = [
+            {
+              key: '1',
+              children: [
+                { type: 'label', value: '姓名', span: 6 },
+                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
+                { type: 'label', value: '部门', span: 6 },
+                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '2',
+              children: [
+                { type: 'label', value: '职务', span: 6 },
+                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
+                { type: 'label', value: '申请时间', span: 6, disabled: true },
+                { type: 'input', value: nowTime, span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '3',
+              children: [
+                { type: 'label', value: '休假时间段', span: 6 },
+                { type: 'rangePicker', span: 18, value: [] }
+              ]
+            },
+            {
+              key: '4',
+              children: [
+                { type: 'label', value: '休假事由', span: 6 },
+                { type: 'input', span: 18, value: '' }
+              ]
+            },
+            {
+              key: '5',
+              children: [
+                { type: 'label', value: '备注', span: 6, height: 52 },
+                { type: 'textarea', span: 18, height: 52, value: '' }
+              ]
+            }
+          ]
+          break
+        case '补卡申请':
+          this.formModalJson = [
+            {
+              key: '1',
+              children: [
+                { type: 'label', value: '姓名', span: 6 },
+                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
+                { type: 'label', value: '部门', span: 6 },
+                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '2',
+              children: [
+                { type: 'label', value: '职务', span: 6 },
+                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
+                { type: 'label', value: '申请时间', span: 6, disabled: true },
+                { type: 'input', value: nowTime, span: 6, disabled: true }
+              ]
+            },
+            {
+              key: '3',
+              children: [
+                { type: 'label', value: '漏卡时间', span: 6 },
+                { type: 'input', span: 6, value: '2021-05-16 17:30', disabled: true },
+                { type: 'label', value: '补卡地点', span: 6 },
+                { type: 'input', span: 6, value: '' },
+                { type: 'label', value: '漏卡时间', span: 6 },
+                { type: 'input', span: 6, value: '2021-05-16 17:30', disabled: true },
+                { type: 'label', value: '补卡地点', span: 6 },
+                { type: 'input', span: 6, value: '' }
+              ]
+            },
+            {
+              key: '4',
+              children: [
+                { type: 'label', value: '漏卡事由', span: 6 },
+                { type: 'input', span: 18, value: '' }
+              ]
+            },
+            {
+              key: '5',
+              children: [
+                { type: 'label', value: '备注', span: 6, height: 52 },
+                { type: 'textarea', span: 18, height: 52, value: '' }
+              ]
+            }
+          ]
+          break
+        default:
+          break
+      }
+      this.formModalVisible = true
+    },
+    handlerFormModalClose() {
+      this.formModalVisible = false
+      this.formModalJson = []
     }
   }
 }
@@ -285,8 +469,12 @@ export default {
     padding: 0 0 0 24px;
   }
 
-  /deep/ .ant-card-head-title {
-    padding: 0;
+  /deep/ .ant-card-head-wrapper {
+    height: 48px;
+
+    .ant-card-head-title {
+      padding: 0;
+    }
   }
 
   /deep/ .ant-card-extra {
@@ -348,6 +536,35 @@ export default {
 .card-area {
   /deep/ .ant-col {
     margin-bottom: 14px;
+  }
+}
+
+.link-row {
+  margin-bottom: 10px;
+
+  .link-card {
+    box-sizing: border-box;
+    background: #ffffff;
+    height: 110px;
+    transition: all .3s;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+
+    label {
+      margin-left: 10px;
+    }
+
+    /deep/ svg {
+      width: 40px;
+      height: 40px;
+      margin-left: 30px;
+    }
+  }
+
+  .link-card:hover {
+    box-shadow: 0 2px 8px #00000055;
   }
 }
 </style>

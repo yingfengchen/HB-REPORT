@@ -9,4 +9,4 @@ window._CONFIG['onlinePreviewDomainURL'] =  process.env.VUE_APP_ONLINE_BASE_URL
 window._CONFIG['staticDomainURL'] = Vue.prototype.API_BASE_URL + '/sys/common/static'
 window._CONFIG['pdfDomainURL'] = Vue.prototype.API_BASE_URL+ '/sys/common/pdf/pdfPreviewIframe'
 //润乾报表地址
-window._CONFIG['raqReportUrl'] = 'http://10.3.5.113:8080/raqreport/reportJsp'
+window._CONFIG['raqReportUrl'] = process.env.VUE_APP_RAQ_SERVER_URL
