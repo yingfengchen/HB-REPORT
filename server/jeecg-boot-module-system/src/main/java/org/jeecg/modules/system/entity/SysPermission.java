@@ -162,7 +162,7 @@ public class SysPermission implements Serializable {
     public SysPermission(boolean index) {
     	if(index) {
     		this.id = "9502685863ab87f0ad1134142788a385";
-        	this.name="首页";
+        	this.name="home";
         	this.component="dashboard/Analysis";
         	this.componentName="dashboard-analysis";
         	this.url="/dashboard/analysis";

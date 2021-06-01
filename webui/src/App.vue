@@ -7,12 +7,16 @@
 </template>
 <script>
   import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
+  import enUS from 'ant-design-vue/lib/locale-provider/en_US'
   import enquireScreen from '@/utils/device'
+  //扩展图标
+  import '@/components/iconfont/common.less'
+  import '@/components/iconfont/iconfont.js'
 
   export default {
     data () {
       return {
-        locale: zhCN,
+        locale: this.$i18n.locale === 'zh-CN' ? zhCN : enUS,
       }
     },
     created () {
@@ -32,9 +36,15 @@
           that.$store.commit('TOGGLE_DEVICE', 'desktop')
           that.$store.dispatch('setSidebar', true)
         }
-
       })
-    }
+      this.$bus.$on('language_change', (args) => {
+        if(args['lang'] === 'zh-CN'){
+          this.locale = zhCN
+        }else if(args['lang'] === 'en-US'){
+          this.locale = enUS
+        }
+      })
+    },
   }
 </script>
 <style>

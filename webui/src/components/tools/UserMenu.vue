@@ -32,33 +32,34 @@
       </a>
     </span>-->
     <header-notice class="action"/>
+    <language-change />
     <a-dropdown>
       <span class="action action-full ant-dropdown-link user-dropdown-menu">
         <a-avatar class="avatar" size="small" :src="getAvatar()"/>
-        <span v-if="isDesktop()">欢迎您，{{ nickname() }}</span>
+        <span v-if="isDesktop()">{{ $tc('index.welcome') + nickname() }}</span>
       </span>
       <a-menu slot="overlay" class="user-dropdown-menu-wrapper">
         <a-menu-item key="1">
           <router-link :to="{ name: 'account-settings-base' }">
             <a-icon type="setting"/>
-            <span>账户设置</span>
+            <span>{{ $t('sysMenu.accountSetting') }}</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="3"  @click="systemSetting">
            <a-icon type="tool"/>
-           <span>系统设置</span>
+           <span>{{ $t('sysMenu.systemSetting') }}</span>
         </a-menu-item>
         <a-menu-item key="4" @click="updatePassword">
           <a-icon type="setting"/>
-          <span>密码修改</span>
+          <span>{{ $t('sysMenu.passwordChange') }}</span>
         </a-menu-item>
         <a-menu-item key="5" @click="updateCurrentDepart">
           <a-icon type="cluster"/>
-          <span>切换部门</span>
+          <span>{{ $t('sysMenu.departmentChange') }}</span>
         </a-menu-item>
         <a-menu-item key="6" @click="clearCache">
           <a-icon type="sync"/>
-          <span>清理缓存</span>
+          <span>{{ $t('sysMenu.cacheClear') }}</span>
         </a-menu-item>
        <!-- <a-menu-item key="2" disabled>
           <a-icon type="setting"/>
@@ -76,7 +77,7 @@
     <span class="action">
       <a class="logout_title" href="javascript:;" @click="handleLogout">
         <a-icon type="logout"/>
-        <span v-if="isDesktop()">&nbsp;退出登录</span>
+        <span v-if="isDesktop()">&nbsp;{{ $t('logout') }}</span>
       </a>
     </span>
     <user-password ref="userPassword"></user-password>
@@ -95,6 +96,7 @@
   import { getFileAccessHttpUrl,getAction } from "@/api/manage"
   import Vue from 'vue'
   import { UI_CACHE_DB_DICT_DATA } from "@/store/mutation-types"
+  import LanguageChange from '@comp/tools/LanguageChange'
 
   export default {
     name: "UserMenu",
@@ -109,6 +111,7 @@
       }
     },
     components: {
+      LanguageChange,
       HeaderNotice,
       UserPassword,
       DepartSelect,

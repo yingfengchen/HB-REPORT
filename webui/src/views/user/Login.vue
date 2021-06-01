@@ -2,24 +2,26 @@
   <div class="main">
     <a-form-model ref="form" :model="model" :rules="validatorRules" class="user-layout-login">
       <a-form-model-item required prop="username">
-        <a-input v-model="model.username" size="large" placeholder="请输入帐户名">
+        <a-input v-model="model.username" size="large" :placeholder="$i18n.t('login.placeholderAccount')">
           <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }" />
         </a-input>
       </a-form-model-item>
       <a-form-model-item required prop="password">
         <a-input v-model="model.password" size="large" type="password" autocomplete="false"
-                 placeholder="请输入密码">
+                 :placeholder="$i18n.t('login.placeholderPassword')">
           <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }" />
         </a-input>
       </a-form-model-item>
 
       <a-form-model-item>
-        <a-checkbox @change="handleRememberMeChange" default-checked>自动登录</a-checkbox>
+        <a-checkbox @change="handleRememberMeChange" default-checked>{{ $t('login.rememberMe') }}</a-checkbox>
+        <language-change style="float: right;" />
       </a-form-model-item>
 
       <a-form-item style="margin-top:24px">
-        <a-button size="large" type="primary" htmlType="submit" :class="{ 'login-button':true, 'reject-animation':isReject }" :loading="loginBtn"
-                  @click.stop.prevent="handleSubmit" :disabled="loginBtn" ref="login_button">确定
+        <a-button size="large" type="primary" htmlType="submit"
+                  :class="{ 'login-button':true, 'reject-animation':isReject }" :loading="loginBtn"
+                  @click.stop.prevent="handleSubmit" :disabled="loginBtn" ref="login_button">{{ $t('login.loginBtn') }}
         </a-button>
       </a-form-item>
     </a-form-model>
@@ -39,9 +41,12 @@ import LoginSelectTenant from './LoginSelectTenant'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { encryption, getEncryptedString } from '@/utils/encryption/aesEncrypt'
 import { timeFix } from '@/utils/util'
+import LanguageChange from '@comp/tools/LanguageChange'
+import { getT } from '@/utils/i18n'
 
 export default {
   components: {
+    LanguageChange,
     LoginSelectTenant,
     TwoStepCaptcha
   },
@@ -229,8 +234,8 @@ export default {
         console.log('登录跳转首页出错,这个错误从哪里来的')
       })
       this.$notification.success({
-        message: '欢迎',
-        description: `${timeFix()}，欢迎回来`
+        message: getT('index.welcome'),
+        description: `${timeFix()}，` + getT('index.welcomebak')
       })
     },
     validateMobile(rule, value, callback) {

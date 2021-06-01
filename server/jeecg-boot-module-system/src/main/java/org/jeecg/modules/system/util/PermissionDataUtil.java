@@ -66,7 +66,7 @@ public class PermissionDataUtil {
 	public static void addIndexPage(List<SysPermission> metaList) {
 		boolean hasIndexMenu = false;
 		for (SysPermission sysPermission : metaList) {
-			if("首页".equals(sysPermission.getName())) {
+			if("home".equals(sysPermission.getName())) {
 				hasIndexMenu = true;
 				break;
 			}
@@ -84,7 +84,7 @@ public class PermissionDataUtil {
 	public static boolean hasIndexPage(List<SysPermission> metaList){
 		boolean hasIndexMenu = false;
 		for (SysPermission sysPermission : metaList) {
-			if("首页".equals(sysPermission.getName())) {
+			if("home".equals(sysPermission.getName())) {
 				hasIndexMenu = true;
 				break;
 			}

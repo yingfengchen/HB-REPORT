@@ -5,11 +5,11 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">MES 报表系统</span>
+            <span class="title">{{ $t('login.title') }}</span>
           </a>
         </div>
         <div class="desc">
-          MES Report System
+          {{ $t('login.subTitle') }}
         </div>
       </div>
 
@@ -17,7 +17,7 @@
 
       <div class="footer">
         <div class="copyright">
-          Copyright &copy; 2021 <a href="" target="_blank">珂阳科技</a> 出品
+          Copyright &copy; 2021 <a href="" target="_blank"> {{ $t('login.companyName') }}</a>
         </div>
       </div>
     </div>

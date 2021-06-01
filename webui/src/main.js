@@ -6,17 +6,17 @@ import App from './App.vue'
 import Storage from 'vue-ls'
 import router from './router'
 import store from './store/'
-import {VueAxios} from "@/utils/request"
+import { VueAxios } from '@/utils/request'
 
 require('@jeecg/antd-online-mini')
 require('@jeecg/antd-online-mini/dist/OnlineForm.css')
 
-import Antd, {version} from 'ant-design-vue'
+import Antd, { version } from 'ant-design-vue'
 
 console.log('ant-design-vue version:', version)
 
 import Viser from 'viser-vue'
-import 'ant-design-vue/dist/antd.less';  // or 'ant-design-vue/dist/antd.less'
+import 'ant-design-vue/dist/antd.less'  // or 'ant-design-vue/dist/antd.less'
 
 import 'xe-utils'
 import 'vxe-table/lib/style.css'
@@ -40,19 +40,21 @@ import {
   DEFAULT_FIXED_SIDEMENU,
   DEFAULT_CONTENT_WIDTH_TYPE,
   DEFAULT_MULTI_PAGE
-} from "@/store/mutation-types"
+} from '@/store/mutation-types'
 import config from '@/defaultSettings'
 
 import JDictSelectTag from './components/dict/index.js'
 import hasPermission from '@/utils/hasPermission'
-import vueBus from '@/utils/vueBus';
+import vueBus from '@/utils/vueBus'
 import JeecgComponents from '@/components/jeecg/index'
 import '@/assets/less/JAreaLinkage.less'
 import VueAreaLinkage from 'vue-area-linkage'
 //表单验证
-import {rules} from '@/utils/rules'
+import { rules } from '@/utils/rules'
 //按需引入DV
-import { decoration2, decoration3, decoration6, decoration8, borderBox11, scrollBoard} from '@jiaminghi/data-view'
+import { decoration2, decoration3, decoration6, decoration8, borderBox11, scrollBoard } from '@jiaminghi/data-view'
+//国际化
+import i18n, { setLanguage } from '@/utils/i18n'
 
 Vue.prototype.rules = rules
 Vue.config.productionTip = false
@@ -64,9 +66,9 @@ Vue.use(hasPermission)
 Vue.use(JDictSelectTag)
 Vue.use(Print)
 Vue.use(preview)
-Vue.use(vueBus);
-Vue.use(JeecgComponents);
-Vue.use(VueAreaLinkage);
+Vue.use(vueBus)
+Vue.use(JeecgComponents)
+Vue.use(VueAreaLinkage)
 Vue.use(VXETable)
 Vue.use(decoration2)
 Vue.use(decoration3)
@@ -80,7 +82,8 @@ SSO.init(() => {
 })
 
 function main() {
-  window.onload = window.onresize = function () {
+  setLanguage(Vue.ls.get('language', 'zh-CN'))
+  window.onload = window.onresize = function() {
     if (document.body.clientWidth < 1600) {
       store.commit('SET_BODY_HEIGHT', document.body.clientHeight / 0.8)
     } else {
@@ -90,6 +93,7 @@ function main() {
   new Vue({
     router,
     store,
+    i18n,
     mounted() {
       store.commit('SET_SIDEBAR_TYPE', Vue.ls.get(SIDEBAR_TYPE, true))
       store.commit('TOGGLE_THEME', Vue.ls.get(DEFAULT_THEME, config.navTheme))

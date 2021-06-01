@@ -1,11 +1,12 @@
 import * as api from '@/api/api'
 import {isURL} from '@/utils/validate'
 import onlineCommons from '@jeecg/antd-online-mini'
+import { getT } from '@/utils/i18n'
 
 export function timeFix() {
   const time = new Date()
   const hour = time.getHours()
-  return hour < 9 ? '早上好' : (hour <= 11 ? '上午好' : (hour <= 13 ? '中午好' : (hour < 20 ? '下午好' : '晚上好')))
+  return (hour <= 11 ? getT('index.goodMorning') : (hour < 20 ? getT('index.goodAfternoon') : getT('index.goodEvening')))
 }
 
 export function welcome() {
@@ -86,7 +87,7 @@ export function generateIndexRouter(data) {
     name: 'dashboard',
     //component: () => import('@/components/layouts/BasicLayout'),
     component: resolve => require(['@/components/layouts/TabLayout'], resolve),
-    meta: {title: '首页'},
+    meta: {title: 'home'},
     redirect: '/dashboard/analysis',
     children: [
       ...generateChildRouters(data)

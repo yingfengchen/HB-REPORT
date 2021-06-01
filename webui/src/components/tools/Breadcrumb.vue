@@ -2,14 +2,16 @@
   <a-breadcrumb class="breadcrumb">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
       <span v-if="item.name != name">
-        {{ item.meta.title }}
+        {{ generateTitleBreadcrumb(item.meta.title) }}
       </span>
-      <span v-else>{{ item.meta.title }}</span>
+      <span v-else>{{ generateTitleBreadcrumb(item.meta.title) }}</span>
     </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
 
 <script>
+import { generateTitle } from '@/utils/i18n'
+
 export default {
   data() {
     return {
@@ -32,6 +34,9 @@ export default {
         // item.meta.name === 'dashboard' ? item.path = '/dashboard' : this.$route.path === item.path
         this.breadList.push(item)
       })
+    },
+    generateTitleBreadcrumb(title){
+      return generateTitle(title)
     }
   },
   watch: {

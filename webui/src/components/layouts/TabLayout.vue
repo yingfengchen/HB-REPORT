@@ -15,8 +15,8 @@
       @tabClick="tabCallBack"
       @edit="editPage">
       <a-tab-pane :id="page.fullPath" :key="page.fullPath" v-for="page in pageList"
-                  :closable="!(page.meta.title=='首页')">
-        <span slot="tab" :pagekey="page.fullPath">{{ page.meta.title }}</span>
+                  :closable="!(page.meta.title==='home')">
+        <span slot="tab" :pagekey="page.fullPath">{{ generateTitleTab(page.meta.title) }}</span>
       </a-tab-pane>
     </a-tabs>
     <div style="margin: 12px 12px 0;">
@@ -37,6 +37,7 @@ import GlobalLayout from '@/components/page/GlobalLayout'
 import Contextmenu from '@/components/menu/Contextmenu'
 import { mixin, mixinDevice } from '@/utils/mixin.js'
 import { triggerWindowResizeEvent } from '@/utils/util'
+import { generateTitle } from '@/utils/i18n'
 
 const indexKey = '/dashboard/analysis'
 import Vue from 'vue'
@@ -164,7 +165,7 @@ export default {
         fullPath: indexKey,
         meta: {
           icon: 'dashboard',
-          title: '首页'
+          title: 'home'
         }
       })
       this.linkList.splice(0, 0, indexKey)
@@ -173,7 +174,7 @@ export default {
 
     // update-begin-author:sunjianlei date:20200120 for: 动态更改页面标题
     changeTitle(title) {
-      let projectTitle = 'MES 报表系统'
+      let projectTitle = this.$i18n.t('login.title')
       // 首页特殊处理
       if (this.$route.path === indexKey) {
         document.title = projectTitle
@@ -337,6 +338,9 @@ export default {
     //新增一个返回方法
     excuteCallback(callback) {
       callback()
+    },
+    generateTitleTab(title){
+      return generateTitle(title)
     }
   }
 }

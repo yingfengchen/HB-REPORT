@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "yicon-common"; /* Project id 2583905 */
+  src: url('iconfont.woff2?t=1622530121670') format('woff2'),
+       url('iconfont.woff?t=1622530121670') format('woff'),
+       url('iconfont.ttf?t=1622530121670') format('truetype');
+}
+
+.yicon-common {
+  font-family: "yicon-common" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.yiconmaterial:before {
+  content: "\e61d";
+}
+
+.yiconmysql:before {
+  content: "\e667";
+}
+
+.yiconpinzhibaozhengQuality:before {
+  content: "\e632";
+}
+
+.yicon6-ReportFile:before {
+  content: "\e612";
+}
+
+.yiconexcel:before {
+  content: "\e604";
+}
+
+.yiconlanguage:before {
+  content: "\e62a";
+}
+

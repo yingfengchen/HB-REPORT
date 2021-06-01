@@ -1,0 +1,51 @@
+{
+  "id": "2583905",
+  "name": "common-icon",
+  "font_family": "yicon-common",
+  "css_prefix_text": "yicon",
+  "description": "通用图标库",
+  "glyphs": [
+    {
+      "icon_id": "1471601",
+      "name": "material",
+      "font_class": "material",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "3876471",
+      "name": "mysql",
+      "font_class": "mysql",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "10718149",
+      "name": "品质保证 Quality",
+      "font_class": "pinzhibaozhengQuality",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "16098117",
+      "name": "6-Report File",
+      "font_class": "6-ReportFile",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "5700809",
+      "name": "excel",
+      "font_class": "excel",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "16880997",
+      "name": "language",
+      "font_class": "language",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    }
+  ]
+}
