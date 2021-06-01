@@ -45,6 +45,24 @@
               </div>
             </a-list>
           </a-tab-pane>
+          <a-tab-pane :tab="msg2Title" key="2">
+            <a-list>
+              <a-list-item :key="index" v-for="(record, index) in announcement2">
+                <div style="margin-left: 5%;width: 80%">
+                  <p><a @click="showAnnouncement(record)">{{ record.titile }}</a></p>
+                  <p style="color: rgba(0,0,0,.45);margin-bottom: 0px">{{ record.createTime }} 发布</p>
+                </div>
+                <div style="text-align: right">
+                  <a-tag @click="showAnnouncement(record)" v-if="record.priority === 'L'" color="blue">一般消息</a-tag>
+                  <a-tag @click="showAnnouncement(record)" v-if="record.priority === 'M'" color="orange">重要消息</a-tag>
+                  <a-tag @click="showAnnouncement(record)" v-if="record.priority === 'H'" color="red">紧急消息</a-tag>
+                </div>
+              </a-list-item>
+              <div style="margin-top: 5px;text-align: center">
+                <a-button @click="toMyAnnouncement()" type="dashed" block>查看更多</a-button>
+              </div>
+            </a-list>
+          </a-tab-pane>
         </a-tabs>
       </a-spin>
     </template>
@@ -170,7 +188,7 @@
       toMyAnnouncement(){
         this.$router.push({
           path: '/isps/userAnnouncement'
-        });
+        }).catch(()=>{});
       },
       modalFormOk(){
       },

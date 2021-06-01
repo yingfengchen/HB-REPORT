@@ -141,15 +141,13 @@
 
 <script>
   import { httpAction } from '@/api/manage'
-  import pick from 'lodash.pick'
   import { getAction } from '@/api/manage'
   import JDate from '@/components/jeecg/JDate'
-  import JEditor from '@/components/jeecg/JEditor'
   import SelectUserListModal from "./SelectUserListModal";
   import moment from 'moment'
 
   export default {
-    components: { JEditor, JDate, SelectUserListModal},
+    components: { JDate, SelectUserListModal},
     name: "SysAnnouncementModal",
     data () {
       return {
@@ -271,7 +269,7 @@
               that.confirmLoading = false;
               that.close();
             })
-            
+
           }else{
             return false;
           }

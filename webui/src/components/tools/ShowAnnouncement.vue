@@ -44,7 +44,7 @@
         loading: false,
         bodyStyle:{
           padding: "0",
-          height:(window.innerHeight*0.8)+"px",
+          height:(window.innerHeight*0.7)+"px",
           "overflow-y":"auto",
 
         },

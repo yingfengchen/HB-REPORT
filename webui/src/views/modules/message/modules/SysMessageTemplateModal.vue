@@ -84,13 +84,9 @@
   import {httpAction} from '@/api/manage'
   import pick from 'lodash.pick'
   import { duplicateCheck } from '@/api/api'
-  import JEditor from '@/components/jeecg/JEditor'
 
   export default {
     name: "SysMessageTemplateModal",
-    components:{
-      JEditor
-    },
     data() {
       return {
         title: "操作",
