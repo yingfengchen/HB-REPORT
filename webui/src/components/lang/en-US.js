@@ -1,6 +1,8 @@
 export default {
   lang: 'English',
   logout: 'Logout',
+  notification: 'Notification',
+  confirmLogout: 'Are you sure logout ?',
   login: {
     title: 'MES REPORT SYSTEM',
     subTitle: 'MES 报表平台',

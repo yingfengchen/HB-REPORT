@@ -97,6 +97,7 @@
   import Vue from 'vue'
   import { UI_CACHE_DB_DICT_DATA } from "@/store/mutation-types"
   import LanguageChange from '@comp/tools/LanguageChange'
+  import { getT } from '@/utils/i18n'
 
   export default {
     name: "UserMenu",
@@ -176,8 +177,8 @@
         const that = this
 
         this.$confirm({
-          title: '提示',
-          content: '真的要注销登录吗 ?',
+          title: getT('notification'),
+          content: getT('confirmLogout'),
           onOk() {
             return that.Logout({}).then(() => {
               // update-begin author:wangshuai date:20200601 for: 退出登录跳转登录页面
