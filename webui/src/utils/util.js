@@ -593,17 +593,34 @@ export function getRangeOfTime(time) {
 /**
  * 获取当前时间 格式：yyyy-MM-dd HH:MM:SS
  */
-export function getCurrentTime() {
-  const date = new Date();//当前时间
-  const month = zeroFill(date.getMonth() + 1);//月
-  const day = zeroFill(date.getDate());//日
-  const hour = zeroFill(date.getHours());//时
-  const minute = zeroFill(date.getMinutes());//分
-  const second = zeroFill(date.getSeconds());//秒
+export function getCurrentTime(type, diff=0, unit) {
+  let curTime = ''
+  let diffTime = 0
+
+  switch(unit){
+    case 'month': diffTime = diff * 30 * 24 * 60 * 60 * 1000; break;
+    case 'day': diffTime = diff * 24 * 60 * 60 * 1000; break;
+    case 'hour': diffTime = diff * 60 * 60 * 1000; break;
+    case 'min': diffTime = diff * 60 * 1000; break;
+    case 'sec': diffTime = diff * 1000; break;
+    default: break;
+  }
+
+  let date = new Date();//当前时间
+  let getTimes = date.getTime()
+  date.setTime(getTimes + diffTime)
+  let month = zeroFill(date.getMonth() + 1);//月
+  let day = zeroFill(date.getDate());//日
+  let hour = zeroFill(date.getHours());//时
+  let minute = zeroFill(date.getMinutes());//分
+  let second = zeroFill(date.getSeconds());//秒
 
   //当前时间
-  const curTime = date.getFullYear() + "-" + month + "-" + day
-    + " " + hour + ":" + minute + ":" + second;
+  switch (type){
+    case 'date': curTime = date.getFullYear() + "-" + month + "-" + day; break;
+    default: curTime = date.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+  }
+
 
   return curTime;
 }

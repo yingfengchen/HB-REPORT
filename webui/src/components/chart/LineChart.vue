@@ -51,6 +51,10 @@ export default {
     boundaryGap: {
       type: Boolean,
       default: false
+    },
+    dataZoomEnable: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -108,22 +112,22 @@ export default {
             smooth: true,
             yAxisIndex: s['yIndex'] || 0,
             lineStyle: {
-              color: color[i%10]
+              color: color[i % 10]
             },
             itemStyle: {
               normal: {
-                color: color[i%10],
-                borderColor: color[i%10]
+                color: color[i % 10],
+                borderColor: color[i % 10]
               }
             },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                 offset: 0,
-                color: color[i%10] + 'b3'
+                color: color[i % 10] + 'b3'
               },
                 {
                   offset: 1,
-                  color: color[i%10] + '03'
+                  color: color[i % 10] + '03'
                 }
               ])
             },
@@ -162,10 +166,25 @@ export default {
               }
             }
           }
+          if(s['markLine']){
+            const m = s['markLine']
+            ser['markLine'] = {
+              data: [{
+                yAxis: m['data'],
+                valueIndex: 1,
+                lineStyle: {
+                  normal: {
+                    width: 2,
+                    type: "dashed"
+                  }
+                }
+              }]
+            }
+          }
           series_value.push(ser)
         }
 
-        const optionData = {
+        let optionData = {
           legend: {
             type: 'scroll',
             show: true,
@@ -209,6 +228,26 @@ export default {
           }],
           yAxis: this.yAxis,
           series: series_value
+        }
+
+        if(this.dataZoomEnable) {
+          optionData.grid.bottom = '63px'
+          optionData['dataZoom'] = [{
+            show: true,
+            height: 20,
+            xAxisIndex: [0],
+            bottom: '3%',
+            handleSize: '150%',
+            handleStyle: {
+              color: "#d3dee5",
+            },
+            textStyle: {
+              color: "#fff"
+            },
+            borderColor: "#90979c"
+          }, {
+            type: "inside"
+          }]
         }
 
         this.chart.setOption(optionData)

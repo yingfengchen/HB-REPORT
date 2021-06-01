@@ -70,7 +70,7 @@
             </a-col>
           </a-row>
           <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
-                      :x-axis="capacityMacTLegend"
+                      :x-axis="capacityMacTLegend" :data-zoom-enable="true"
                       :series-data="capacityMacTSeries" :y-axis="yAxis" />
         </div>
       </a-card>
@@ -86,7 +86,7 @@
             </a-col>
           </a-row>
           <line-chart class="cop-chart" id="COPReport" :show-split-line="true" :x-axis="CapacityGroupLegend"
-                      :series-data="CapacityGroupSeries" :y-axis="yAxis" />
+                      :series-data="CapacityGroupSeries" :y-axis="yAxis" :data-zoom-enable="true" />
         </div>
       </a-card>
     </a-spin>
@@ -191,54 +191,58 @@ export default {
     },
     handlerCapacityMacTUChange(e) {
       let that = this
-      this.switchCapacityMacTrendUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerCapacityMacChartSubmit()
+      that.switchCapacityMacTrendUnit = e.target.value
+      if (that.form.startTime && this.form.endTime) {
+        that.handlerMacCapacitySubmit(that)
       }
     },
     handlerCapacityGroupUnitChange(e) {
       let that = this
-      this.switchCapacityGroupUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerCapacityGroupSubmit()
+      that.switchCapacityGroupUnit = e.target.value
+      if (that.form.startTime && that.form.endTime) {
+        that.handlerGroupCapacitySubmit(that)
       }
     },
-    handlerElcUnitChange(e) {
+    handlerSubmit() {
       let that = this
-      this.switchElcUnit = e.target.value
-      if (this.form.startTime && this.form.endTime) {
-        this.handlerElcChartSubmit()
-      }
+      this.handlerMacCapacitySubmit(that)
+      this.handlerGroupCapacitySubmit(that)
     },
-    async handlerSubmit() {
-      this.loading = true
+    async handlerGroupCapacitySubmit(_this) {
+      _this.loading = true
       let series = []
-      const params = cloneObject(this.form)
+      const params = cloneObject(_this.form)
 
-      params['sql_name'] = 'getCapacityTrend'
-      params['unit'] = this.switchCapacityMacTrendUnit
-      let returnV = await executeSQL(params)
-      let res = returnV['result']
-      this.capacityMacTLegend = transferStringToArray(res[0]['date'])
-      for (let resKey of res) {
-        let sery = {name: resKey['operation'], data: transferStringToArray(resKey['count'])}
-        series.push(sery)
-      }
-      this.capacityMacTSeries = series
-
-      series = []
       params['sql_name'] = 'getCapacityGroupTrend'
-      params['unit'] = this.switchCapacityGroupUnit
-      returnV = await executeSQL(params)
-      res = returnV['result']
-      this.CapacityGroupLegend = transferStringToArray(res[0]['datehour'])
+      params['unit'] = _this.switchCapacityGroupUnit
+      const returnV = await executeSQL(params)
+      const res = returnV['result']
+      _this.CapacityGroupLegend = transferStringToArray(res[0]['datehour'])
       for (let resKey of res) {
         let sery = {name: resKey['value'], data: transferStringToArray(resKey['count'])}
         series.push(sery)
       }
-      this.CapacityGroupSeries = series
+      _this.CapacityGroupSeries = series
 
-      this.loading = false
+      _this.loading = false
+    },
+    async handlerMacCapacitySubmit(_this){
+      _this.loading = true
+      const series = []
+      const params = cloneObject(_this.form)
+
+      params['sql_name'] = 'getCapacityTrend'
+      params['unit'] = _this.switchCapacityMacTrendUnit
+      let returnV = await executeSQL(params)
+      let res = returnV['result']
+      _this.capacityMacTLegend = transferStringToArray(res[0]['date'])
+      for (let resKey of res) {
+        let sery = {name: resKey['operation'], data: transferStringToArray(resKey['count'])}
+        series.push(sery)
+      }
+      _this.capacityMacTSeries = series
+
+      _this.loading = false
     },
     handlerReset() {
       this.$refs.xLine.clear()
