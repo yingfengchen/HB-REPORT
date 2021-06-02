@@ -59,8 +59,6 @@ import i18n, { setLanguage } from '@/utils/i18n'
 import '@/components/iconfont/iconfont.css'
 import '@/components/iconfont/iconfont.js'
 
-import fullscreen from 'vue-fullscreen'
-
 Vue.prototype.rules = rules
 Vue.config.productionTip = false
 Vue.use(Storage, config.storageOptions)
@@ -81,7 +79,6 @@ Vue.use(decoration6)
 Vue.use(decoration8)
 Vue.use(borderBox11)
 Vue.use(scrollBoard)
-Vue.use(fullscreen)
 
 SSO.init(() => {
   main()

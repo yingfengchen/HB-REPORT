@@ -33,7 +33,6 @@
     </span>-->
     <header-notice class="action"/>
     <language-change />
-    <fullscreen v-if="device==='desktop'" />
     <a-dropdown>
       <span class="action action-full ant-dropdown-link user-dropdown-menu">
         <a-avatar class="avatar" size="small" :src="getAvatar()"/>
@@ -99,7 +98,6 @@
   import { UI_CACHE_DB_DICT_DATA } from "@/store/mutation-types"
   import LanguageChange from '@comp/tools/LanguageChange'
   import { getT } from '@/utils/i18n'
-  import Fullscreen from '@comp/tools/Fullscreen'
 
   export default {
     name: "UserMenu",
@@ -114,7 +112,6 @@
       }
     },
     components: {
-      Fullscreen,
       LanguageChange,
       HeaderNotice,
       UserPassword,
