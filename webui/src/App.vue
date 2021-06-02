@@ -9,9 +9,6 @@
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import enUS from 'ant-design-vue/lib/locale-provider/en_US'
 import enquireScreen from '@/utils/device'
-//扩展图标
-import '@/components/iconfont/common.less'
-import '@/components/iconfont/iconfont.js'
 
 export default {
   data() {
@@ -43,55 +40,6 @@ export default {
         that.locale = enUS
       }
     })
-    this.$bus.$on('fullscreen', () => {
-      if (that.$store.getters.fullScreen) {
-        that.fullScreenExit()
-      } else {
-        that.fullScreen()
-      }
-    })
-  },
-  methods: {
-    fullScreen() {
-      const el = document.getElementById('app')
-      //HTML W3C 提议
-      if (el.requestFullScreen) {
-        el.requestFullScreen()
-      }
-      //IE11
-      else if (el.msRequestFullscreen) {
-        el.msRequestFullscreen()
-      }
-      //webkit 内核
-      else if (el.webkitRequestFullScreen) {
-        el.webkitRequestFullScreen()
-      }
-      // Firefox (works in nightly)
-      else if (el.mozRequestFullScreen) {
-        el.mozRequestFullScreen()
-      }
-      this.$store.dispatch('SetFullScreen', true)
-    },
-    fullScreenExit() {
-      const el = document.getElementById('app')
-      //HTML W3C 提议
-      if (el.requestFullScreen) {
-        el.exitFullScreen()
-      }
-      //IE11
-      else if (el.msRequestFullscreen) {
-        document.msExitFullscreen()
-      }
-      //webkit 内核
-      else if (el.webkitRequestFullScreen) {
-        document.webkitCancelFullScreen()
-      }
-      // Firefox (works in nightly)
-      else if (el.mozRequestFullScreen) {
-        document.mozCancelFullScreen()
-      }
-      this.$store.dispatch('SetFullScreen', false)
-    }
   }
 }
 </script>

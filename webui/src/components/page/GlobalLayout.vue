@@ -1,5 +1,5 @@
 <template>
-  <a-layout class="layout" :class="[device]">
+  <a-layout id="root_layout" class="layout" :class="[device]">
 
     <template v-if="layoutMode === 'sidemenu'">
       <a-drawer
@@ -70,7 +70,7 @@
       </a-layout-content>
 
       <!-- layout footer -->
-      <a-layout-footer style="padding: 0px">
+      <a-layout-footer style="padding: 0">
         <global-footer/>
       </a-layout-footer>
     </a-layout>
@@ -142,6 +142,14 @@
       //console.log(this.permissionMenuList)
       //console.log('----navTheme------'+this.navTheme)
       //--update-end----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
+
+      this.$bus.$on('fullscreen', () => {
+        const el = document.getElementById('root_layout')
+        this.$fullscreen.toggle(el, {
+          wrap: false,
+          callback: () => {}
+        })
+      })
     },
     methods: {
       ...mapActions(['setSidebar']),

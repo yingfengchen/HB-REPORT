@@ -6,6 +6,48 @@
   "description": "通用图标库",
   "glyphs": [
     {
+      "icon_id": "19657959",
+      "name": "屏幕_全屏",
+      "font_class": "fullScreen",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "1207845",
+      "name": "setting",
+      "font_class": "setting",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "6517457",
+      "name": "文件-请假单",
+      "font_class": "wj-qjd",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "11686858",
+      "name": "operation",
+      "font_class": "operation",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "21159370",
+      "name": "补卡",
+      "font_class": "buka",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
+      "icon_id": "1263383",
+      "name": "加班",
+      "font_class": "jiaban",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
       "icon_id": "1471601",
       "name": "material",
       "font_class": "material",

@@ -82,19 +82,19 @@
       <a-row :gutter="8">
         <a-col :span="4">
           <div class="link-card" @click="handlerLinkClick">
-            <a-icon type="star" />
+            <i class="yicon-common yiconjiaban animation-reserve" />
             <label>加班申请</label>
           </div>
         </a-col>
         <a-col :span="4">
           <div class="link-card" @click="handlerLinkClick">
-            <a-icon type="file-protect" />
+            <i class="yicon-common yiconwj-qjd animation-reserve" />
             <label>休假申请</label>
           </div>
         </a-col>
         <a-col :span="4">
           <div class="link-card" @click="handlerLinkClick">
-            <a-icon type="file-add" />
+            <i class="yicon-common yiconbuka animation-reserve" />
             <label>补卡申请</label>
           </div>
         </a-col>
@@ -156,7 +156,8 @@
         </a-card>
       </a-col>
     </a-row>
-    <form-modal :visible="formModalVisible" :title="formModalTitle" :form-json="formModalJson" @close="handlerFormModalClose" />
+    <form-modal :visible="formModalVisible" :title="formModalTitle" :form-json="formModalJson"
+                @close="handlerFormModalClose" />
   </div>
 </template>
 
@@ -552,8 +553,23 @@ export default {
     display: flex;
     align-items: center;
 
+    .animation-reserve {
+      -webkit-animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+      animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    }
+
     label {
       margin-left: 10px;
+    }
+
+    i {
+      width: 40px;
+      height: 40px;
+      font-size: 35px;
+      font-weight: bolder;
+      margin-left: 20px;
+      text-align: center;
+      line-height: 40px;
     }
 
     /deep/ svg {
@@ -565,6 +581,10 @@ export default {
 
   .link-card:hover {
     box-shadow: 0 2px 8px #00000055;
+    .animation-reserve {
+      -webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+      animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    }
   }
 }
 </style>

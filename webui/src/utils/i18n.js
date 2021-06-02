@@ -23,6 +23,7 @@ export function generateTitle(title) {
   return title
 }
 
+//切换语言
 export function setLanguage(lang){
   return i18n.locale = lang
 }

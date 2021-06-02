@@ -1,8 +1,8 @@
 @font-face {
   font-family: "yicon-common"; /* Project id 2583905 */
-  src: url('iconfont.woff2?t=1622530121670') format('woff2'),
-       url('iconfont.woff?t=1622530121670') format('woff'),
-       url('iconfont.ttf?t=1622530121670') format('truetype');
+  src: url('iconfont.woff2?t=1622610528158') format('woff2'),
+       url('iconfont.woff?t=1622610528158') format('woff'),
+       url('iconfont.ttf?t=1622610528158') format('truetype');
 }
 
 .yicon-common {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.yiconfullScreen:before {
+  content: "\e627";
+}
+
+.yiconsetting:before {
+  content: "\e657";
+}
+
+.yiconwj-qjd:before {
+  content: "\e70e";
+}
+
+.yiconoperation:before {
+  content: "\e681";
+}
+
+.yiconbuka:before {
+  content: "\e6ca";
+}
+
+.yiconjiaban:before {
+  content: "\e64c";
 }
 
 .yiconmaterial:before {

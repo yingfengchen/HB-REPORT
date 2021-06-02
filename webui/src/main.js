@@ -55,6 +55,11 @@ import { rules } from '@/utils/rules'
 import { decoration2, decoration3, decoration6, decoration8, borderBox11, scrollBoard } from '@jiaminghi/data-view'
 //国际化
 import i18n, { setLanguage } from '@/utils/i18n'
+//扩展图标
+import '@/components/iconfont/iconfont.css'
+import '@/components/iconfont/iconfont.js'
+
+import fullscreen from 'vue-fullscreen'
 
 Vue.prototype.rules = rules
 Vue.config.productionTip = false
@@ -76,20 +81,11 @@ Vue.use(decoration6)
 Vue.use(decoration8)
 Vue.use(borderBox11)
 Vue.use(scrollBoard)
+Vue.use(fullscreen)
 
 SSO.init(() => {
   main()
 })
-
-function isFullScreen() {
-  return  !! (
-    document.fullscreen ||
-    document.mozFullScreen ||
-    document.webkitIsFullScreen ||
-    document.webkitFullScreen ||
-    document.msFullScreen
-  );
-}
 
 function main() {
   setLanguage(Vue.ls.get('language', 'zh-CN'))
@@ -99,8 +95,6 @@ function main() {
     } else {
       store.commit('SET_BODY_HEIGHT', document.body.clientHeight)
     }
-
-    store.commit('SET_FULLSCREEN_MODE', isFullScreen())
   }
   new Vue({
     router,

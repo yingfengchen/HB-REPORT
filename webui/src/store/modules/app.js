@@ -29,7 +29,6 @@ const app = {
     weak: false,
     multipage: true, //默认多页签模式
     bodyHeight: 0,
-    fullScreen: false
   },
   mutations: {
     SET_SIDEBAR_TYPE: (state, type) => {
@@ -84,9 +83,6 @@ const app = {
     SET_BODY_HEIGHT(state, height) {
       state.bodyHeight = height
     },
-    SET_FULLSCREEN_MODE: (state, fullScreen) => {
-      state.fullScreen = fullScreen
-    }
   },
   actions: {
     setSidebar: ({commit}, type) => {
@@ -131,9 +127,6 @@ const app = {
     SetBodyHeight({commit}, height) {
       commit('SET_BODY_HEIGHT', height)
     },
-    SetFullScreen: ({commit}, fullScreen) => {
-      commit('SET_FULLSCREEN_MODE', fullScreen)
-    }
   }
 }
 
