@@ -1,6 +1,6 @@
 <template>
   <a-card :bordered="false">
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
@@ -35,9 +35,9 @@
         @change="handleTableChange"
         @expand="handleExpand"
         v-bind="tableProps">
-        
+
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)">编辑</a>
+          <a @click="handleEdit(record)">{{$i18n.t('edit')}}</a>
           <a-divider type="vertical" />
           <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record)">
             <a>删除</a>
@@ -59,7 +59,7 @@
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import SysCategoryModal from './modules/SysCategoryModal'
   import { deleteAction } from '@/api/manage'
-  
+
   export default {
     name: "SysCategoryList",
     mixins:[JeecgListMixin],
@@ -328,8 +328,8 @@
           return Promise.resolve()
         }
       },
-      
-       
+
+
     }
   }
 </script>

@@ -34,7 +34,7 @@
         @expandedRowsChange="handleExpandedRowsChange">
 
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)">编辑</a>
+          <a @click="handleEdit(record)">{{$i18n.t('edit')}}</a>
 
           <a-divider type="vertical"/>
           <a-dropdown>
@@ -199,7 +199,7 @@
                       fn(data.children)
                     }
                   })
-                } 
+                }
               }
               fn(dataList)
             }

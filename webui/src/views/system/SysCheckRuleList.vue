@@ -79,7 +79,7 @@
       @change="handleTableChange">
 
       <template slot="action" slot-scope="text, record">
-        <a @click="handleEdit(record)">编辑</a>
+        <a @click="handleEdit(record)">{{$i18n.t('edit')}}</a>
         <a-divider type="vertical"/>
         <a @click="handleTest(record)">功能测试</a>
         <a-divider type="vertical"/>

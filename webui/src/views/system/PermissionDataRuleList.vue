@@ -49,7 +49,7 @@
           :rowClassName="getRowClassname">
           <span slot="action" slot-scope="text, record">
             <a @click="handleEdit(record)">
-              <a-icon type="edit"/>编辑
+              <a-icon type="edit"/>{{$i18n.t('edit')}}
             </a>
             <a-divider type="vertical"/>
             <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">

@@ -3,6 +3,7 @@ export default {
   logout: '退出登录',
   notification: '提示',
   confirmLogout: '真的要注销登录吗 ?',
+  edit: '编辑',
   login: {
     title: 'MES 报表平台',
     subTitle: 'MES Report System',

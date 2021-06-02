@@ -81,6 +81,16 @@ SSO.init(() => {
   main()
 })
 
+function isFullScreen() {
+  return  !! (
+    document.fullscreen ||
+    document.mozFullScreen ||
+    document.webkitIsFullScreen ||
+    document.webkitFullScreen ||
+    document.msFullScreen
+  );
+}
+
 function main() {
   setLanguage(Vue.ls.get('language', 'zh-CN'))
   window.onload = window.onresize = function() {
@@ -89,6 +99,8 @@ function main() {
     } else {
       store.commit('SET_BODY_HEIGHT', document.body.clientHeight)
     }
+
+    store.commit('SET_FULLSCREEN_MODE', isFullScreen())
   }
   new Vue({
     router,

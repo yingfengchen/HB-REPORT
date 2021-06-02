@@ -22,7 +22,7 @@
             <a-tag color="#87d068" v-if="text==1" >正常</a-tag>
         </span>
         <span slot="action" slot-scope="text, record">
-          <a @click="showModal(record)">编辑</a>
+          <a @click="showModal(record)">{{$i18n.t('edit')}}</a>
 
           <a-divider type="vertical"/>
           <a-dropdown>

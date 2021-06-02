@@ -5,6 +5,7 @@ const getters = {
   theme: state => state.app.theme,
   color: state => state.app.color,
   bodyHeight: state => state.app.bodyHeight,
+  fullScreen: state => state.app.fullScreen,
   token: state => state.user.token,
   avatar: state => {state.user.avatar = Vue.ls.get(USER_INFO).avatar; return state.user.avatar},
   username: state => state.user.username,

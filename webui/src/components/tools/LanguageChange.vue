@@ -31,7 +31,7 @@ export default {
 }
 
 .language-change {
-  width: 50px;
+  width: 40px;
   display: inline-block;
   transition: all 0.3s;
   text-align: center;

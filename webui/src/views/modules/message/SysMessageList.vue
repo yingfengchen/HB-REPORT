@@ -90,7 +90,7 @@
             <a class="ant-dropdown-link">更多<a-icon type="down"/></a>
             <a-menu slot="overlay">
                <a-menu-item v-show="show">
-                <a  @click="handleEdit(record)">编辑</a>
+                <a  @click="handleEdit(record)">{{$i18n.t('edit')}}</a>
               </a-menu-item>
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">

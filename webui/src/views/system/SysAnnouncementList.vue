@@ -68,7 +68,7 @@
         @change="handleTableChange">
 
         <span slot="action" slot-scope="text, record">
-          <a  v-if="record.sendStatus == 0" @click="handleEdit(record)">编辑</a>
+          <a  v-if="record.sendStatus == 0" @click="handleEdit(record)">{{$i18n.t('edit')}}</a>
 
           <a-divider type="vertical" v-if="record.sendStatus == 0"/>
           <a-dropdown>
