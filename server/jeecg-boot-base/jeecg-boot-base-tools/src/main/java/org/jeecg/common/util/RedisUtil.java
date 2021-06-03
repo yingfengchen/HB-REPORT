@@ -579,7 +579,7 @@ public class RedisUtil {
 	 * @param keyPrefix
 	 * @return
 	 */
-	private Set<String> keys(String keyPrefix) {
+	public Set<String> keys(String keyPrefix) {
 		String realKey = keyPrefix + "*";
 
 		try {

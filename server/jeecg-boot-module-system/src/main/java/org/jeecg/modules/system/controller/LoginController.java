@@ -360,6 +360,14 @@ public class LoginController {
 		// 生成token
 		String token = JwtUtil.sign(username, syspassword);
         // 设置token缓存有效时间
+		Set<String> keys = redisUtil.keys(CommonConstant.PREFIX_USER_TOKEN);
+		for(String key : keys){
+			String value = (String) redisUtil.get(key);
+			if(Objects.equals(JwtUtil.getUsername(value), username)){
+				result.error500("该账号已在其他机台登录, 稍后再试");
+				return result;
+			}
+		}
 		redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
 		redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME*2 / 1000);
 

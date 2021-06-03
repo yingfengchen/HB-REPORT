@@ -281,8 +281,13 @@
     text-decoration: none;
   }
   .avatar {
+    background: #e9e9e9 !important;
     /deep/ img {
       background: #e9e9e9;
+    }
+    /deep/ .ant-avatar-sm {
+      width: 25px;
+      height: 25px;
     }
   }
 </style>
