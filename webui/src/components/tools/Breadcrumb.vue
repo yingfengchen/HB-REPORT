@@ -1,5 +1,5 @@
 <template>
-  <a-breadcrumb class="breadcrumb">
+  <a-breadcrumb class="breadcrumb" :class="theme">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
       <span v-if="item.name != name">
         {{ generateTitleBreadcrumb(item.meta.title) }}
@@ -13,6 +13,13 @@
 import { generateTitle } from '@/utils/i18n'
 
 export default {
+  props: {
+    theme: {
+      type: String,
+      required: false,
+      default: 'dark'
+    }
+  },
   data() {
     return {
       name: '',
@@ -50,5 +57,15 @@ export default {
 <style lang="less" scoped>
 .breadcrumb {
   display: inline-block;
+}
+.breadcrumb.light {
+  /deep/ span {
+    color: #eaeaea !important;
+  }
+}
+.breadcrumb.dark {
+  /deep/ span {
+    color: #696969 !important;
+  }
 }
 </style>

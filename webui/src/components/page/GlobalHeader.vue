@@ -17,7 +17,7 @@
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click="toggle"/>
 
-      <breadcrumb v-if="device === 'desktop'" />
+      <breadcrumb v-if="device === 'desktop'" :theme="theme" />
       <span v-else>能管系统</span>
 
       <user-menu :theme="theme"/>
