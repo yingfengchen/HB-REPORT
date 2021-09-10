@@ -63,15 +63,17 @@
           <a-row>
             <a-col :span="12">
               <a-radio-group :value="switchCapacityMacTrendUnit" @change="handlerCapacityMacTUChange">
-                <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
-                <a-radio-button value="%Y-%m-%d">日</a-radio-button>
-                <a-radio-button value="%Y-%m">月</a-radio-button>
+                <a-radio-button value="YYYY-MM-DD HH24">时</a-radio-button>
+                <a-radio-button value="YYYY-MM-DD">日</a-radio-button>
+                <a-radio-button value="YYYY-MM">月</a-radio-button>
               </a-radio-group>
             </a-col>
           </a-row>
           <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
                       :x-axis="capacityMacTLegend" :data-zoom-enable="true"
-                      :series-data="capacityMacTSeries" :y-axis="yAxis" />
+                      :series-data="capacityMacTSeries" :y-axis="yAxis"
+                      :axis-label-interval="null" axis-label-rotate="0"
+          />
         </div>
       </a-card>
       <a-card title="AB 班组产能对比" style="width: 100%; display: inline-block; margin-right: 8px">
@@ -79,14 +81,16 @@
           <a-row>
             <a-col :span="24">
               <a-radio-group :value="switchCapacityGroupUnit" @change="handlerCapacityGroupUnitChange">
-                <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
-                <a-radio-button value="%Y-%m-%d">日</a-radio-button>
-                <a-radio-button value="%Y-%m">月</a-radio-button>
+                <a-radio-button value="YYYY-MM-DD HH24">时</a-radio-button>
+                <a-radio-button value="YYYY-MM-DD">日</a-radio-button>
+                <a-radio-button value="YYYY-MM">月</a-radio-button>
               </a-radio-group>
             </a-col>
           </a-row>
           <line-chart class="cop-chart" id="COPReport" :show-split-line="true" :x-axis="CapacityGroupLegend"
-                      :series-data="CapacityGroupSeries" :y-axis="yAxis" :data-zoom-enable="true" />
+                      :series-data="CapacityGroupSeries" :y-axis="yAxis" :data-zoom-enable="true"
+                      :axis-label-interval="1" axis-label-rotate="0"
+          />
         </div>
       </a-card>
     </a-spin>
@@ -133,9 +137,9 @@ export default {
           { required: true, message: '请输入Line' }
         ]
       },
-      switchCapacityMacTrendUnit: '%Y-%m-%d',
-      switchCapacityGroupUnit: '%Y-%m-%d',
-      switchElcUnit: '%Y-%m-%d',
+      switchCapacityMacTrendUnit: 'YYYY-MM-DD',
+      switchCapacityGroupUnit: 'YYYY-MM-DD',
+      switchElcUnit: 'YYYY-MM-DD',
       loading: false,
       macDurationXAxis: [],
       capacityMacTSeries: [],

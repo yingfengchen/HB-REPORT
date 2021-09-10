@@ -55,6 +55,14 @@ export default {
     dataZoomEnable: {
       type: Boolean,
       default: false
+    },
+    axisLabelInterval: {
+      type: Number,
+      default: 0
+    },
+    axisLabelRotate: {
+      type: Number,
+      default: 35
     }
   },
   data() {
@@ -219,8 +227,8 @@ export default {
               show: true
             },
             axisLabel: {
-              interval: 0,
-              rotate: 35,
+              interval: this.axisLabelInterval,
+              rotate: this.axisLabelRotate,
               textStyle: {
                 color: '#666666'
               },
