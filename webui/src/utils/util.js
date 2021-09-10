@@ -629,7 +629,7 @@ export function getCurrentTime(type, diff=0, unit) {
 /**
  * 补零
  */
-function zeroFill(i){
+export function zeroFill(i){
   if (i >= 0 && i <= 9) {
     return "0" + i;
   } else {

@@ -16,7 +16,7 @@
               ref="xLine"
               v-model="form.flow"
               :options="flowOptions"
-              :option-config="{label: 'process_flow_name', value: 'process_flow_name'}"
+              :option-config="{label: changeUL('process_flow_name'), value: changeUL('process_flow_name')}"
               :display-first-default="displayFirst"
               @change="handlerLineChange"
             />
@@ -46,7 +46,7 @@
               url="/common/executeSql"
               method="post"
               :params="{sql_name: 'getAllProductSpec'}"
-              :option-config="{label: 'name', value: 'value'}"
+              :option-config="{label: changeUL('name'), value: changeUL('value')}"
             />
           </vxe-form-item>
           <vxe-form-item collapse-node>
@@ -168,15 +168,15 @@ export default {
       switchArea: 'T',
       areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        { title: '产品ID', field: 'name', align: 'center', sortable: true },
-        { title: '所在站点', field: 'process_operation_name', align: 'center' },
-        { title: '所属Lot', field: 'lot_name', align: 'center' },
-        { title: '所属工单', field: 'product_request_name', align: 'center' },
-        { title: '等级', field: 'grade', align: 'center' },
-        { title: '不良Code', field: 'fg_code', align: 'center' },
-        { title: '是否返工', field: 'rework_state', align: 'center' },
-        { title: '上次操作事件', field: 'last_event_name', align: 'center' },
-        { title: '上次操作时间', field: 'last_event_time', align: 'center', sortable: true }
+        { title: '产品ID', field: this.changeUL('name'), align: 'center', sortable: true },
+        { title: '所在站点', field: this.changeUL('process_operation_name'), align: 'center' },
+        { title: '所属Lot', field: this.changeUL('lot_name'), align: 'center' },
+        { title: '所属工单', field: this.changeUL('product_request_name'), align: 'center' },
+        { title: '等级', field: this.changeUL('grade'), align: 'center' },
+        { title: '不良Code', field: this.changeUL('fg_code'), align: 'center' },
+        { title: '是否返工', field: this.changeUL('rework_state'), align: 'center' },
+        { title: '上次操作事件', field: this.changeUL('last_event_name'), align: 'center' },
+        { title: '上次操作时间', field: this.changeUL('last_event_time'), align: 'center', sortable: true }
       ],
       datasource: [],
       PieDatasource: [],
@@ -202,8 +202,8 @@ export default {
           if(_this.displayFirst && _this.flowOptions['options'].length > 0){
             let first = _this.flowOptions['options'][0]
             if (first) {
-              _this.operationOptions['options'] = JSON.parse(first['operations'])
-              this.form.flow = first['process_flow_name']
+              _this.operationOptions['options'] = JSON.parse(first[_this.changeUL('operations')])
+              _this.form.flow = first[_this.changeUL('process_flow_name')]
             }
           }
         } else {
@@ -225,9 +225,9 @@ export default {
 
       params['sql_name'] = 'getWIPOperationCount'
       const line_res = await postAction('/common/executeSql', params)
-      this.waterUseChartLegend = getObjArrayFieldToArray(line_res['result'], 'name')
+      this.waterUseChartLegend = getObjArrayFieldToArray(line_res['result'], this.changeUL('name'))
       this.waterUseChartSeries = [
-        { name: '当前产品数量', type: 'bar', data: getObjArrayFieldToArray(line_res['result'], 'value') }
+        { name: '当前产品数量', type: 'bar', data: getObjArrayFieldToArray(line_res['result'], this.changeUL('value')) }
       ]
 
       params['sql_name'] = 'getWIPInfoByParams'
@@ -242,19 +242,22 @@ export default {
     },
     handlerLineChange(data) {
       let list = this.flowOptions['options'].filter((l) => {
-        return l['process_flow_name'] === data
+        return l[this.changeUL('process_flow_name')] === data
       })
       if (list.length > 0) {
-        this.operationOptions['options'] = JSON.parse(list[0]['operations'])
+        this.operationOptions['options'] = JSON.parse(list[0][this.changeUL('operations')])
       }
       this.$refs.xOperation.clear()
     },
     handlerRowStyle({ row }) {
-      if(getRangeOfTime(row['last_event_time']) >= 30){
+      if(getRangeOfTime(row[this.changeUL('last_event_time')]) >= 30){
         return {
           color: '#ff3b3b'
         }
       }
+    },
+    changeUL(str) {
+      return this.changeUpperOrLower(str)
     }
   }
 }

@@ -35,7 +35,7 @@
               ref="xOperation"
               v-model="form.operation"
               :options="operationOptions"
-              :option-config="{label: 'description', value: 'name'}"
+              :option-config="{label: 'mdescription', value: 'mname'}"
             />
           </vxe-form-item>
           <vxe-form-item span="5" title="产品规格" field="spec" folding>
@@ -171,7 +171,7 @@ export default {
       capacityMacTLegend: [],
       CapacityGroupLegend: [],
       elcChartLegend: [],
-      lineOptions: { options: [] },
+      lineOptions: { options: [], source: [] },
       operationOptions: { options: [] }
     }
   },
@@ -183,7 +183,14 @@ export default {
       let _this = this
       executeSQL({ sql_name: 'getLinesAndOperations' }).then(res => {
         if (res && res['code'] === 200) {
-          _this.lineOptions['options'] = res['result']
+          const dis_res = []
+          _this.lineOptions.source = res['result']
+          _this.lineOptions.source.forEach(r => {
+            if(dis_res.filter(d => { return d['name'] === r['name'] }).length === 0 ){
+              dis_res.push({name: r['name'], description: r['description']})
+            }
+          })
+          _this.lineOptions['options'] = dis_res
         } else {
           _this.$message.error(res['message'])
         }
@@ -250,11 +257,11 @@ export default {
       this.$refs.xSpec.clear()
     },
     handlerLineChange(data) {
-      let list = this.lineOptions['options'].filter((l) => {
+      let list = this.lineOptions['source'].filter((l) => {
         return l['name'] === data
       })
       if (list.length > 0) {
-        this.operationOptions['options'] = JSON.parse(list[0]['machines'])
+        this.operationOptions['options'] = list
       }
       this.$refs.xOperation.clear()
     }

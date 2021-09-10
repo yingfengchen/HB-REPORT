@@ -31,11 +31,13 @@ public class CommonReportService implements ICommonReportService {
         AtomicReference<String> sqlStr = new AtomicReference<>(commonReportMapper.getSqlStr(map));
 
         map.forEach((k, v) -> {
-            String sql_temp = sqlStr.get().replace("#{" + k + "}", "\"" + v + "\"");
+            String sql_temp = sqlStr.get().replace("#{" + k + "}", v.equals("")?"NULL":"'" + v + "'");
             sqlStr.set(sql_temp);
         });
 
         map.put("sqlStr", sqlStr.toString());
+        System.out.println("---------------------" + sql_name + "----------------------");
+        System.out.println(sqlStr);
         return commonReportMapper.executeSql(map);
     }
 }

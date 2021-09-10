@@ -171,7 +171,7 @@ export default {
             ser['markLine'] = {
               data: [{
                 yAxis: m['data'],
-                valueIndex: 1,
+                valueIndex: m['index'] || 0,
                 lineStyle: {
                   normal: {
                     width: 2,
@@ -219,6 +219,8 @@ export default {
               show: true
             },
             axisLabel: {
+              interval: 0,
+              rotate: 35,
               textStyle: {
                 color: '#666666'
               },

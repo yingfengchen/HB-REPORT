@@ -25,7 +25,7 @@
               ref="xLine"
               v-model="form.flow"
               :options="flowOptions"
-              :option-config="{label: 'process_flow_name', value: 'process_flow_name'}"
+              :option-config="{label: changeUL('process_flow_name'), value: changeUL('process_flow_name')}"
               :display-first-default="displayFirst"
             />
           </vxe-form-item>
@@ -215,12 +215,12 @@ export default {
         }
       ],
       columns: [
-        { title: 'Flow', field: 'processflow_name', align: 'center', sortable: true },
-        { title: '站点', field: 'process_operation_name', align: 'center' },
-        { title: '良品数', field: 'ok_count', align: 'center' },
-        { title: '不良品数', field: 'ng_count', align: 'center' },
-        { title: '良率', field: 'yield', align: 'center', formatter: 'formatterFloat' },
-        { title: '直通率', field: 'fpy', align: 'center', formatter: 'formatterFloat' }
+        { title: 'Flow', field: this.changeUL('processflow_name'), align: 'center', sortable: true },
+        { title: '站点', field: this.changeUL('process_operation_name'), align: 'center' },
+        { title: '良品数', field: this.changeUL('ok_count'), align: 'center' },
+        { title: '不良品数', field: this.changeUL('ng_count'), align: 'center' },
+        { title: '良率', field: this.changeUL('yield'), align: 'center', formatter: 'formatterFloat' },
+        { title: '直通率', field: this.changeUL('fpy'), align: 'center', formatter: 'formatterFloat' }
       ],
       datasource: [],
       flowOptions: { options: [] },
@@ -251,7 +251,7 @@ export default {
           _this.flowOptions['options'] = res['result']
           let first = _this.flowOptions['options'][0]
           if (first) {
-            _this.form.flow = first['process_flow_name']
+            _this.form.flow = first[this.changeUL('process_flow_name')]
           }
         } else {
           _this.$message.error(res['message'])
@@ -281,13 +281,13 @@ export default {
         this.datasource = result
         this.fpyChartXAxis = []
         result.forEach(r => {
-          temp_yield *= r['yield']
-          r['fpy'] = temp_yield.toFixed(4)
-          this.fpyChartXAxis.push(r['process_operation_name'])
-          sery_temp[0].data.push(r['ok_count'])
-          sery_temp[1].data.push(r['ng_count'])
-          sery_temp[2].data.push(r['yield'] * 100)
-          sery_temp_fpy[0].data.push(r['fpy'] * 100)
+          temp_yield *= r[this.changeUL('yield')]
+          r[this.changeUL('fpy')] = temp_yield.toFixed(4)
+          this.fpyChartXAxis.push(r[this.changeUL('process_operation_name')])
+          sery_temp[0].data.push(r[this.changeUL('ok_count')])
+          sery_temp[1].data.push(r[this.changeUL('ng_count')])
+          sery_temp[2].data.push(r[this.changeUL('yield')] * 100)
+          sery_temp_fpy[0].data.push(r[this.changeUL('fpy')] * 100)
         })
         this.fpy = temp_yield.toFixed(4) * 100
         this.yieldChartSeries = sery_temp
@@ -298,6 +298,9 @@ export default {
     },
     handlerCalculator() {
       this.FPYCModalVisible = true
+    },
+    changeUL(str) {
+      return this.changeUpperOrLower(str)
     }
   }
 }

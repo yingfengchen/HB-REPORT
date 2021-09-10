@@ -34,7 +34,7 @@
                 url="/common/executeSql"
                 method="post"
                 :params="{sql_name: 'getAllOperations'}"
-                :option-config="{label: 'description', value: 'name'}"
+                :option-config="{label: changeUL('description'), value: changeUL('name')}"
               />
             </template>
           </vxe-form-item>
@@ -135,27 +135,27 @@ export default {
       switchArea: 'T',
       areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        { title: '时间戳', field: 'timekey', align: 'center', sortable: true, width: 150 },
-        { title: '产品 ID', field: 'name', align: 'center', sortable: true, width: 150 },
-        { title: '工厂', field: 'factory_name', align: 'center', sortable: true, width: 150 },
-        { title: '返厂次数', field: 'fab_in_count', align: 'center', width: 150 },
-        { title: '事件名称', field: 'last_event_name', align: 'center', width: 150 },
-        { title: '事件时间', field: 'last_event_time', align: 'center', width: 150 },
-        { title: '事件操作员', field: 'last_event_user', align: 'center', width: 150 },
-        { title: '不良描述', field: 'defect_description', align: 'center', width: 150 },
-        { title: '创建时间', field: 'create_time', align: 'center', width: 150 },
-        { title: '创建者', field: 'create_user', align: 'center', width: 150 },
-        { title: '产品状态', field: 'product_state', align: 'center', width: 150 },
-        { title: '工艺状态', field: 'process_state', align: 'center', width: 150 },
-        { title: '产品种类', field: 'product_spec_name', align: 'center', width: 150 },
-        { title: '所在站点', field: 'process_operation_name', align: 'center', width: 150 },
-        { title: '所属工单', field: 'product_request_name', align: 'center', width: 150 },
-        { title: '等级', field: 'grade', align: 'center', width: 150 },
-        { title: '不良代码', field: 'fg_code', align: 'center', width: 150 },
-        { title: 'Hold 状态', field: 'hold_state', align: 'center', width: 150 },
-        { title: '入厂时间', field: 'initial_trackin_time', align: 'center', sortable: true, width: 150 },
-        { title: '判定结果', field: 'judge', align: 'center', width: 150 },
-        { title: '返工次数', field: 'rework_count', align: 'center', width: 150 }
+        { title: '时间戳', field: this.changeUL('timekey'), align: 'center', sortable: true, width: 150 },
+        { title: '产品 ID', field: this.changeUL('name'), align: 'center', sortable: true, width: 150 },
+        { title: '工厂', field: this.changeUL('factory_name'), align: 'center', sortable: true, width: 150 },
+        { title: '返厂次数', field: this.changeUL('fab_in_count'), align: 'center', width: 150 },
+        { title: '事件名称', field: this.changeUL('last_event_name'), align: 'center', width: 150 },
+        { title: '事件时间', field: this.changeUL('last_event_time'), align: 'center', width: 150 },
+        { title: '事件操作员', field: this.changeUL('last_event_user'), align: 'center', width: 150 },
+        { title: '不良描述', field: this.changeUL('defect_description'), align: 'center', width: 150 },
+        { title: '创建时间', field: this.changeUL('create_time'), align: 'center', width: 150 },
+        { title: '创建者', field: this.changeUL('create_user'), align: 'center', width: 150 },
+        { title: '产品状态', field: this.changeUL('product_state'), align: 'center', width: 150 },
+        { title: '工艺状态', field: this.changeUL('process_state'), align: 'center', width: 150 },
+        { title: '产品种类', field: this.changeUL('product_spec_name'), align: 'center', width: 150 },
+        { title: '所在站点', field: this.changeUL('process_operation_name'), align: 'center', width: 150 },
+        { title: '所属工单', field: this.changeUL('product_request_name'), align: 'center', width: 150 },
+        { title: '等级', field: this.changeUL('grade'), align: 'center', width: 150 },
+        { title: '不良代码', field: this.changeUL('fg_code'), align: 'center', width: 150 },
+        { title: 'Hold 状态', field: this.changeUL('hold_state'), align: 'center', width: 150 },
+        { title: '入厂时间', field: this.changeUL('initial_trackin_time'), align: 'center', sortable: true, width: 150 },
+        { title: '判定结果', field: this.changeUL('judge'), align: 'center', width: 150 },
+        { title: '返工次数', field: this.changeUL('rework_count'), align: 'center', width: 150 }
       ],
       datasource: []
     }
@@ -177,6 +177,9 @@ export default {
     },
     handleReset() {
       this.$refs.QSOfPH.clear()
+    },
+    changeUL(str) {
+      return this.changeUpperOrLower(str)
     }
   }
 }

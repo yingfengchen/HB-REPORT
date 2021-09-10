@@ -80,6 +80,14 @@ Vue.use(decoration8)
 Vue.use(borderBox11)
 Vue.use(scrollBoard)
 
+
+/** *
+ 大小写切换
+ * **/
+Vue.prototype.changeUpperOrLower = function(str) {
+  return str.toLocaleUpperCase()
+}
+
 SSO.init(() => {
   main()
 })
