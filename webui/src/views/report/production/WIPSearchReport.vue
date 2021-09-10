@@ -49,6 +49,23 @@
               :option-config="{label: changeUL('name'), value: changeUL('value')}"
             />
           </vxe-form-item>
+          <vxe-form-item span="5" title="工单" field="wo" folding>
+          <!--            <query-select-->
+          <!--              ref="xWO"-->
+          <!--              v-model="form.wo"-->
+          <!--              url="/common/executeSql"-->
+          <!--              method="post"-->
+          <!--              :params="{sql_name: 'getAllProductRequest'}"-->
+          <!--              :option-config="{label: changeUL('name'), value: changeUL('name')}"-->
+          <!--            />-->
+            <search-select
+              style="width: 100%"
+              ref="xWO"
+              v-model="form.wo"
+              :options="woOptions"
+              :option-config="{label: 'NAME', value: 'NAME'}"
+            />
+          </vxe-form-item>
           <vxe-form-item collapse-node>
             <template #default>
               <vxe-button type="submit" status="primary">查询</vxe-button>
@@ -99,10 +116,12 @@ import DataTable from '@comp/DataTable'
 import PieChart from '@comp/chart/PieChart'
 import { postAction } from '@api/manage'
 import { executeSQL } from '@api/api'
+import SearchSelect from '@comp/SearchSelect'
 
 export default {
   name: 'WIPSearchReport',
   components: {
+    SearchSelect,
     PieChart,
     LineChart,
     QuerySelect,
@@ -121,7 +140,8 @@ export default {
         product: '',
         spec: '',
         flow: '',
-        operation: ''
+        operation: '',
+        wo: ''
       },
       formRules: {
         flow: [
@@ -183,6 +203,7 @@ export default {
       PieLegend: [],
       flowOptions: { options: [] },
       operationOptions: { options: [] },
+      woOptions: { options: [] },
       displayFirst: true
     }
   },
@@ -210,6 +231,14 @@ export default {
           _this.$message.error(res['message'])
         }
       })
+
+      executeSQL({sql_name: 'getAllProductRequest'}).then(res => {
+        if (res && res['code'] === 200) {
+          _this.woOptions['options'] = res['result']
+        }else {
+          _this.$message.error(res['message'])
+        }
+      })
     },
     handlerSubmit() {
       this.handlerWIPChartSubmit()
@@ -218,6 +247,7 @@ export default {
       this.$refs.xLine.clear()
       this.$refs.xOperation.clear()
       this.$refs.xSpec.clear()
+      this.$refs.xWO.clear()
     },
     async handlerWIPChartSubmit() {
       let params = this.form

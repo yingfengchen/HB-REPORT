@@ -47,7 +47,6 @@ export default {
       this.totalValue = this.getTotalValue(val)
       this.legendList = this.getLegend(val)
       this.initPieChart(this.id, this.legendList, val)
-      console.log(this.totalValue)
     }
   },
   mounted() {

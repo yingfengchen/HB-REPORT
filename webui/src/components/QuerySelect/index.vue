@@ -1,6 +1,5 @@
 <template>
   <vxe-select
-    show-search
     v-model="model"
     placeholder="请选择"
     clearable
