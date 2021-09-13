@@ -31,7 +31,14 @@
             />
           </vxe-form-item>
           <vxe-form-item span="5" title="设备" field="operation">
-            <query-select
+<!--            <query-select-->
+<!--              ref="xOperation"-->
+<!--              v-model="form.operation"-->
+<!--              :options="operationOptions"-->
+<!--              :option-config="{label: 'mdescription', value: 'mname'}"-->
+<!--            />-->
+            <search-select
+              style="width: 100%"
               ref="xOperation"
               v-model="form.operation"
               :options="operationOptions"
@@ -72,7 +79,7 @@
           <line-chart class="cold-capacity-chart" id="trendWaterUse" :show-split-line="true"
                       :x-axis="capacityMacTLegend" :data-zoom-enable="true"
                       :series-data="capacityMacTSeries" :y-axis="yAxis"
-                      :axis-label-interval="null" axis-label-rotate="0"
+                      :axis-label-interval="null" :axis-label-rotate="0.0"
           />
         </div>
       </a-card>
@@ -89,7 +96,7 @@
           </a-row>
           <line-chart class="cop-chart" id="COPReport" :show-split-line="true" :x-axis="CapacityGroupLegend"
                       :series-data="CapacityGroupSeries" :y-axis="yAxis" :data-zoom-enable="true"
-                      :axis-label-interval="1" axis-label-rotate="0"
+                      :axis-label-interval="1" :axis-label-rotate="0.0"
           />
         </div>
       </a-card>
@@ -104,10 +111,12 @@ import LineChart from '@comp/chart/LineChart'
 import { cloneObject, transferStringToArray } from '@/utils/util'
 import { executeSQL } from '@api/api'
 import { postAction } from '@api/manage'
+import SearchSelect from '@comp/SearchSelect'
 
 export default {
   name: 'CapacityReport',
   components: {
+    SearchSelect,
     LineChart,
     QuerySelect,
     BarChart

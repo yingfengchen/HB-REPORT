@@ -1,7 +1,7 @@
 <template>
   <vxe-pulldown ref="xDown">
     <template #default>
-      <vxe-input v-model="model" clearable suffix-icon="vxe-icon--caret-bottom" placeholder="请搜索" @focus="handleFocus" @keyup="handleKeyUp"></vxe-input>
+      <vxe-input v-model="model" suffix-icon="vxe-icon--caret-bottom" placeholder="请搜索" @focus="handleFocus" @keyup="handleKeyUp"></vxe-input>
     </template>
     <template #dropdown>
       <div class="dropdown-class">

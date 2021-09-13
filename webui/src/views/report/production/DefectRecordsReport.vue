@@ -59,7 +59,9 @@
             </a-row>
             <line-chart class="cold-capacity-chart" id="WIPTrendLine" :show-split-line="true"
                         :x-axis="WIPLineChartLegend"
-                        :series-data="WIPChartSeries" :y-axis="yAxis" />
+                        :series-data="WIPChartSeries" :y-axis="yAxis"
+                        :axis-label-interval="null" :axis-label-rotate="0.0"
+            />
           </div>
         </a-card>
       </a-col>
