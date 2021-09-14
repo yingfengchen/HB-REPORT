@@ -31,7 +31,7 @@
         </span>
       <!-- 字符串超长截取省略号显示-->
       <span slot="webPath" slot-scope="text">
-        {{ text.indexOf('_arg') > -1 ? '参数文件' : 'window._CONFIG[\'raqReportUrl\'] /showReport.jsp?rpx=' + text }}
+        {{ text.indexOf('_arg') > -1 ? '参数文件' : '\{\{ window._CONFIG[\'raqReportUrl\'] \}\}/showReport.jsp?rpx=' + text }}
       </span>
     </a-table>
     <a-modal

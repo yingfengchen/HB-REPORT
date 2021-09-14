@@ -31,12 +31,6 @@
             />
           </vxe-form-item>
           <vxe-form-item span="5" title="设备" field="operation">
-<!--            <query-select-->
-<!--              ref="xOperation"-->
-<!--              v-model="form.operation"-->
-<!--              :options="operationOptions"-->
-<!--              :option-config="{label: 'mdescription', value: 'mname'}"-->
-<!--            />-->
             <search-select
               style="width: 100%"
               ref="xOperation"

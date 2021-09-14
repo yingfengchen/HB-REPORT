@@ -7,11 +7,9 @@
 <script>
   import Vue from 'vue'
   import { ACCESS_TOKEN } from "@/store/mutation-types"
-  import PageLayout from '../page/PageLayout'
-  import RouteView from './RouteView'
 
   export default {
-    name: "IframePageContent",
+    name: "IframePageView",
     inject:['closeCurrent'],
     data () {
       return {

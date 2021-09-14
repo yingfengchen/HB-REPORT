@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "IframePageContent",
+    name: "IframeFReportView",
     data () {
       return {
         url: "",

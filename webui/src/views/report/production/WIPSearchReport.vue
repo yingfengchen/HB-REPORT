@@ -22,7 +22,8 @@
             />
           </vxe-form-item>
           <vxe-form-item span="5" title="站点" field="operation">
-            <query-select
+            <search-select
+              style="width: 100%"
               ref="xOperation"
               v-model="form.operation"
               :options="operationOptions"
@@ -46,18 +47,10 @@
               url="/common/executeSql"
               method="post"
               :params="{sql_name: 'getAllProductSpec'}"
-              :option-config="{label: changeUL('name'), value: changeUL('value')}"
+              :option-config="{label: 'name', value: 'value'}"
             />
           </vxe-form-item>
           <vxe-form-item span="5" title="工单" field="wo" folding>
-          <!--            <query-select-->
-          <!--              ref="xWO"-->
-          <!--              v-model="form.wo"-->
-          <!--              url="/common/executeSql"-->
-          <!--              method="post"-->
-          <!--              :params="{sql_name: 'getAllProductRequest'}"-->
-          <!--              :option-config="{label: changeUL('name'), value: changeUL('name')}"-->
-          <!--            />-->
             <search-select
               style="width: 100%"
               ref="xWO"
@@ -185,8 +178,6 @@ export default {
       waterUseChartLegend: [],
       COPChartLegend: [],
       elcChartLegend: [],
-      switchArea: 'T',
-      areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
         { title: '产品ID', field: this.changeUL('name'), align: 'center', sortable: true },
         { title: '所在站点', field: this.changeUL('process_operation_name'), align: 'center' },
@@ -195,8 +186,9 @@ export default {
         { title: '等级', field: this.changeUL('grade'), align: 'center' },
         { title: '不良Code', field: this.changeUL('fg_code'), align: 'center' },
         { title: '是否返工', field: this.changeUL('rework_state'), align: 'center' },
-        { title: '上次操作事件', field: this.changeUL('last_event_name'), align: 'center' },
-        { title: '上次操作时间', field: this.changeUL('last_event_time'), align: 'center', sortable: true }
+        { title: '操作事件', field: this.changeUL('last_event_name'), align: 'center' },
+        { title: '操作用户', field: this.changeUL('last_event_user'), align: 'center' },
+        { title: '操作时间', field: this.changeUL('last_event_time'), align: 'center', sortable: true }
       ],
       datasource: [],
       PieDatasource: [],

@@ -3,9 +3,6 @@
     <a-row :gutter="10" class="card-area">
       <a-col :sm="24" :md="12" :xl="6">
         <chart-card :loading="loading" title="今日出货数量" :total="cardData.TotalCapacity.DaliyCapacity + ' 片'">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('TotalCapacity')" />
-          </a-tooltip>
           <div>
             <trend :flag="(cardData.TotalCapacity.DayDiff > 100)?'up':'down'">
               <span slot="term">日同比</span>
@@ -17,9 +14,6 @@
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
         <chart-card :loading="loading" title="今日良率" :total="cardData.PEMS_MCHW_PowerT.DayTotalElc + ' %'">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_MCHW_PowerT')" />
-          </a-tooltip>
           <div>
             <mini-area :data-source="cardData.PEMS_MCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
@@ -29,31 +23,30 @@
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
         <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
-          <a-tooltip title="详细图表" slot="action">
-            <a-icon type="area-chart" @click="handlerChangeCurrentTag('PEMS_RCHW_PowerT')" />
-          </a-tooltip>
           <div>
-            <mini-area :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
+            <mini-bar :height="40" :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
           <template slot="footer">月 Alarm 数量<span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
           </template>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="当前在制产品数量" :total="cardData.WIPProd.Count.toString() + ' 片'">
-          <a-tooltip title="转到详细报表" slot="action">
-            <router-link to="/production/WIPSearchReport">
-              <a-icon type="arrow-right" />
-            </router-link>
-          </a-tooltip>
-          <div>
-            <trend :flag="(cardData.WIPProd.DelayCount > 0)?'up':'down'">
-              <span slot="term">疑似滞留</span>
-              {{ cardData.WIPProd.DelayCount }} 片
-            </trend>
-          </div>
-          <template slot="footer">WIP 数据</template>
-        </chart-card>
+        <a-spin tip="数据加载中..." :spinning="spin.wip">
+          <chart-card :loading="loading" title="当前在制产品数量" :total="cardData.WIPProd.Count.toString() + ' 片'">
+            <a-tooltip title="转到详细报表" slot="action">
+              <router-link to="/production/WIPSearchReport">
+                <a-icon type="arrow-right" />
+              </router-link>
+            </a-tooltip>
+            <div>
+              <trend :flag="(cardData.WIPProd.DelayCount > 0)?'up':'down'">
+                <span slot="term">疑似滞留</span>
+                {{ cardData.WIPProd.DelayCount }} 片
+              </trend>
+            </div>
+            <template slot="footer">WIP 数据</template>
+          </chart-card>
+        </a-spin>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
         <chart-card :loading="loading" title="今日不良品数量" :total="cardData.PEMS_MCHW_COP.COP.toString()">
@@ -78,28 +71,6 @@
         </chart-card>
       </a-col>
     </a-row>
-    <a-card title="快捷导航" :bordered="false" class="link-row">
-      <a-row :gutter="8">
-        <a-col :span="4">
-          <div class="link-card" @click="handlerLinkClick">
-            <i class="yicon-common yiconjiaban animation-reserve" />
-            <label>加班申请</label>
-          </div>
-        </a-col>
-        <a-col :span="4">
-          <div class="link-card" @click="handlerLinkClick">
-            <i class="yicon-common yiconwj-qjd animation-reserve" />
-            <label>休假申请</label>
-          </div>
-        </a-col>
-        <a-col :span="4">
-          <div class="link-card" @click="handlerLinkClick">
-            <i class="yicon-common yiconbuka animation-reserve" />
-            <label>补卡申请</label>
-          </div>
-        </a-col>
-      </a-row>
-    </a-card>
     <a-row :gutter="5">
       <a-col :xl="16" :lg="16" :md="16" :sm="24" :xs="24">
         <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
@@ -108,9 +79,9 @@
               <div class="extra-wrapper" slot="tabBarExtraContent">
                 <div class="extra-item">
                   <a-radio-group :value="switchUnit" @change="handlerUnitChange">
-                    <a-radio-button value="%Y-%m-%d %H">时</a-radio-button>
-                    <a-radio-button value="%Y-%m-%d">日</a-radio-button>
-                    <a-radio-button value="%Y-%m">月</a-radio-button>
+                    <a-radio-button value="YYYY-MM-DD HH24">时</a-radio-button>
+                    <a-radio-button value="YYYY-MM-DD">日</a-radio-button>
+                    <a-radio-button value="YYYY-MM">月</a-radio-button>
                   </a-radio-group>
                 </div>
                 <a-range-picker
@@ -232,9 +203,8 @@ export default {
           COPTrendDataSource: []
         }
       },
-      switchUnit: '%Y-%m-%d',
+      switchUnit: 'YYYY-MM-DD',
       pieChartSwitchUnit: 'day_value',
-      currentTag: 'TotalCapacity',
       startTime: moment(new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7)).format('YYYY-MM-DD'),
       endTime: moment(new Date()).format('YYYY-MM-DD'),
       lineChartData: {
@@ -250,7 +220,10 @@ export default {
       currentDiffFlag: true,
       formModalVisible: false,
       formModalTitle: '',
-      formModalJson: []
+      formModalJson: [],
+      spin: {
+        wip: true
+      }
     }
   },
   created() {
@@ -273,14 +246,23 @@ export default {
         product: '',
         operation: '',
         spec: '',
-        flow: ''
+        flow: '',
+        wo: ''
       }
       executeSQL(params).then((res) => {
-        let product_infos = res['result']
-        this.cardData.WIPProd.Count = product_infos.length
-        this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {
-          return getRangeOfTime(prod['last_event_time']) > 30
-        })).length
+        if(res && res['success']) {
+          let product_infos = res['result']
+          this.cardData.WIPProd.Count = product_infos.length
+          this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {
+            return getRangeOfTime(prod[this.changeUL('last_event_time')]) > 30
+          })).length
+          this.spin.wip = false
+        }else{
+          this.$notification['error']({
+            message: '获取数据失败',
+            description: res['message'],
+          });
+        }
       })
     },
     handlerUnitChange(e) {
@@ -293,11 +275,6 @@ export default {
       that.pieChartSwitchUnit = e.target.value
       this.refreshDashboardPie()
     },
-    handlerChangeCurrentTag(tag, diffFlag = true) {
-      this.currentTag = tag
-      this.currentDiffFlag = diffFlag
-      this.refreshDashboardLine()
-    },
     handlerTimeChange(date, dateString) {
       this.startTime = dateString[0]
       this.endTime = dateString[1]
@@ -309,156 +286,12 @@ export default {
     refreshDashboardPie() {
 
     },
-    handlerLinkClick(e) {
-      let title = e.toElement.innerText
-      let userInfo = this.$store.getters.userInfo
-      let nowTime = getCurrentTime()
-
-      this.formModalTitle = title
-      switch (title) {
-        case '加班申请':
-          this.formModalJson = [
-            {
-              key: '1',
-              children: [
-                { type: 'label', value: '姓名', span: 6 },
-                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
-                { type: 'label', value: '部门', span: 6 },
-                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '2',
-              children: [
-                { type: 'label', value: '职务', span: 6 },
-                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
-                { type: 'label', value: '申请时间', span: 6, disabled: true },
-                { type: 'input', value: nowTime, span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '3',
-              children: [
-                { type: 'label', value: '加班时间段', span: 6 },
-                { type: 'rangePicker', span: 18, value: [] }
-              ]
-            },
-            {
-              key: '4',
-              children: [
-                { type: 'label', value: '加班事由', span: 6 },
-                { type: 'input', span: 18, value: '' }
-              ]
-            },
-            {
-              key: '5',
-              children: [
-                { type: 'label', value: '备注', span: 6, height: 52 },
-                { type: 'textarea', span: 18, height: 52, value: '' }
-              ]
-            }
-          ]
-          break
-        case '休假申请':
-          this.formModalJson = [
-            {
-              key: '1',
-              children: [
-                { type: 'label', value: '姓名', span: 6 },
-                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
-                { type: 'label', value: '部门', span: 6 },
-                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '2',
-              children: [
-                { type: 'label', value: '职务', span: 6 },
-                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
-                { type: 'label', value: '申请时间', span: 6, disabled: true },
-                { type: 'input', value: nowTime, span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '3',
-              children: [
-                { type: 'label', value: '休假时间段', span: 6 },
-                { type: 'rangePicker', span: 18, value: [] }
-              ]
-            },
-            {
-              key: '4',
-              children: [
-                { type: 'label', value: '休假事由', span: 6 },
-                { type: 'input', span: 18, value: '' }
-              ]
-            },
-            {
-              key: '5',
-              children: [
-                { type: 'label', value: '备注', span: 6, height: 52 },
-                { type: 'textarea', span: 18, height: 52, value: '' }
-              ]
-            }
-          ]
-          break
-        case '补卡申请':
-          this.formModalJson = [
-            {
-              key: '1',
-              children: [
-                { type: 'label', value: '姓名', span: 6 },
-                { type: 'input', value: userInfo['realname'], span: 6, disabled: true },
-                { type: 'label', value: '部门', span: 6 },
-                { type: 'input', value: userInfo['depart'], span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '2',
-              children: [
-                { type: 'label', value: '职务', span: 6 },
-                { type: 'input', value: userInfo['post'], span: 6, disabled: true },
-                { type: 'label', value: '申请时间', span: 6, disabled: true },
-                { type: 'input', value: nowTime, span: 6, disabled: true }
-              ]
-            },
-            {
-              key: '3',
-              children: [
-                { type: 'label', value: '漏卡时间', span: 6 },
-                { type: 'input', span: 6, value: '2021-05-16 17:30', disabled: true },
-                { type: 'label', value: '补卡地点', span: 6 },
-                { type: 'input', span: 6, value: '' },
-                { type: 'label', value: '漏卡时间', span: 6 },
-                { type: 'input', span: 6, value: '2021-05-16 17:30', disabled: true },
-                { type: 'label', value: '补卡地点', span: 6 },
-                { type: 'input', span: 6, value: '' }
-              ]
-            },
-            {
-              key: '4',
-              children: [
-                { type: 'label', value: '漏卡事由', span: 6 },
-                { type: 'input', span: 18, value: '' }
-              ]
-            },
-            {
-              key: '5',
-              children: [
-                { type: 'label', value: '备注', span: 6, height: 52 },
-                { type: 'textarea', span: 18, height: 52, value: '' }
-              ]
-            }
-          ]
-          break
-        default:
-          break
-      }
-      this.formModalVisible = true
-    },
     handlerFormModalClose() {
       this.formModalVisible = false
       this.formModalJson = []
+    },
+    changeUL(str) {
+      return this.changeUpperOrLower(str)
     }
   }
 }
