@@ -59,6 +59,10 @@ export default {
       this.model = item[this.optionConfig.label]
       this.$emit('changed', item[this.optionConfig.value])
       this.$refs.xDown.hidePanel()
+    },
+    clear() {
+      this.model = ''
+      this.displaySource = []
     }
   }
 }

@@ -302,7 +302,8 @@ export default {
       let dayCode = new Date(time).getDay();
       let dayLong = 24*60*60*1000;
       let result = ''
-      const startDate = new Date(time).getTime() - ((dayCode===0?7:dayCode) * dayLong)
+      // const startDate = new Date(time).getTime() - ((dayCode===0?7:dayCode) * dayLong)
+      const startDate = new Date(time).getTime() - (7 * dayLong)
       for (let i = 1; i < 8; i++) {
         const timeStamp = startDate + i * dayLong
         const date_i = new Date(timeStamp)

@@ -101,8 +101,8 @@ export default {
           modes: ['insert']
         },
         exportConfig: {
-          types: ['csv'],
-          modes: ['current', 'selected', 'all']
+          types: ['csv', 'xlsx'],
+          modes: ['current', 'selected']
         },
         checkboxConfig: {
           reserve: true,

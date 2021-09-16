@@ -21,6 +21,8 @@ import 'ant-design-vue/dist/antd.less'  // or 'ant-design-vue/dist/antd.less'
 import 'xe-utils'
 import 'vxe-table/lib/style.css'
 import VXETable from 'vxe-table'
+import VXETablePluginExportXLSX from 'vxe-table-plugin-export-xlsx'
+VXETable.use(VXETablePluginExportXLSX)
 
 import '@/permission' // permission control
 import '@/utils/filter' // base filter

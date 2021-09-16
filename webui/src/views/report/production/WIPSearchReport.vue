@@ -95,6 +95,7 @@
         :datasource="datasource"
         :page-size="24"
         :cell-style="handlerRowStyle"
+        :can-export="true"
       />
     </a-spin>
   </div>
