@@ -64,6 +64,7 @@ import QuerySelect from '@comp/QuerySelect'
 import LineChart from '@comp/chart/LineChart'
 import DataTable from '@comp/DataTable'
 import { postAction } from '@api/manage'
+const { getCurrentTime } = require('@/utils/util')
 
 export default {
   name: 'DefectRecordsReport',
@@ -81,8 +82,8 @@ export default {
   data() {
     return {
       form: {
-        startTime: '',
-        endTime: '',
+        startTime: getCurrentTime('date', -3, 'day') + ' 08:30:00',
+        endTime: getCurrentTime('date') + ' 08:30:00',
         product: '',
         operation: ''
       },

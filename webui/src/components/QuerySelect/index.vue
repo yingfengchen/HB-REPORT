@@ -4,6 +4,7 @@
     placeholder="请选择"
     clearable
     style="width: 100%"
+    :multiple="multiple"
     @clear="handleClear"
     @change="handleChange"
   >
@@ -26,7 +27,7 @@ export default {
     event: 'changed'
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['optionConfig', 'url', 'params', 'options', 'method', 'displayFirstDefault'],
+  props: ['optionConfig', 'url', 'params', 'options', 'method', 'displayFirstDefault', 'multiple'],
   data() {
     return {
       optionsList: [],

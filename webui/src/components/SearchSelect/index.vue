@@ -1,7 +1,9 @@
 <template>
   <vxe-pulldown ref="xDown">
     <template #default>
-      <vxe-input v-model="model" suffix-icon="vxe-icon--caret-bottom" placeholder="请搜索" @focus="handleFocus" @keyup="handleKeyUp"></vxe-input>
+      <vxe-input v-model="model" clearable suffix-icon="vxe-icon--caret-bottom" placeholder="请搜索"
+                 @focus="handleFocus" @keyup="handleKeyUp" @clear="handleClear"
+      />
     </template>
     <template #dropdown>
       <div class="dropdown-class">
@@ -60,8 +62,12 @@ export default {
       this.$emit('changed', item[this.optionConfig.value])
       this.$refs.xDown.hidePanel()
     },
+    handleClear() {
+      this.$emit('changed', '')
+      this.displaySource = this.datasource
+    },
     clear() {
-      this.model = ''
+      this.$emit('changed', '')
       this.displaySource = []
     }
   }

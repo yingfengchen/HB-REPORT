@@ -32,7 +32,7 @@
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
         <a-spin tip="数据加载中..." :spinning="spin.wip">
-          <chart-card :loading="loading" title="当前在制产品数量" :total="cardData.WIPProd.Count.toString() + ' 片'">
+          <chart-card :loading="loading" title="当前在制产品数量" :total="cardData.WIPProd.Count + ' 片'">
             <a-tooltip title="转到详细报表" slot="action">
               <router-link to="/production/WIPSearchReport">
                 <a-icon type="arrow-right" />
@@ -241,21 +241,13 @@ export default {
     },
     refreshWIPData() {
       let params = {
-        sql_name: 'getWIPInfoByParams',
-        lot: '',
-        product: '',
-        operation: '',
-        spec: '',
-        flow: '',
-        wo: ''
+        sql_name: 'getWIPAsisCount'
       }
       executeSQL(params).then((res) => {
         if(res && res['success']) {
-          let product_infos = res['result']
-          this.cardData.WIPProd.Count = product_infos.length
-          this.cardData.WIPProd.DelayCount = (product_infos.filter((prod) => {
-            return getRangeOfTime(prod[this.changeUL('last_event_time')]) > 30
-          })).length
+          let product_infos = res['result'][0]
+          this.cardData.WIPProd.Count = parseInt(product_infos['total_count'])
+          this.cardData.WIPProd.DelayCount = parseInt(product_infos['delay_count'])
           this.spin.wip = false
         }else{
           this.$notification['error']({

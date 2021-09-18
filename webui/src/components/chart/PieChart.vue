@@ -124,7 +124,7 @@ export default {
                 fontSize: '10',
                 position: 'inside',
                 formatter: (params) => {
-                  return `${params.percent}%`
+                  return `${params.name}: ${params.percent}%`
                 }
               },
               emphasis: {

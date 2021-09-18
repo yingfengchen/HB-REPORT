@@ -250,16 +250,16 @@ export default {
       const line_res = await postAction('/common/executeSql', params)
       this.waterUseChartLegend = getObjArrayFieldToArray(line_res['result'], this.changeUL('name'))
       this.waterUseChartSeries = [
-        { name: '当前产品数量', type: 'bar', data: getObjArrayFieldToArray(line_res['result'], this.changeUL('value')) }
+        { name: '当前产品数量', type: 'bar', data: getObjArrayFieldToArray(line_res['result'], this.changeUL('value')), showLabel: true }
       ]
-
-      params['sql_name'] = 'getWIPInfoByParams'
-      const table_res = await postAction('/common/executeSql', params)
-      this.datasource = table_res['result']
 
       params['sql_name'] = 'getWIPSpecRateByParams'
       const pie_res = await postAction('/common/executeSql', params)
       this.PieDatasource = pie_res['result']
+
+      params['sql_name'] = 'getWIPInfoByParams'
+      const table_res = await postAction('/common/executeSql', params)
+      this.datasource = table_res['result']
 
       this.loading = false
     },

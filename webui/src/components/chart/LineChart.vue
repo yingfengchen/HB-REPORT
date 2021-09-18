@@ -172,6 +172,11 @@ export default {
                 borderColor: '#fe9a8b',
                 borderWidth: 2
               }
+            },
+            label: {
+              show: s['showLabel'] || false,
+              position: 'top',
+              formatter: '{@score}' + (s['unit'] || '')
             }
           }
           if(s['markLine']){

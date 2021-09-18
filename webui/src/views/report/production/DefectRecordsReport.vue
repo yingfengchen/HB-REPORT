@@ -27,16 +27,26 @@
             </template>
           </vxe-form-item>
           <vxe-form-item span="5" title="站点" field="operation" :item-render="{}">
-            <query-select
+            <search-select
+              style="width: 100%"
               ref="xOperation"
               v-model="form.operation"
-              url="/common/executeSql"
-              method="post"
-              :params="{sql_name: 'getAllOperations'}"
+              :options="operationOptions"
               :option-config="{label: changeUL('description'), value: changeUL('name')}"
             />
           </vxe-form-item>
-          <vxe-form-item>
+          <vxe-form-item span="5" title="不良等级" field="grade" folding>
+            <query-select
+              ref="xGrade"
+              v-model="form.grade"
+              url="/common/executeSql"
+              method="post"
+              :multiple="true"
+              :params="{sql_name: 'getAllGradeList'}"
+              :option-config="{label: 'name', value: 'name'}"
+            />
+          </vxe-form-item>
+          <vxe-form-item collapse-node>
             <template #default>
               <vxe-button type="submit" status="primary">查询</vxe-button>
               <vxe-button type="reset">重置</vxe-button>
@@ -94,6 +104,7 @@
             :columns="columns"
             :datasource="datasource"
             :page-size="20"
+            :can-export="true"
           />
         </a-spin>
       </a-col>
@@ -109,10 +120,14 @@ import DataTable from '@comp/DataTable'
 import PieChart from '@comp/chart/PieChart'
 import { postAction } from '@api/manage'
 import { getObjArrayFieldToArray } from '@/utils/util'
+import SearchSelect from '@comp/SearchSelect'
+const { getCurrentTime } = require('@/utils/util')
+import { executeSQL } from '@api/api'
 
 export default {
   name: 'DefectRecordsReport',
   components: {
+    SearchSelect,
     DataTable,
     LineChart,
     QuerySelect,
@@ -123,13 +138,17 @@ export default {
       return this.$store.getters.bodyHeight - 190
     }
   },
+  mounted() {
+    this.initData()
+  },
   data() {
     return {
       form: {
-        startTime: '',
-        endTime: '',
+        startTime: getCurrentTime('date', -1, 'day') + ' 08:30:00',
+        endTime: getCurrentTime('date') + ' 08:30:00',
         product: '',
-        operation: ''
+        operation: '',
+        grade: []
       },
       formRules: {
         'startTime': [
@@ -178,6 +197,7 @@ export default {
       switchArea: 'T',
       columns: [
         { title: '产品 ID', field: this.changeUL('name'), align: 'center', sortable: true, width: 150 },
+        { title: '背光 ID', field: this.changeUL('id1'), align: 'center', width: 200 },
         { title: '工单号', field: this.changeUL('product_request_name'), align: 'center', width: 150  },
         { title: '不良代码', field: this.changeUL('fg_code'), align: 'center', width: 150  },
         { title: '不良描述', field: this.changeUL('defect_description'), align: 'center', width: 150  },
@@ -195,10 +215,23 @@ export default {
       datasource_source: [],
       datasource: [],
       defectDatasource: [],
-      PieDatasource: []
+      PieDatasource: [],
+      operationOptions: {
+        options: []
+      }
     }
   },
   methods: {
+    initData() {
+      let _this = this
+      executeSQL({sql_name: 'getAllOperations'}).then(res => {
+        if (res && res['code'] === 200) {
+          _this.operationOptions['options'] = res['result']
+        }else {
+          _this.$message.error(res['message'])
+        }
+      })
+    },
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
@@ -206,9 +239,11 @@ export default {
       this.$refs.xOperation.clear()
     },
     async handlerWaterUseChartSubmit() {
-      let params = this.form
       this.loading = true
 
+      let params = this.form
+      params['grade'] = params['grade'].toString()
+      console.log(params)
       params['sql_name'] = 'getAllProdInfosGroupType'
       const table_gt_res = await postAction('/common/executeSql', params)
       this.defectDatasource = table_gt_res['result']

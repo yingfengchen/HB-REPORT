@@ -272,10 +272,10 @@ export default {
         let sery_temp = [
           { name: '良品数', type: 'bar', yIndex: 0, stack: 'total', data: [] },
           { name: '不良品数', type: 'bar', yIndex: 0, stack: 'total', data: [] },
-          { name: '良率', type: 'line', yIndex: 1, data: [], markLine: { data: 90 }}
+          { name: '良率', type: 'line', yIndex: 1, data: [], markLine: { data: 90 }, showLabel: true, unit: '%'}
         ]
         let sery_temp_fpy = [
-          { name: '直通率', type: 'line', yIndex: 0, data: [], markLine: { data: 40 }}
+          { name: '直通率', type: 'line', yIndex: 0, data: [], markLine: { data: 40 }, showLabel: true, unit: '%'}
         ]
         let result = res['result']
         this.datasource = result
@@ -289,7 +289,7 @@ export default {
           sery_temp[2].data.push(r[this.changeUL('yield')] * 100)
           sery_temp_fpy[0].data.push(r[this.changeUL('fpy')] * 100)
         })
-        this.fpy = temp_yield.toFixed(4) * 100
+        this.fpy = temp_yield.toFixed(2) * 100
         this.yieldChartSeries = sery_temp
         this.fpyChartSeries = sery_temp_fpy
 
