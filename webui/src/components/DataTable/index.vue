@@ -17,11 +17,12 @@
         zoom: false,
         custom: !isHideBasicTool,
         import: canImport,
-        export: canExport,
+        export: false,
         print: !isHideBasicTool,
         refresh: false,
         slots: {
           buttons: 'toolbar_buttons',
+          tools: 'toolbat_custom'
         },
       }"
       :sort-config="sortConfig"
@@ -33,6 +34,9 @@
         <a-icon type="appstore" :style="{ marginLeft: '5px' }"/>
         <label :style="{ marginLeft: '5px' }">{{ title }}</label>
         <slot name="header-buttons" />
+      </template>
+      <template #toolbat_custom>
+        <vxe-button v-if="canExport" style="margin-right: 12px" icon="vxe-icon--download" circle @click="handleExportAll" />
       </template>
       <template v-slot:pager>
         <vxe-pager
@@ -170,6 +174,15 @@ export default {
     },
     handleCellClick({ row }) {
       this.$emit('cell-click', row)
+    },
+    handleExportAll() {
+      this.$refs.xGrid.exportData({
+        filename: this.title,
+        type: 'xlsx',
+        isHeader: true,
+        isFooter: true,
+        data: this.datasource
+      })
     },
     exportTableData() {
       this.$refs.xGrid.openExport({

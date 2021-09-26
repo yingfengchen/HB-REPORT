@@ -135,24 +135,24 @@ spring:
           condition-and-alway-false-allow: true
       datasource:
         master:
-          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
+          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
           username: MES_REPORT
           password: Manager1
           driver-class-name: oracle.jdbc.OracleDriver
         mes:
-          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
-          username: MES_PROD
+          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
+          username: MES_TEST
           password: Manager1
           driver-class-name: oracle.jdbc.OracleDriver
 #        master:
-#          url: jdbc:oracle:thin:@10.3.5.253:1521:XE
-#          username: C##MES_REPORT
-#          password: Manager2
+#          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
+#          username: MES_REPORT
+#          password: Manager1
 #          driver-class-name: oracle.jdbc.OracleDriver
 #        mes:
-#          url: jdbc:oracle:thin:@10.3.5.253:1521:XE
-#          username: C##MES_DEBUG
-#          password: Manager2
+#          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
+#          username: MES_PROD
+#          password: Manager1
 #          driver-class-name: oracle.jdbc.OracleDriver
   #redis 配置
   redis:
@@ -199,7 +199,7 @@ jeecg :
     webapp: /opt/local/files/webapp
     #润乾报表文件上传路径
     #rpxUpload: /opt/tomcat9/webapps/raqreport/WEB-INF/reportFiles
-    rpxUpload: C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\raqreport\WEB-INF\reportFiles
+    rpxUpload: /opt/apache-tomcat-9.0.46/webapps/raqreport/WEB-INF/reportFiles
   shiro:
      excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**,/category/**,/visual/**,/map/**,/jmreport/bigscreen2/**,/dashboard/BigScreen
   #阿里云oss存储配置
