@@ -59,6 +59,11 @@ const queryMyDepartTreeList = (params)=>getAction("/sys/sysDepart/queryMyDeptTre
 const deleteLog = (params)=>deleteAction("/sys/log/delete",params);
 const deleteLogList = (params)=>deleteAction("/sys/log/deleteBatch",params);
 
+//layout管理
+const saveLayoutFile = (params) => postAction("/common/saveLayoutFile", params);
+const saveLayoutInfo = (params) => postAction("/common/saveLayoutInfo", params);
+const getLayout = (params) => postAction("/common/getLayout", params);
+
 //数据字典
 const addDict = (params)=>postAction("/sys/dict/add",params);
 const editDict = (params)=>putAction("/sys/dict/edit",params);
@@ -107,6 +112,9 @@ export {
   // imgView,
   // doMian,
   executeSQL,
+  saveLayoutFile,
+  saveLayoutInfo,
+  getLayout,
   addRole,
   editRole,
   checkRoleCode,

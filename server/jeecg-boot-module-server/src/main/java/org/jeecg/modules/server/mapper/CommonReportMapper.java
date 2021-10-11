@@ -15,4 +15,7 @@ public interface CommonReportMapper {
 
     @DS("master")
     String getSqlStr(Map<String, String> map);
+
+    @DS("master")
+    Integer insertLayoutItem(Map<String, String> map);
 }

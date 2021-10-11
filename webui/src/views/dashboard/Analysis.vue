@@ -1,5 +1,28 @@
 <template>
   <div class="page-header-index-wide">
+    <a-row :gutter="5" style="margin-bottom: 10px">
+      <a-col :lg="18">
+        <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
+          <a-tabs
+            class="layout-display"
+            default-active-key="1"
+            :tab-bar-style="{paddingLeft: '16px'}"
+          >
+            <a-tab-pane key="1" tab="Tab 1">
+              <svg-layout />
+            </a-tab-pane>
+            <a-tab-pane key="2" tab="Tab 2">
+              Content of tab 2
+            </a-tab-pane>
+          </a-tabs>
+        </a-card>
+      </a-col>
+      <a-col :lg="6">
+        <a-card style="height: 510px" title="设备状态">
+
+        </a-card>
+      </a-col>
+    </a-row>
     <a-row :gutter="10" class="card-area">
       <a-col :sm="24" :md="12" :xl="6">
         <chart-card :loading="loading" title="今日出货数量" :total="cardData.TotalCapacity.DaliyCapacity + ' 片'">
@@ -13,11 +36,11 @@
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="今日良率" :total="cardData.PEMS_MCHW_PowerT.DayTotalElc + ' %'">
+        <chart-card :loading="loading" title="今日良率" :total="cardData.Yield.TodayValue + ' %'">
           <div>
-            <mini-area :data-source="cardData.PEMS_MCHW_PowerT.TrendDataSource" x="date" y="value" />
+            <mini-area :data-source="cardData.Yield.TrendDataSource" x="date" y="RATE" />
           </div>
-          <template slot="footer">月良率<span>  {{ cardData.PEMS_MCHW_PowerT.MonthTotalElc }} %</span>
+          <template slot="footer">月良率<span>  {{ cardData.Yield.MonthValue }} %</span>
           </template>
         </chart-card>
       </a-col>
@@ -61,11 +84,9 @@
           <template slot="footer">
             <div style="display: flex; justify-content: space-between;">
               <label
-                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月不良品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc
-              }} 个</span>
+                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月不良品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
               <label
-                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc
-              }} 个</span>
+                style="width: 33%; overflow: hidden; text-overflow: ellipsis;">当月返工产品数量</label><span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
             </div>
           </template>
         </chart-card>
@@ -96,8 +117,6 @@
                     <line-chart
                       id="dashboardLineChart"
                       :style="{height: (height-556) + 'px'}"
-                      :x-axis="lineChartData.legends"
-                      :series-data="lineChartData.series"
                     />
                   </a-col>
                 </a-row>
@@ -119,9 +138,8 @@
           </div>
           <a-row>
             <a-col :xl="24" :lg="24" :md="24" :sm="24" :xs="24">
-              <pie-chart :style="{height: (height-540) + 'px'}" :datasource="pieChartData.datasource"
-                         :legend-list="pieChartData.legends"
-                         :total-value="pieChartData.totalValue" />
+              <pie-chart :style="{height: (height-540) + 'px'}"
+              />
             </a-col>
           </a-row>
         </a-card>
@@ -143,10 +161,12 @@ import { getCurrentTime, getRangeOfTime } from '@/utils/util'
 import moment from 'dayjs'
 import { executeSQL } from '@api/api'
 import FormModal from '@views/dashboard/modal/FormModal'
+import SvgLayout from '@views/dashboard/components/SvgLayout'
 
 export default {
   name: 'IndexEnergy',
   components: {
+    SvgLayout,
     FormModal,
     PieChart,
     LineChart,
@@ -176,12 +196,10 @@ export default {
           COP: 0,
           COPTrendDataSource: []
         },
-        PEMS_MCHW_PowerT: {
-          DayTotalElc: 0,
-          MonthTotalElc: 0,
-          TrendDataSource: [],
-          COP: 0,
-          COPTrendDataSource: []
+        Yield: {
+          TodayValue: 0,
+          MonthValue: 0,
+          TrendDataSource: []
         },
         PEMS_RCHW_PowerT: {
           DayTotalElc: 0,
@@ -238,6 +256,7 @@ export default {
   methods: {
     initData() {
       this.refreshWIPData()
+      this.refreshRateData()
     },
     refreshWIPData() {
       let params = {
@@ -249,6 +268,32 @@ export default {
           this.cardData.WIPProd.Count = parseInt(product_infos['total_count'])
           this.cardData.WIPProd.DelayCount = parseInt(product_infos['delay_count'])
           this.spin.wip = false
+        }else{
+          this.$notification['error']({
+            message: '获取数据失败',
+            description: res['message'],
+          });
+        }
+      })
+    },
+    refreshRateData() {
+      executeSQL({sql_name: 'get15DayRateList'}).then((res) => {
+        if(res && res['success']) {
+          const result = res['result']
+          this.cardData.Yield.TrendDataSource = result
+          this.cardData.Yield.TodayValue = result[0]['y']
+        }else{
+          this.$notification['error']({
+            message: '获取数据失败',
+            description: res['message'],
+          });
+        }
+      })
+
+      executeSQL({sql_name: 'getMonthRate'}).then((res) => {
+        if(res && res['success']) {
+          const result = res['result']
+          this.cardData.Yield.MonthValue = result[0]['y']
         }else{
           this.$notification['error']({
             message: '获取数据失败',
@@ -410,6 +455,17 @@ export default {
       -webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
       animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
     }
+  }
+}
+
+.layout-display {
+  ::v-deep .ant-tabs-bar {
+    margin: 0;
+  }
+
+  ::v-deep .ant-tabs-content {
+    height: 460px;
+    overflow: hidden;
   }
 }
 </style>

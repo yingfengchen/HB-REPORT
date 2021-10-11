@@ -11,4 +11,11 @@
         FROM sys_sql ss
         WHERE ss.sql_name = #{sql_name}
     </select>
+
+    <insert id="insertLayoutItem" parameterType="java.util.Map">
+        INSERT INTO RPT_LAYOUT_ITEMS (
+            "id", "timekey", "belong", "title", "svgPositionX", "svgPositionY", "angle", "height", "width", "svgColor", "type", "fontSize", "svgText", "strokeColor"
+        )
+        VALUES (#{id}, #{timekey}, #{belong}, #{title}, #{svgPositionX}, #{svgPositionY}, #{angle}, #{height}, #{width}, #{svgColor}, #{type}, #{fontSize}, #{svgText}, #{strokeColor})
+    </insert>
 </mapper>
