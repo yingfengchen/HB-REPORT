@@ -6,7 +6,7 @@
           <p>{{ svgInfo.id }}</p>
         </a-form-item>
         <a-form-item label="类型">
-          <p>{{ selectSvgInfo.typeName }}</p>
+          <p>{{ selectSvgInfo.type }}</p>
         </a-form-item>
         <a-form-item v-if="svgInfo" label="名称">
           <a-input style="width: 100%" v-model:value="selectSvgInfo.title" placeholder="请输入组件名称"/>
@@ -40,10 +40,10 @@
         <a-form-item v-if="svgInfo" label="大小">
           <a-row style="width: 100%">
             <a-col :span="16">
-              <a-slider v-model:value="selectSvgInfo.height" :min="1" :max="500"/>
+              <a-slider v-model:value="selectSvgInfo.height" :min="10" :max="800"/>
             </a-col>
             <a-col :span="7">
-              <a-input-number style="width: 100%" v-model:value="selectSvgInfo.height" :min="1" :max="500" />
+              <a-input-number style="width: 100%" v-model:value="selectSvgInfo.height" :min="10" :max="800" />
             </a-col>
           </a-row>
         </a-form-item>
@@ -76,18 +76,12 @@
         <a-form-item v-if="svgInfo" label="字体大小">
           <a-row style="width: 100%">
             <a-col :span="16">
-              <a-slider v-model:value="selectSvgInfo.fontSize" :min="11" :max="30"/>
+              <a-slider v-model="selectSvgInfo.fontSize" :min="11" :max="30"/>
             </a-col>
             <a-col :span="7">
               <a-input-number style="width: 100%" v-model:value="selectSvgInfo.fontSize" :min="11" :max="30"/>
             </a-col>
           </a-row>
-        </a-form-item>
-        <a-form-item v-if="selectSvgInfo.type==='table'" label="表格行数">
-          <a-input-number v-model:value="selectSvgInfo.tableRowCount" :min="1" :max="500"/>
-        </a-form-item>
-        <a-form-item v-if="selectSvgInfo.type==='table'" label="表格列数">
-          <a-input-number v-model:value="selectSvgInfo.tableColCount" :min="1" :max="500"/>
         </a-form-item>
         <a-form-item v-if="svgInfo">
           <a-button type="primary" class="btn-sure">

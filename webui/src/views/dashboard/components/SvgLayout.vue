@@ -12,6 +12,7 @@ export default {
     getLayout({layout_name: 'HB_01'}).then(res => {
       if(res['success']) {
         this.initLayout(res['result'])
+        d3.selectAll('.CUT').selectAll('rect').attr('fill', '#ff0000')
       }else{
         this.$notification['error']({
           message: '获取数据失败',
@@ -33,12 +34,6 @@ export default {
         ele_ml.setAttribute('width', '100%')
         ele_ml.setAttribute('height', '100%')
       }
-    },
-    zoomimg() {
-      const svg = d3.select('#machine_layout')
-        .call(d3.zoom().on('zoom', (event) => {
-          svg.selectAll('g').attr('transform', event.transform)
-        }))
     },
     xmlStr2XmlObj(xmlStr) {
       let xmlObj = {}

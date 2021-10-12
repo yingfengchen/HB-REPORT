@@ -74,6 +74,7 @@
                       :svgText=item.svgText
                       :editable=editable
                       :stroke-color="item.strokeColor"
+                      :class-name="item.class"
                     />
                   </g>
                 </svg>
@@ -254,8 +255,8 @@ export default {
       }
       e.preventDefault();
       //判断滚轮方向 -100是往上滑 100是下滑
-      let svgZoom = e.deltaY == "-100" ? "5" : "-5";
-      selectSvgInfo.height += parseInt(svgZoom);
+      let svgZoom = e.wheelDelta > 0 ? "5" : "-5";
+      selectSvgInfo.height = parseInt(selectSvgInfo.height) + parseInt(svgZoom);
       if (selectSvgInfo.height < 1) {
         selectSvgInfo.height = 1;
       }
@@ -332,6 +333,7 @@ export default {
         sort: 0,
         title: _this.CurrentlySelectedToolBarTitle,
         type: _this.CurrentlySelectedToolBarType,
+        class: '',
         typeName: _this.CurrentlySelectedToolBarTypeName,
         svgColor: _this.CurrentlySelectedToolBarColor,
         svgPositionX: e.offsetX,
@@ -344,7 +346,6 @@ export default {
         tableRowCount: _this.tableRowCount,
         tableColCount: _this.tableColCount,
         angle: _this.CurrentlySelectedToolBarAngle
-        //translate:`translate(${this.mousePosition.positionX},${this.mousePosition.positionY})`
       };
       _this.svgLists.push(svgItem);
       setTimeout(function () {

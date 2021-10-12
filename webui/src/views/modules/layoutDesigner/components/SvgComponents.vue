@@ -1,15 +1,15 @@
 <!-- 箭头向下svg组件 -->
 <template>
-  <Inline v-if="type==='InlineSvg'" :height="height" :color="color" :width="width" :eq-id="eqId" />
-  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :eq-id="eqId" />
-  <SubUnit v-else-if="type==='SubUnitSvg'" :height="height" :color="color" :width="width" />
-  <port v-else-if="type==='PortSvg'" :height="height" :color="color" :width="width" />
-  <EQSlot v-else-if="type==='EQSlotSvg'" :height="height" :color="color" :width="width" />
-  <Conveyor v-else-if="type==='ConveyorSvg'" :height="height" :color="color" :width="width" />
-  <Stage v-else-if="type==='StageSvg'" :height="height" :color="color" :width="width" />
-  <NGStage v-else-if="type==='NGStageSvg'" :height="height" :color="color" :width="width" />
-  <VCR v-else-if="type==='VCRSvg'" :height="height" :color="color" :width="width" />
-  <BCR v-else-if="type==='BCRSvg'" :height="height" :color="color" :width="width" />
+  <Inline v-if="type==='InlineSvg'" :height="height" :color="color" :width="width" :eq-id="eqId" :class="className" />
+  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :text="svgText" :class="className" />
+  <SubUnit v-else-if="type==='SubUnitSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <port v-else-if="type==='PortSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <EQSlot v-else-if="type==='EQSlotSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <Conveyor v-else-if="type==='ConveyorSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <Stage v-else-if="type==='StageSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <NGStage v-else-if="type==='NGStageSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <VCR v-else-if="type==='VCRSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <BCR v-else-if="type==='BCRSvg'" :height="height" :color="color" :width="width" :class="className" />
 
 </template>
 <script>
@@ -39,6 +39,6 @@ export default {
     BCR
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['height', 'color', 'width', 'eqId', 'type', 'fontSize', 'tableData', 'svgText', 'editable']
+  props: ['height', 'color', 'width', 'eqId', 'type', 'fontSize', 'tableData', 'svgText', 'editable', 'className']
 }
 </script>

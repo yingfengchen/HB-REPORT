@@ -8,10 +8,10 @@
             default-active-key="1"
             :tab-bar-style="{paddingLeft: '16px'}"
           >
-            <a-tab-pane key="1" tab="Tab 1">
+            <a-tab-pane key="1" tab="HB 01">
               <svg-layout />
             </a-tab-pane>
-            <a-tab-pane key="2" tab="Tab 2">
+            <a-tab-pane key="2" tab="HB 02">
               Content of tab 2
             </a-tab-pane>
           </a-tabs>
