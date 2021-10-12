@@ -1,9 +1,9 @@
 <!-- 箭头向下svg组件 -->
 <template>
   <Inline v-if="type==='InlineSvg'" :height="height" :color="color" :width="width" :eq-id="eqId" :class="className" />
-  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :text="svgText" :class="className" />
+  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :text="svgText" :class="className" :stroke-color="strokeColor" />
   <SubUnit v-else-if="type==='SubUnitSvg'" :height="height" :color="color" :width="width" :class="className" />
-  <port v-else-if="type==='PortSvg'" :height="height" :color="color" :width="width" :class="className" />
+  <port v-else-if="type==='PortSvg'" :height="height" :color="color" :width="width" :class="className" :text="svgText" :stroke-color="strokeColor" />
   <EQSlot v-else-if="type==='EQSlotSvg'" :height="height" :color="color" :width="width" :class="className" />
   <Conveyor v-else-if="type==='ConveyorSvg'" :height="height" :color="color" :width="width" :class="className" />
   <Stage v-else-if="type==='StageSvg'" :height="height" :color="color" :width="width" :class="className" />
@@ -24,7 +24,6 @@ import NGStage from './svgCpt/NGStage'
 import VCR from './svgCpt/VCR'
 import BCR from './svgCpt/BCR'
 
-// 发电站
 export default {
   components: {
     Inline,
@@ -39,6 +38,6 @@ export default {
     BCR
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['height', 'color', 'width', 'eqId', 'type', 'fontSize', 'tableData', 'svgText', 'editable', 'className']
+  props: ['height', 'color', 'width', 'eqId', 'type', 'fontSize', 'tableData', 'svgText', 'editable', 'className', 'strokeColor']
 }
 </script>

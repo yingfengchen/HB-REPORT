@@ -2,25 +2,51 @@
   <div class="page-header-index-wide">
     <a-row :gutter="5" style="margin-bottom: 10px">
       <a-col :lg="18">
-        <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
-          <a-tabs
-            class="layout-display"
-            default-active-key="1"
-            :tab-bar-style="{paddingLeft: '16px'}"
-          >
-            <a-tab-pane key="1" tab="HB 01">
-              <svg-layout />
-            </a-tab-pane>
-            <a-tab-pane key="2" tab="HB 02">
-              Content of tab 2
-            </a-tab-pane>
-          </a-tabs>
+        <a-card :loading="loading" :bordered="false" :body-style="{padding: '0', background: 'rgba(235,248,255,0.83)'}">
+          <div style="height: 30px; margin: 5px; width: 100%; display: flex; ">
+            <a-radio-group :value="layoutName" @change="handleLayoutChange">
+              <a-radio-button value="HB_01">
+                HB_01
+              </a-radio-button>
+              <a-radio-button value="HB_02">
+                HB_02
+              </a-radio-button>
+            </a-radio-group>
+            <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+              <div style="background: #a1ff9a; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <label style="font-weight: bold">RUN</label>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+              <div style="background: #fff86c; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <label style="font-weight: bold">IDLE</label>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+              <div style="background: #6ca8ff; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <label style="font-weight: bold">PM</label>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+              <div style="background: #ff6565; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <label style="font-weight: bold">TROUBLE</label>
+            </div>
+          </div>
+          <div style="height: 480px">
+            <svg-layout :layout-name="layoutName" />
+          </div>
         </a-card>
       </a-col>
       <a-col :lg="6">
-        <a-card style="height: 510px" title="设备状态">
+        <a-card style="height: 334px; margin-bottom: 10px" title="设备状态">
+          <a-table  :columns="columns" :data-source="mac_data">
 
+          </a-table>
         </a-card>
+        <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
+          <div>
+            <mini-bar :height="40" :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
+          </div>
+          <template slot="footer">月 Alarm 数量<span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
+          </template>
+        </chart-card>
       </a-col>
     </a-row>
     <a-row :gutter="10" class="card-area">
@@ -41,15 +67,6 @@
             <mini-area :data-source="cardData.Yield.TrendDataSource" x="date" y="RATE" />
           </div>
           <template slot="footer">月良率<span>  {{ cardData.Yield.MonthValue }} %</span>
-          </template>
-        </chart-card>
-      </a-col>
-      <a-col :sm="24" :md="12" :xl="6">
-        <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
-          <div>
-            <mini-bar :height="40" :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
-          </div>
-          <template slot="footer">月 Alarm 数量<span> {{ cardData.PEMS_RCHW_PowerT.MonthTotalElc }} 个</span>
           </template>
         </chart-card>
       </a-col>
@@ -241,7 +258,10 @@ export default {
       formModalJson: [],
       spin: {
         wip: true
-      }
+      },
+      layoutName: 'HB_01',
+      columns: [],
+      mac_data: []
     }
   },
   created() {
@@ -329,6 +349,9 @@ export default {
     },
     changeUL(str) {
       return this.changeUpperOrLower(str)
+    },
+    handleLayoutChange(e) {
+      this.layoutName = e.target.value;
     }
   }
 }
@@ -461,11 +484,6 @@ export default {
 .layout-display {
   ::v-deep .ant-tabs-bar {
     margin: 0;
-  }
-
-  ::v-deep .ant-tabs-content {
-    height: 460px;
-    overflow: hidden;
   }
 }
 </style>

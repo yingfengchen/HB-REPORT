@@ -5,23 +5,56 @@
 <script>
 import * as d3 from 'd3'
 import { getLayout } from '@api/api'
+import { executeSQL } from '@api/api'
 
 export default {
   name: 'SvgLayout',
-  mounted() {
-    getLayout({layout_name: 'HB_01'}).then(res => {
-      if(res['success']) {
-        this.initLayout(res['result'])
-        d3.selectAll('.CUT').selectAll('rect').attr('fill', '#ff0000')
-      }else{
-        this.$notification['error']({
-          message: '获取数据失败',
-          description: res['message'],
-        });
+  props: ['layoutName'],
+  watch: {
+    layoutName: {
+      handler(n, o) {
+        this.refreshLayout()
       }
-    })
+    }
+  },
+  mounted() {
+    this.refreshLayout()
   },
   methods: {
+    refreshLayout() {
+      getLayout({layout_name: this.layoutName}).then(res => {
+        if(res['success']) {
+          this.initLayout(res['result'])
+          executeSQL({sql_name: 'getRtmMachineState'}).then(r => {
+            if(r && r['success']) {
+              const result = r['result']
+              result.forEach(ma => {
+                d3.selectAll('.' + ma['MACHINE_NAME']).selectAll('rect').attr('fill', this.getColorByState(ma['MACHINE_STATE_NAME']))
+              })
+            }else{
+              this.$notification['error']({
+                message: '获取设备状态失败',
+                description: r['message'],
+              });
+            }
+          })
+        }else{
+          this.$notification['error']({
+            message: '获取数据失败',
+            description: res['message'],
+          });
+        }
+      })
+    },
+    getColorByState(state) {
+      switch (state) {
+        case 'Idle': return '#fff86c';
+        case 'Trouble': return '#ff6565';
+        case 'Run': return '#a1ff9a';
+        case 'PM': return '#6ca8ff';
+        default: return '#d0d0d0';
+      }
+    },
     initLayout(svg_str = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"></svg>') {
       const xml_obj = this.xmlStr2XmlObj(svg_str)
       if (xml_obj.children.length > 0) {

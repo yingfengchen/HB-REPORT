@@ -191,6 +191,7 @@
   }
 
   .layout {
+    min-height: 100vh !important;
     overflow-x: hidden;
 
     &.mobile {

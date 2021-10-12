@@ -9,9 +9,9 @@
           <p>{{ selectSvgInfo.type }}</p>
         </a-form-item>
         <a-form-item v-if="svgInfo" label="名称">
-          <a-input style="width: 100%" v-model:value="selectSvgInfo.title" placeholder="请输入组件名称"/>
+          <p>{{ selectSvgInfo.title }}</p>
         </a-form-item>
-        <a-form-item v-if="svgInfo" label="Class">
+        <a-form-item v-if="svgInfo" label="设备名">
           <a-input style="width: 100%" v-model:value="selectSvgInfo.class" placeholder="请输入组件class" @pressEnter="handlerAddClass"/>
         </a-form-item>
         <a-form-item v-if="svgInfo" label="X轴坐标">
@@ -82,11 +82,6 @@
               <a-input-number style="width: 100%" v-model:value="selectSvgInfo.fontSize" :min="11" :max="30"/>
             </a-col>
           </a-row>
-        </a-form-item>
-        <a-form-item v-if="svgInfo">
-          <a-button type="primary" class="btn-sure">
-            确定
-          </a-button>
         </a-form-item>
       </a-form>
     </a-tab-pane>

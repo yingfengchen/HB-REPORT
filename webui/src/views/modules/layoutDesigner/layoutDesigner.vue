@@ -35,6 +35,7 @@
             <a-button type="primary" @click="handleSaveLayout">
               发布
             </a-button>
+            <label style="text-align: right; margin-left: 10px; color: #ff9191">未保存, 请发布后再离开页面</label>
           </a-card>
         </a-col>
         <a-col :span="24" class="pageMain">
@@ -48,7 +49,7 @@
                 <!-- 画布 -->
                 <svg id="main_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-main"
-                     viewBox="0 0 1210 452"
+                     viewBox="0 0 1210 482"
                 >
                   <defs/>
                   <filter x="0" y="0" width="1" height="1" id="solid">
@@ -358,6 +359,8 @@ export default {
         _this.selectSvgInfo = svgItem;
       }, 100);
     }, false);
+
+    this.handleImportLayout()
   },
   created() {
     let _this = this;
@@ -485,7 +488,7 @@ export default {
 
   .canvas-content {
     width: 1210px;
-    height: 452px;
+    height: 482px;
   }
 
   .btns-content {
