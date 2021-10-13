@@ -29,15 +29,19 @@
               <label style="font-weight: bold">TROUBLE</label>
             </div>
           </div>
-          <div style="height: 480px">
+          <div style="height: 480px; overflow: hidden">
             <svg-layout :layout-name="layoutName" />
           </div>
         </a-card>
       </a-col>
       <a-col :lg="6">
-        <a-card style="height: 334px; margin-bottom: 10px" title="设备状态">
-          <a-table  :columns="columns" :data-source="mac_data">
-
+        <a-card class="mac_table_card" style="height: 334px; margin-bottom: 10px" title="设备状态">
+          <a-table :columns="columns" :data-source="mac_data" :pagination="false" :rowKey="record => record['MACHINE_NAME']">
+            <span slot="tags" slot-scope="MACHINE_STATE_NAME">
+              <a-tag :color="getStateColor(MACHINE_STATE_NAME)">
+                {{ MACHINE_STATE_NAME.toUpperCase() }}
+              </a-tag>
+            </span>
           </a-table>
         </a-card>
         <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
@@ -174,7 +178,6 @@ import MiniArea from '@comp/chart/MiniArea'
 import Trend from '@comp/Trend'
 import LineChart from '@comp/chart/LineChart'
 import PieChart from '@comp/chart/PieChart'
-import { getCurrentTime, getRangeOfTime } from '@/utils/util'
 import moment from 'dayjs'
 import { executeSQL } from '@api/api'
 import FormModal from '@views/dashboard/modal/FormModal'
@@ -260,7 +263,24 @@ export default {
         wip: true
       },
       layoutName: 'HB_01',
-      columns: [],
+      columns: [
+        {
+          title: '设备编码',
+          dataIndex: 'MACHINE_NAME',
+          key: 'MACHINE_NAME',
+        },
+        {
+          title: '设备名称',
+          dataIndex: 'DESCRIPTION',
+          key: 'DESCRIPTION',
+        },
+        {
+          title: '设备状态',
+          dataIndex: 'MACHINE_STATE_NAME',
+          key: 'MACHINE_STATE_NAME',
+          scopedSlots: { customRender: 'tags' },
+        }
+      ],
       mac_data: []
     }
   },
@@ -277,6 +297,20 @@ export default {
     initData() {
       this.refreshWIPData()
       this.refreshRateData()
+      this.refreshMacData()
+    },
+    refreshMacData() {
+      executeSQL({sql_name: 'getRtmMachineState'}).then(r => {
+        if(r && r['success']) {
+          this.mac_data = r['result']
+          console.log(this.mac_data)
+        }else{
+          this.$notification['error']({
+            message: '获取设备状态失败',
+            description: r['message'],
+          });
+        }
+      })
     },
     refreshWIPData() {
       let params = {
@@ -352,6 +386,15 @@ export default {
     },
     handleLayoutChange(e) {
       this.layoutName = e.target.value;
+    },
+    getStateColor(state) {
+      switch (state) {
+        case 'Idle': return '#fff86c';
+        case 'Trouble': return '#ff6565';
+        case 'Run': return '#a1ff9a';
+        case 'PM': return '#6ca8ff';
+        default: return '#d0d0d0';
+      }
     }
   }
 }
@@ -484,6 +527,16 @@ export default {
 .layout-display {
   ::v-deep .ant-tabs-bar {
     margin: 0;
+  }
+}
+
+.mac_table_card {
+  ::v-deep .ant-card-body {
+    padding: 5px;
+  }
+
+  ::v-deep th {
+    padding: 10px;
   }
 }
 </style>
