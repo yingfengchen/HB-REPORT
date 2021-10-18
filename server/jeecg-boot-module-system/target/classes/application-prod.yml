@@ -145,12 +145,12 @@ spring:
 #          password: Manager1
 #          driver-class-name: oracle.jdbc.OracleDriver
         master:
-          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
+          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
           username: MES_REPORT
-          password: Manager1
+          password: Manager1!
           driver-class-name: oracle.jdbc.OracleDriver
         mes:
-          url: jdbc:oracle:thin:@192.168.167.37:1521:MESDB
+          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
           username: MES_PROD
           password: Manager1
           driver-class-name: oracle.jdbc.OracleDriver

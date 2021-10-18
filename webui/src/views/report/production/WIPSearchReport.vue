@@ -37,7 +37,7 @@
           </vxe-form-item>
           <vxe-form-item span="5" title="Product ID" field="product" :item-render="{}">
             <template #default>
-              <vxe-input v-model="form.product" placeholder="请输入" type="text"></vxe-input>
+              <vxe-input clearable v-model="form.product" placeholder="请输入" type="text"></vxe-input>
             </template>
           </vxe-form-item>
           <vxe-form-item span="5" title="产品规格" field="spec" folding>

@@ -30,6 +30,7 @@ export default {
               const result = r['result']
               result.forEach(ma => {
                 d3.selectAll('.' + ma['MACHINE_NAME']).selectAll('rect').attr('fill', this.getColorByState(ma['MACHINE_STATE_NAME']))
+                d3.selectAll('.' + ma['MACHINE_NAME'] + '-RECIPE').selectAll('text').text(ma['RECIPE_NAME'] || 'NO RECIPE')
               })
             }else{
               this.$notification['error']({
@@ -52,6 +53,7 @@ export default {
         case 'Trouble': return '#ff6565';
         case 'Run': return '#a1ff9a';
         case 'PM': return '#6ca8ff';
+        case 'Stop': return '#f56cff';
         default: return '#d0d0d0';
       }
     },

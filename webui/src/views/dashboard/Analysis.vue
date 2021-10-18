@@ -25,6 +25,10 @@
               <label style="font-weight: bold">PM</label>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+              <div style="background: #f56cff; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <label style="font-weight: bold">STOP</label>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
               <div style="background: #ff6565; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">TROUBLE</label>
             </div>
@@ -393,6 +397,7 @@ export default {
         case 'Trouble': return '#ff6565';
         case 'Run': return '#a1ff9a';
         case 'PM': return '#6ca8ff';
+        case 'Stop': return '#f56cff';
         default: return '#d0d0d0';
       }
     }

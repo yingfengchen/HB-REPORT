@@ -37,6 +37,19 @@
         <a-form-item v-if="svgInfo" label="颜色">
           <input style="width: 100%" type="color" v-model="selectSvgInfo.svgColor">
         </a-form-item>
+        <a-form-item v-if="svgInfo" label="位置">
+          <a-radio-group :value="selectSvgInfo['zIndex']" @change="handlezIndexChange">
+            <a-radio-button :value="0">
+              置底
+            </a-radio-button>
+            <a-radio-button :value="1">
+              居中
+            </a-radio-button>
+            <a-radio-button :value="2">
+              置顶
+            </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
         <a-form-item v-if="svgInfo" label="大小">
           <a-row style="width: 100%">
             <a-col :span="16">
@@ -111,11 +124,16 @@ export default {
     handlerAddClass() {
       document.getElementById(this.svgInfo.id).classList.add(this.svgInfo.class)
       this.$message.success("修改成功")
+    },
+    handlezIndexChange(e) {
+      this.selectSvgInfo['zIndex'] = e.target.value;
+      this.$emit('zIndexChange', e.target.value)
     }
   }
 };
 </script>
-<style lang="less">
+
+<style scoped lang="less">
 .components-layout-right {
   margin-left: 10px;
 
@@ -168,8 +186,7 @@ export default {
     }
   }
 }
-</style>
-<style scoped lang="less">
+
 .btn-sure {
   width: 260px;
   margin: 20px;

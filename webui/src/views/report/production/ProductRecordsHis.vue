@@ -49,6 +49,7 @@
     </a-row>
     <a-spin :spinning="loading" tip="查询中...">
       <data-table
+        :loading="loading"
         title="产品信息表"
         :height="height"
         :columns="columns"
@@ -166,14 +167,17 @@ export default {
       this.handlerWaterUseChartSubmit()
     },
     handlerWaterUseChartSubmit() {
+      this.loading = true
       let _this = this
       let params = _this.form
       params['sql_name'] = 'getProductRecordsByParams'
 
       postAction('/common/executeSql', params).then(res => {
         _this.datasource = res['result']
+        this.loading = false
       }).catch(error => {
         this.$message.error(error)
+        this.loading = false
       })
     },
     handleReset() {

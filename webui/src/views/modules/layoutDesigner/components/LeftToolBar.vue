@@ -136,6 +136,16 @@ export default {
           width: 2,
           imageSrc: 'bcr',
           text: ''
+        },
+        {
+          title: '箭头',
+          type: 'ArrowSvg',
+          color: '#b3ffb4',
+          height: 20,
+          fontSize: 0,
+          width: 2,
+          imageSrc: 'arrow',
+          text: ''
         }
       ]
     };

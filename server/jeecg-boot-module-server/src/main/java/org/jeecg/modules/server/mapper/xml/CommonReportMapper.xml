@@ -14,8 +14,8 @@
 
     <insert id="insertLayoutItem" parameterType="java.util.Map">
         INSERT INTO RPT_LAYOUT_ITEMS (
-            "id", "timekey", "belong", "title", "class", "svgPositionX", "svgPositionY", "angle", "height", "width", "svgColor", "type", "fontSize", "svgText", "strokeColor"
+            "id", "timekey", "belong", "title", "class", "svgPositionX", "svgPositionY", "angle", "height", "width", "svgColor", "type", "fontSize", "svgText", "strokeColor", "zIndex"
         )
-        VALUES (#{id}, #{timekey}, #{belong}, #{title}, #{class}, #{svgPositionX}, #{svgPositionY}, #{angle}, #{height}, #{width}, #{svgColor}, #{type}, #{fontSize}, #{svgText}, #{strokeColor})
+        VALUES (#{id}, #{timekey}, #{belong}, #{title}, #{class}, #{svgPositionX}, #{svgPositionY}, #{angle}, #{height}, #{width}, #{svgColor}, #{type}, #{fontSize}, #{svgText}, #{strokeColor}, #{zIndex})
     </insert>
 </mapper>

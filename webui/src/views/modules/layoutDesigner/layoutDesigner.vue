@@ -90,7 +90,7 @@
                 </a-col>
                 <a-col class="container-border" :span="24" style="margin-top: 5px; height: calc(50% - 5px); overflow-y: auto">
                   <a-card :body-style="{ minHeight: (height/2 - 36) + 'px' }">
-                    <RightToolBar :svgInfo=selectSvgInfo></RightToolBar>
+                    <RightToolBar :svgInfo=selectSvgInfo @zIndexChange="handleZIndexChange" />
                   </a-card>
                 </a-col>
               </a-row>
@@ -304,6 +304,12 @@ export default {
           });
         }
       })
+    },
+    handleZIndexChange(value) {
+      const temp = JSON.parse(JSON.stringify(this.svgLists))
+      this.svgLists = []
+      temp.sort((a, b) => { return a['zIndex'] - b['zIndex'] })
+      this.svgLists = temp
     }
   },
   mounted() {
@@ -346,7 +352,8 @@ export default {
         svgText: _this.CurrentlySelectedToolBarText,
         tableRowCount: _this.tableRowCount,
         tableColCount: _this.tableColCount,
-        angle: _this.CurrentlySelectedToolBarAngle
+        angle: _this.CurrentlySelectedToolBarAngle,
+        zIndex: 1
       };
       _this.svgLists.push(svgItem);
       setTimeout(function () {
@@ -413,7 +420,6 @@ export default {
         let selectSvgIndex = _this.svgLists.indexOf(_this.svgLists.filter(f => f.id == selectSvgInfo.id)[0]);
         _this.svgLists.splice(selectSvgIndex, 1);
       }
-
     }
   }
 }
