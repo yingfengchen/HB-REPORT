@@ -134,26 +134,26 @@ spring:
           condition-and-alway-true-allow: true
           condition-and-alway-false-allow: true
       datasource:
-#        master:
-#          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
-#          username: MES_REPORT
-#          password: Manager1
-#          driver-class-name: oracle.jdbc.OracleDriver
-#        mes:
-#          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
-#          username: MES_TEST
-#          password: Manager1
-#          driver-class-name: oracle.jdbc.OracleDriver
         master:
-          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
+          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
           username: MES_REPORT
-          password: Manager1!
-          driver-class-name: oracle.jdbc.OracleDriver
-        mes:
-          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
-          username: MES_PROD
           password: Manager1
           driver-class-name: oracle.jdbc.OracleDriver
+        mes:
+          url: jdbc:oracle:thin:@192.168.180.28:1521:MESDB
+          username: MES_TEST
+          password: Manager1
+          driver-class-name: oracle.jdbc.OracleDriver
+#        master:
+#          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
+#          username: MES_REPORT
+#          password: Manager1!
+#          driver-class-name: oracle.jdbc.OracleDriver
+#        mes:
+#          url: jdbc:oracle:thin:@192.168.16.11:1521/racdb
+#          username: MES_PROD
+#          password: Manager1
+#          driver-class-name: oracle.jdbc.OracleDriver
   #redis 配置
   redis:
     database: 0

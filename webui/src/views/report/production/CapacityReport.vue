@@ -21,7 +21,7 @@
               <vxe-input v-model="form.endTime" placeholder="日期选择" type="date"></vxe-input>
             </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="拉线" field="line">
+          <vxe-form-item span="5" title="工段" field="line">
             <query-select
               ref="xLine"
               v-model="form.line"
@@ -30,7 +30,7 @@
               @change="handlerLineChange"
             />
           </vxe-form-item>
-          <vxe-form-item span="5" title="设备" field="operation">
+          <vxe-form-item span="5" title="站点" field="operation">
             <search-select
               style="width: 100%"
               ref="xOperation"
@@ -49,6 +49,11 @@
               :option-config="{label: 'name', value: 'value'}"
             />
           </vxe-form-item>
+          <vxe-form-item span="5" title="产品ID" field="product" :item-render="{}" title-overflow="ellipsis">
+            <template #default>
+              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text" clearable></vxe-input>
+            </template>
+          </vxe-form-item>
           <vxe-form-item collapse-node>
             <template #default>
               <vxe-button type="submit" status="primary">查询</vxe-button>
@@ -59,7 +64,7 @@
       </a-col>
     </a-row>
     <a-spin :spinning="loading" tip="查询中...">
-      <a-card title="设备产能趋势">
+      <a-card title="各站点产能趋势">
         <div :style="{height: (height * 0.5)+'px'}">
           <a-row>
             <a-col :span="12">
@@ -127,7 +132,8 @@ export default {
         endTime: '',
         line: '',
         operation: '',
-        spec: ''
+        spec: '',
+        product: ''
       },
       formRules: {
         startTime: [
@@ -226,6 +232,24 @@ export default {
       _this.loading = true
       let series = []
       const params = cloneObject(_this.form)
+      let product_str = ""
+      const products = params['product'].split(' ')
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i]
+        if(i > 0){
+          product_str += "'"
+        }
+        product_str += product
+        if(i < products.length - 1){
+          product_str += "',"
+        }
+      }
+      params['product'] = product_str
+      if(product_str !== ''){
+        params['product_flag'] = 'Y'
+      }else{
+        params['product_flag'] = ''
+      }
 
       params['sql_name'] = 'getCapacityGroupTrend'
       params['unit'] = _this.switchCapacityGroupUnit
@@ -233,7 +257,7 @@ export default {
       const res = returnV['result']
       _this.CapacityGroupLegend = transferStringToArray(res[0]['datehour'])
       for (let resKey of res) {
-        let sery = {name: resKey['value'], data: transferStringToArray(resKey['count'])}
+        let sery = {name: resKey['value'], data: transferStringToArray(resKey['count']), symbol: 'none'}
         series.push(sery)
       }
       _this.CapacityGroupSeries = series
@@ -244,6 +268,24 @@ export default {
       _this.loading = true
       const series = []
       const params = cloneObject(_this.form)
+      let product_str = ""
+      const products = params['product'].split(' ')
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i]
+        if(i > 0){
+          product_str += "'"
+        }
+        product_str += product
+        if(i < products.length - 1){
+          product_str += "',"
+        }
+      }
+      params['product'] = product_str
+      if(product_str !== ''){
+        params['product_flag'] = 'Y'
+      }else{
+        params['product_flag'] = ''
+      }
 
       params['sql_name'] = 'getCapacityTrend'
       params['unit'] = _this.switchCapacityMacTrendUnit
@@ -251,7 +293,7 @@ export default {
       let res = returnV['result']
       _this.capacityMacTLegend = transferStringToArray(res[0]['date'])
       for (let resKey of res) {
-        let sery = {name: resKey['operation'], data: transferStringToArray(resKey['count'])}
+        let sery = {name: resKey['operation'], data: transferStringToArray(resKey['count']), symbol: 'none'}
         series.push(sery)
       }
       _this.capacityMacTSeries = series

@@ -22,12 +22,12 @@
           </vxe-form-item>
           <vxe-form-item span="5" title="产品ID" field="productID" :item-render="{}">
             <template #default>
-              <vxe-input v-model="form.productID" placeholder="请输入产品ID" type="text"></vxe-input>
+              <vxe-input v-model="form.productID" placeholder="请输入产品ID" type="text" clearable></vxe-input>
             </template>
           </vxe-form-item>
           <vxe-form-item span="5" title="物料ID" field="materialID" :item-render="{}">
             <template #default>
-              <vxe-input v-model="form.materialID" placeholder="请输入物料ID" type="text"></vxe-input>
+              <vxe-input v-model="form.materialID" placeholder="请输入物料ID" type="text" clearable></vxe-input>
             </template>
           </vxe-form-item>
           <vxe-form-item>
@@ -121,20 +121,17 @@ export default {
           }
         }
       ],
-      waterUseChartLegend: [],
-      COPChartLegend: [],
-      elcChartLegend: [],
-      switchArea: 'T',
-      areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        { title: '物料ID', field: 'ID', align: 'center', sortable: true },
-        { title: '物料名称', field: 'Name', align: 'center' },
-        { title: '供应商', field: 'suplyer', align: 'center' },
-        { title: '生产日期', field: 'productionDate', align: 'center' },
-        { title: '入厂日期', field: 'inWMSDate', align: 'center' },
-        { title: '接收人', field: 'reciver', align: 'center' },
-        { title: '绑定产品ID', field: 'productionID', align: 'center', sortable: true },
-        { title: '使用时间', field: 'useTime', align: 'center' }
+        { title: 'Product ID', field: 'PRODUCT_NAME', align: 'center', sortable: true },
+        { title: '物料ID', field: 'COMPONENT_NAME', align: 'center', sortable: true },
+        { title: '物料类型', field: 'COMPONENT_TYPE', align: 'center' },
+        { title: '物料批次', field: 'CONSUMABLE_LOT_NAME', align: 'center' },
+        { title: '投入时间', field: 'CREATE_TIME', align: 'center' },
+        { title: '投入人员', field: 'CREATE_USER', align: 'center' },
+        { title: '使用设备', field: 'MACHINE_NAME', align: 'center' },
+        { title: '站点', field: 'OPERATION_ID', align: 'center' },
+        { title: '使用时间', field: 'LAST_EVENT_TIME', align: 'center' },
+        { title: '使用人员', field: 'LAST_EVENT_USER', align: 'center' }
       ],
       datasource: []
     }
@@ -145,10 +142,13 @@ export default {
     },
     handlerWaterUseChartSubmit() {
       let params = this.form
-
       params['sql_name'] = 'getMaterialUseRecordings'
+      this.loading = true
+
       executeSQL(params).then((res) => {
         this.datasource = res['result']
+        console.log(res)
+        this.loading = false
       })
     }
   }

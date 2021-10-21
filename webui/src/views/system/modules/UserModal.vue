@@ -30,7 +30,7 @@
           <a-form-model-item label="登录密码" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="password" >
             <a-input type="password" placeholder="请输入登录密码" v-model="model.password" />
           </a-form-model-item>
-  
+
           <a-form-model-item label="确认密码" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="confirmpassword" >
             <a-input type="password" @blur="handleConfirmBlur" placeholder="请重新输入登录密码" v-model="model.confirmpassword"/>
           </a-form-model-item>
@@ -99,7 +99,7 @@
             :format="dateFormat"
             :getCalendarContainer="node => node.parentNode"/>
         </a-form-model-item>
-     
+
         <a-form-model-item label="性别" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-select  v-model="model.sex"  placeholder="请选择性别" :getPopupContainer= "(target) => target.parentNode">
             <a-select-option :value="1">男</a-select-option>
@@ -163,7 +163,7 @@
         validatorRules:{
           username:[{required: true, message: '请输入用户账号!'},
                     {validator: this.validateUsername,}],
-          password: [{required: true,pattern:/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,./]).{8,}$/,message: '密码由8位数字、大小写字母和特殊符号组成!'},
+          password: [{required: true,message: '请输入密码!'},
                      {validator: this.validateToNextPassword,trigger: 'change'}],
           confirmpassword: [{required: true, message: '请重新输入登录密码!',},
                             { validator: this.compareToFirstPassword,}],

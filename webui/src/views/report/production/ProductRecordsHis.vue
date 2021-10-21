@@ -23,7 +23,7 @@
           </vxe-form-item>
           <vxe-form-item span="5" title="产品ID" field="product" :item-render="{}" title-overflow="ellipsis">
             <template #default>
-              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text"></vxe-input>
+              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text" clearable></vxe-input>
             </template>
           </vxe-form-item>
           <vxe-form-item span="5" title="站点" field="operation" :item-render="{}" title-overflow="ellipsis">
@@ -54,6 +54,7 @@
         :height="height"
         :columns="columns"
         :datasource="datasource"
+        :can-export="true"
       />
     </a-spin>
   </div>
@@ -169,7 +170,25 @@ export default {
     handlerWaterUseChartSubmit() {
       this.loading = true
       let _this = this
-      let params = _this.form
+      let params = JSON.parse(JSON.stringify(_this.form))
+      let product_str = ""
+      const products = params['product'].split(' ')
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i]
+        if(i > 0){
+          product_str += "'"
+        }
+        product_str += product
+        if(i < products.length - 1){
+          product_str += "',"
+        }
+      }
+      params['product'] = product_str
+      if(product_str !== ''){
+        params['product_flag'] = 'Y'
+      }else{
+        params['product_flag'] = ''
+      }
       params['sql_name'] = 'getProductRecordsByParams'
 
       postAction('/common/executeSql', params).then(res => {

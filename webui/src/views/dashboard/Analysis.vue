@@ -538,6 +538,8 @@ export default {
 .mac_table_card {
   ::v-deep .ant-card-body {
     padding: 5px;
+    height: 280px;
+    overflow-y: auto;
   }
 
   ::v-deep th {

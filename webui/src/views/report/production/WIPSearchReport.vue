@@ -11,7 +11,7 @@
           @submit="handlerSubmit"
           @reset="handlerReset"
         >
-          <vxe-form-item span="5" title="Flow" field="flow">
+          <vxe-form-item span="5" title="工段" field="flow">
             <query-select
               ref="xLine"
               v-model="form.flow"
@@ -132,16 +132,13 @@ export default {
       form: {
         lot: '',
         product: '',
+        product_flag: '',
         spec: '',
         flow: '',
         operation: '',
         wo: ''
       },
-      formRules: {
-        flow: [
-          {required: true, message: '请选择工艺Flow'}
-        ]
-      },
+      formRules: {},
       switchCOPUnit: '%Y-%m-%d',
       switchElcUnit: '%Y-%m-%d',
       loading: false,
@@ -197,7 +194,7 @@ export default {
       flowOptions: { options: [] },
       operationOptions: { options: [] },
       woOptions: { options: [] },
-      displayFirst: true
+      displayFirst: false
     }
   },
   mounted() {
@@ -243,7 +240,26 @@ export default {
       this.$refs.xWO.clear()
     },
     async handlerWIPChartSubmit() {
-      let params = this.form
+      let _this = this
+      let params = JSON.parse(JSON.stringify(_this.form))
+      let product_str = ""
+      const products = params['product'].split(' ')
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i]
+        if(i > 0){
+          product_str += "'"
+        }
+        product_str += product
+        if(i < products.length - 1){
+          product_str += "',"
+        }
+      }
+      params['product'] = product_str
+      if(product_str !== ''){
+        params['product_flag'] = 'Y'
+      }else{
+        params['product_flag'] = ''
+      }
       this.loading = true
 
       params['sql_name'] = 'getWIPOperationCount'

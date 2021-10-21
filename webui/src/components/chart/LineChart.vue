@@ -116,7 +116,7 @@ export default {
             symbolSize: 6,
             barMaxWidth: 30,
             stack: s['stack'] || null,
-            symbol: 'circle',
+            symbol: s['symbol'] || 'circle',
             smooth: true,
             yAxisIndex: s['yIndex'] || 0,
             lineStyle: {

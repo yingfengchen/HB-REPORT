@@ -41,14 +41,14 @@
         <a-col :span="24" class="pageMain">
           <a-row style="height: 100%" :gutter="6">
             <a-col :span="19" class="centerContain">
-              <div class="canvas-content" id="canvas" @mousemove="MouseMove" @mousedown="MousedownCanvas"
+              <div class="canvas-content svg-main" id="canvas" @mousemove="MouseMove" @mousedown="MousedownCanvas"
                    @mouseup="MouseupCanvas" @dblclick="DblClick" @mousewheel="MouseWheel">
                 <!--拖动辅助线-->
                 <div id="guide-x"></div>
                 <div id="guide-y"></div>
                 <!-- 画布 -->
                 <svg id="main_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-main"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
                      viewBox="0 0 1210 482"
                 >
                   <defs/>
