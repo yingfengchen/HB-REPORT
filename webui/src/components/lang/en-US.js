@@ -19,6 +19,7 @@ export default {
     quality: 'Quality Report',
     material: 'Material Report',
     message: 'Message Center',
+    machine: 'Machine',
     raqReport: 'Raqsoft Report',
     settings: 'Settings'
   },

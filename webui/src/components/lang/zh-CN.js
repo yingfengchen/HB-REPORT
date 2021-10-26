@@ -18,6 +18,7 @@ export default {
     dashboard: '数据看板',
     production: '生产相关',
     quality: '品质相关',
+    machine: '设备相关',
     material: '物料相关',
     message: '消息中心',
     raqReport: '润乾报表',
