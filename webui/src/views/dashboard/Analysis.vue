@@ -13,33 +13,38 @@
               </a-radio-button>
             </a-radio-group>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
-              <div style="background: #a1ff9a; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <div style="background: #94ec8a; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">RUN</label>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
-              <div style="background: #fff86c; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <div style="background: #FFD700; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">IDLE</label>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
-              <div style="background: #6ca8ff; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <div style="background: #4889fc; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">PM</label>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
-              <div style="background: #f56cff; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <div style="background: #9e3da5; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">STOP</label>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
-              <div style="background: #ff6565; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
+              <div style="background: #ff5e5e; border-radius: 5px; height: 15px; width: 20px; margin-right: 5px" />
               <label style="font-weight: bold">TROUBLE</label>
             </div>
           </div>
           <div style="height: 480px; overflow: hidden">
-            <svg-layout :layout-name="layoutName" />
+            <svg-layout :layout-name="layoutName" @UnitClick="handleUnitClick" />
           </div>
         </a-card>
       </a-col>
       <a-col :lg="6">
         <a-card class="mac_table_card" style="height: 334px; margin-bottom: 10px" title="设备状态">
+          <a-tooltip style="margin-right: 15px" title="转到详细报表" slot="extra">
+            <router-link to="/machine/MachineStateChart">
+              <a-icon type="arrow-right" />
+            </router-link>
+          </a-tooltip>
           <a-table :columns="columns" :data-source="mac_data" :pagination="false" :rowKey="record => record['MACHINE_NAME']">
             <span slot="tags" slot-scope="MACHINE_STATE_NAME">
               <a-tag :color="getStateColor(MACHINE_STATE_NAME)">
@@ -49,6 +54,11 @@
           </a-table>
         </a-card>
         <chart-card :loading="loading" title="今日 Alarm 数量" :total="cardData.PEMS_RCHW_PowerT.DayTotalElc + ' 个'">
+          <a-tooltip title="转到详细报表" slot="action">
+            <router-link to="/machine/MachineAlarmReport">
+              <a-icon type="arrow-right" />
+            </router-link>
+          </a-tooltip>
           <div>
             <mini-bar :height="40" :data-source="cardData.PEMS_RCHW_PowerT.TrendDataSource" x="date" y="value" />
           </div>
@@ -163,8 +173,7 @@
           </div>
           <a-row>
             <a-col :xl="24" :lg="24" :md="24" :sm="24" :xs="24">
-              <pie-chart :style="{height: (height-540) + 'px'}"
-              />
+              <pie-chart :style="{height: (height-540) + 'px'}" />
             </a-col>
           </a-row>
         </a-card>
@@ -172,6 +181,7 @@
     </a-row>
     <form-modal :visible="formModalVisible" :title="formModalTitle" :form-json="formModalJson"
                 @close="handlerFormModalClose" />
+    <mac-info-modal :visible="macInfo.visible" :current-eqp="macInfo.eqpInfo" :alarm-data="macInfo.alarmData" @close="() => {this.macInfo.visible = false}" />
   </div>
 </template>
 
@@ -184,12 +194,15 @@ import LineChart from '@comp/chart/LineChart'
 import PieChart from '@comp/chart/PieChart'
 import moment from 'dayjs'
 import { executeSQL } from '@api/api'
+import { getCurrentTime } from '@/utils/util'
 import FormModal from '@views/dashboard/modal/FormModal'
 import SvgLayout from '@views/dashboard/components/SvgLayout'
+import MacInfoModal from '@views/dashboard/modal/MacInfoModal'
 
 export default {
   name: 'IndexEnergy',
   components: {
+    MacInfoModal,
     SvgLayout,
     FormModal,
     PieChart,
@@ -213,13 +226,6 @@ export default {
           MonthCapacity: 0,
           DayDiff: 0
         },
-        PEMS_LCHW_PowerT: {
-          DayTotalElc: 0,
-          MonthTotalElc: 0,
-          TrendDataSource: [],
-          COP: 0,
-          COPTrendDataSource: []
-        },
         Yield: {
           TodayValue: 0,
           MonthValue: 0,
@@ -237,10 +243,6 @@ export default {
           DelayCount: 0
         },
         PEMS_MCHW_COP: {
-          COP: 0,
-          COPTrendDataSource: []
-        },
-        PEMS_RCHW_COP: {
           COP: 0,
           COPTrendDataSource: []
         }
@@ -285,7 +287,12 @@ export default {
           scopedSlots: { customRender: 'tags' },
         }
       ],
-      mac_data: []
+      mac_data: [],
+      macInfo: {
+        visible: false,
+        eqpInfo: {},
+        alarmData: []
+      }
     }
   },
   created() {
@@ -307,7 +314,6 @@ export default {
       executeSQL({sql_name: 'getRtmMachineState'}).then(r => {
         if(r && r['success']) {
           this.mac_data = r['result']
-          console.log(this.mac_data)
         }else{
           this.$notification['error']({
             message: '获取设备状态失败',
@@ -393,13 +399,24 @@ export default {
     },
     getStateColor(state) {
       switch (state) {
-        case 'Idle': return '#fff86c';
-        case 'Trouble': return '#ff6565';
-        case 'Run': return '#a1ff9a';
-        case 'PM': return '#6ca8ff';
-        case 'Stop': return '#f56cff';
+        case 'Idle': return '#FFD700';
+        case 'Trouble': return '#ff5e5e';
+        case 'Run': return '#94ec8a';
+        case 'PM': return '#4889fc';
+        case 'Stop': return '#9e3da5';
         default: return '#d0d0d0';
       }
+    },
+    handleUnitClick(eqpName) {
+      this.macInfo.visible = true
+      this.macInfo.eqpInfo = this.mac_data.filter(mac => {return mac['MACHINE_NAME']===eqpName})[0]
+      let params = {sql_name: 'getMacAlarmParams', startTime: '2021-01-01 00:00:00', endTime: getCurrentTime('datetime'), machine: this.macInfo.eqpInfo['NAME']}
+      executeSQL(params).then(res => {
+        if(res['success']) {
+          const result = res['result']
+          this.macInfo.alarmData= result.filter(r => {return r['ALARM_STATE'] === 'Set'})
+        }
+      })
     }
   }
 }

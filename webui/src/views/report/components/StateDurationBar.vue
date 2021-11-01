@@ -44,31 +44,31 @@ export default {
 
   .state-run-block {
     height: 100%;
-    background: #9cff9c;
+    background: #94ec8a;
     display: inline-block;
     vertical-align: top;
   }
   .state-idle-block {
     height: 100%;
-    background: #fcf33e;
+    background: #FFD700;
     display: inline-block;
     vertical-align: top;
   }
   .state-pm-block {
     height: 100%;
-    background: #3e8afc;
+    background: #4889fc;
     display: inline-block;
     vertical-align: top;
   }
   .state-stop-block {
     height: 100%;
-    background: #d33efc;
+    background: #9e3da5;
     display: inline-block;
     vertical-align: top;
   }
   .state-trouble-block {
     height: 100%;
-    background: #ff5555;
+    background: #ff5e5e;
     display: inline-block;
     vertical-align: top;
   }

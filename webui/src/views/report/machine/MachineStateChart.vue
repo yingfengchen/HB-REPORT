@@ -20,7 +20,7 @@
               <vxe-input v-model="form.endTime" placeholder="日期选择" type="date"></vxe-input>
             </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="设备" field="flow">
+          <vxe-form-item span="5" title="设备单元" field="machine">
             <query-select
               ref="xLine"
               v-model="form.machine"
@@ -47,13 +47,13 @@
         <a-card style="height: 190px">
           <a-descriptions :title="card['NAME']" layout="vertical">
             <a-descriptions-item label="稼动时长">
-              <label style="color: #409cff; font-weight: bold">{{ card['RUN_DURATION'] + card['IDLE_DURATION'] }} H</label>
+              <label style="color: #409cff; font-weight: bold">{{ (card['RUN_DURATION'] + card['IDLE_DURATION']).toFixed(2) }} H</label>
             </a-descriptions-item>
             <a-descriptions-item label="宕机时长">
-              <label style="color: #ff7878; font-weight: bold">{{ card['DOWN_DURATION'] }} H</label>
+              <label style="color: #ff7878; font-weight: bold">{{ card['DOWN_DURATION'].toFixed(2) }} H</label>
             </a-descriptions-item>
             <a-descriptions-item label="饱和度">
-              {{ ((card['RUN_DURATION'] + card['IDLE_DURATION']) / card['T_DURATION']).toFixed(2) * 100 }} %
+              {{ ((card['RUN_DURATION'] + card['IDLE_DURATION']) * 100  / card['T_DURATION']).toFixed(2)}} %
             </a-descriptions-item>
           </a-descriptions>
           <state-duration-bar
@@ -126,13 +126,13 @@ export default {
       },
       loading: false,
       alarmLoading: false,
-      data: [],
+      chartsData: [],
       types: [
-        { name: 'Trouble', color: '#ff6565' },
-        { name: 'Run', color: '#a1ff9a' },
-        { name: 'Idle', color: '#fff86c' },
+        { name: 'Trouble', color: '#ff5e5e' },
+        { name: 'Run', color: '#94ec8a' },
+        { name: 'Idle', color: '#FFD700' },
         { name: 'Maintenance', color: '#6ca8ff' },
-        { name: 'Stop', color: '#f56cff' }
+        { name: 'Stop', color: '#9e3da5' }
       ],
       startTime: new Date().getTime(),
       categories: [],
@@ -172,6 +172,10 @@ export default {
       if(res_categories['success']) {
         this.macSource['options'] = res_categories['result']
         this.categories = getObjArrayFieldToArray(res_categories['result'], 'NAME')
+        if(this.form.machine){
+          this.categories = []
+          this.categories.push(this.form.machine)
+        }
       }
 
       params['sql_name'] = 'getEveryStateDuration'
@@ -192,23 +196,28 @@ export default {
       let that = this
       const id = 'MacStateChart'
       if (document.getElementById(id)) {
-        echarts.dispose(document.getElementById(id))
+        echarts.init(document.getElementById(id)).dispose()
+        that.chartsData = []
         that.chart = echarts.init(document.getElementById(id))
         that.chart.clear()
 
-        that.startTime = that.macStateSource[0]['TIMEKEY']
-        that.macStateSource.forEach(mac => {
-          let typeItem = that.types.filter(type => {return type['name']===mac['OLD_MACHINE_STATE_NAME']})[0];
-          that.data.push({
-            name: typeItem.name,
-            value: [this.categories.indexOf(mac['NAME']), mac['TIMEKEY'], mac['LEAD_TIMEKEY'], mac['LEAD_TIMEKEY'] - mac['TIMEKEY']],
-            itemStyle: {
-              normal: {
-                color: typeItem.color
+        if(that.macStateSource.length > 0) {
+          that.startTime = that.macStateSource[0]['TIMEKEY']
+          that.macStateSource.forEach(mac => {
+            let typeItem = that.types.filter(type => {
+              return type['name'] === mac['OLD_MACHINE_STATE_NAME']
+            })[0];
+            that.chartsData.push({
+              name: typeItem.name,
+              value: [this.categories.indexOf(mac['NAME']), mac['TIMEKEY'], mac['LEAD_TIMEKEY'], mac['LEAD_TIMEKEY'] - mac['TIMEKEY']],
+              itemStyle: {
+                normal: {
+                  color: typeItem.color
+                }
               }
-            }
-          });
-        })
+            });
+          })
+        }
 
         function renderItem(params, api) {
           let categoryIndex = api.value(0);
@@ -250,10 +259,10 @@ export default {
           },
           legend: {//图例
             data: [
-              {name: 'Run', itemStyle: { color: '#a1ff9a' }},
-              {name: 'Idle', itemStyle: { color: '#fff86c' }},
-              {name: 'Stop', itemStyle: { color: '#f56cff' }},
-              {name: 'Maintenance(PM)', itemStyle: { color: '#6ca8ff' }},
+              {name: 'Run', itemStyle: { color: '#94ec8a' }},
+              {name: 'Idle', itemStyle: { color: '#FFD700' }},
+              {name: 'Stop', itemStyle: { color: '#9e3da5' }},
+              {name: 'Maintenance(PM)', itemStyle: { color: '#4889fc' }},
               {name: 'Trouble', itemStyle: { color: '#ff6565' }}
             ],
             left: '50px',
@@ -303,7 +312,7 @@ export default {
                 x: [1, 2],
                 y: 0
               },
-              data: that.data
+              data: that.chartsData
             }
           ]
         }

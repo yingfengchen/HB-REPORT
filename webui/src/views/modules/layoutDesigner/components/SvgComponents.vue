@@ -1,7 +1,7 @@
 <!-- 箭头向下svg组件 -->
 <template>
   <Inline v-if="type==='InlineSvg'" :height="height" :color="color" :width="width" :eq-id="eqId" :class="className" />
-  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :text="svgText" :class="className" :stroke-color="strokeColor" />
+  <Unit v-else-if="type==='UnitSvg'" :height="height" :color="color" :width="width" :text="svgText" :class="className" :stroke-color="strokeColor" :eqp-name="className" />
   <SubUnit v-else-if="type==='SubUnitSvg'" :height="height" :color="color" :width="width" :class="className" />
   <port v-else-if="type==='PortSvg'" :height="height" :color="color" :width="width" :class="className" :text="svgText" :stroke-color="strokeColor" />
   <EQSlot v-else-if="type==='EQSlotSvg'" :height="height" :color="color" :width="width" :class="className" :text="svgText" />

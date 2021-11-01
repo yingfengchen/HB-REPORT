@@ -31,6 +31,11 @@ export default {
               result.forEach(ma => {
                 d3.selectAll('.' + ma['MACHINE_NAME']).selectAll('rect').attr('fill', this.getColorByState(ma['MACHINE_STATE_NAME']))
                 d3.selectAll('.' + ma['MACHINE_NAME'] + '-RECIPE').selectAll('text').text(ma['RECIPE_NAME'] || 'NO RECIPE')
+
+                d3.selectAll('.' + ma['MACHINE_NAME']).selectAll('rect').on('click', (e) => {
+                  this.visible = true
+                  this.$emit('UnitClick', e['target']['classList'][0])
+                })
               })
             }else{
               this.$notification['error']({
@@ -49,11 +54,11 @@ export default {
     },
     getColorByState(state) {
       switch (state) {
-        case 'Idle': return '#fff86c';
-        case 'Trouble': return '#ff6565';
-        case 'Run': return '#a1ff9a';
-        case 'PM': return '#6ca8ff';
-        case 'Stop': return '#f56cff';
+        case 'Idle': return '#FFD700';
+        case 'Trouble': return '#ff5e5e';
+        case 'Run': return '#94ec8a';
+        case 'PM': return '#4889fc';
+        case 'Stop': return '#9e3da5';
         default: return '#d0d0d0';
       }
     },

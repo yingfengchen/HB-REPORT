@@ -11,32 +11,23 @@
           @submit="handlerSubmit"
           @reset="handleReset"
         >
-          <vxe-form-item span="5" title="开始时间" field="startTime" :item-render="{}" title-overflow="ellipsis">
+          <vxe-form-item span="5" title="发生时间段" field="startTime" :item-render="{}" title-overflow="ellipsis">
             <template #default>
               <vxe-input v-model="form.startTime" placeholder="时间选择" type="datetime" clearable />
             </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="结束时间" field="endTime" :item-render="{}" title-overflow="ellipsis">
+          <vxe-form-item span="5" title="~" field="endTime" :item-render="{}" title-overflow="ellipsis">
             <template #default>
               <vxe-input v-model="form.endTime" placeholder="时间选择" type="datetime"></vxe-input>
             </template>
           </vxe-form-item>
-          <vxe-form-item span="5" title="产品ID" field="product" :item-render="{}" title-overflow="ellipsis">
-            <template #default>
-              <vxe-input v-model="form.product" placeholder="请输入产品ID" type="text" clearable></vxe-input>
-            </template>
-          </vxe-form-item>
-          <vxe-form-item span="5" title="站点" field="operation" :item-render="{}" title-overflow="ellipsis">
-            <template #default>
-              <query-select
-                ref="QSOfPH"
-                v-model="form.operation"
-                url="/common/executeSql"
-                method="post"
-                :params="{sql_name: 'getAllOperations'}"
-                :option-config="{label: changeUL('description'), value: changeUL('name')}"
-              />
-            </template>
+          <vxe-form-item span="5" title="设备单元" field="machine">
+            <query-select
+              ref="xLine"
+              v-model="form.machine"
+              :options="macSource"
+              :option-config="{label: changeUL('name'), value: changeUL('name')}"
+            />
           </vxe-form-item>
           <vxe-form-item>
             <template #default>
@@ -50,7 +41,7 @@
     <a-spin :spinning="loading" tip="查询中...">
       <data-table
         :loading="loading"
-        title="产品信息表"
+        title="报警数据列表"
         :height="height"
         :columns="columns"
         :datasource="datasource"
@@ -63,11 +54,12 @@
 <script>
 import QuerySelect from '@comp/QuerySelect'
 import DataTable from '@comp/DataTable'
+import { executeSQL } from '@api/api'
 import { postAction } from '@api/manage'
 const { getCurrentTime } = require('@/utils/util')
 
 export default {
-  name: 'DefectRecordsReport',
+  name: 'MachineAlarmReport',
   components: {
     DataTable,
     QuerySelect
@@ -82,9 +74,9 @@ export default {
       form: {
         startTime: getCurrentTime('date', -3, 'day') + ' 08:30:00',
         endTime: getCurrentTime('date') + ' 08:30:00',
-        product: '',
-        operation: ''
+        machine: ''
       },
+      macSource: { options: [] },
       formRules: {
         'startTime': [
           { required: true }
@@ -134,32 +126,33 @@ export default {
       switchArea: 'T',
       areaTagList: 'PEMS_LCHW_ColdCapacityT.VAL_Actl,PEMS_MCHW_ColdCapacityT.VAL_Actl,PEMS_RCHW_ColdCapacityT.VAL_Actl',
       columns: [
-        { title: '时间戳', field: this.changeUL('timekey'), align: 'center', sortable: true, width: 150 },
-        { title: '产品 ID', field: this.changeUL('name'), align: 'center', sortable: true, width: 150 },
-        { title: '工厂', field: this.changeUL('factory_name'), align: 'center', sortable: true, width: 150 },
-        { title: '返厂次数', field: this.changeUL('fab_in_count'), align: 'center', width: 150 },
-        { title: '事件名称', field: this.changeUL('last_event_name'), align: 'center', width: 150 },
-        { title: '事件时间', field: this.changeUL('last_event_time'), align: 'center', width: 150 },
-        { title: '事件操作员', field: this.changeUL('last_event_user'), align: 'center', width: 150 },
-        { title: '不良描述', field: this.changeUL('defect_description'), align: 'center', width: 150 },
-        { title: '创建时间', field: this.changeUL('create_time'), align: 'center', width: 150 },
-        { title: '创建者', field: this.changeUL('create_user'), align: 'center', width: 150 },
-        { title: '产品状态', field: this.changeUL('product_state'), align: 'center', width: 150 },
-        { title: '工艺状态', field: this.changeUL('process_state'), align: 'center', width: 150 },
-        { title: '产品种类', field: this.changeUL('product_spec_name'), align: 'center', width: 150 },
-        { title: '所在站点', field: this.changeUL('process_operation_name'), align: 'center', width: 150 },
-        { title: '所属工单', field: this.changeUL('product_request_name'), align: 'center', width: 150 },
-        { title: '等级', field: this.changeUL('grade'), align: 'center', width: 150 },
-        { title: '不良代码', field: this.changeUL('fg_code'), align: 'center', width: 150 },
-        { title: 'Hold 状态', field: this.changeUL('hold_state'), align: 'center', width: 150 },
-        { title: '入厂时间', field: this.changeUL('initial_trackin_time'), align: 'center', sortable: true, width: 150 },
-        { title: '判定结果', field: this.changeUL('judge'), align: 'center', width: 150 },
-        { title: '返工次数', field: this.changeUL('rework_count'), align: 'center', width: 150 }
+        { title: 'ALARM_ID', field: this.changeUL('ALARM_ID'), align: 'center', sortable: true, width: 150 },
+        { title: 'MACHINE_NAME', field: this.changeUL('MACHINE_NAME'), align: 'center', sortable: true, width: 150 },
+        { title: 'SET_TIME', field: this.changeUL('SET_TIME'), align: 'center', sortable: true, width: 150 },
+        { title: 'ALARM_STATE', field: this.changeUL('ALARM_STATE'), align: 'center', width: 150 },
+        { title: 'CLEAR_TIME', field: this.changeUL('CLEAR_TIME'), align: 'center', width: 150 },
+        { title: 'CLEAR_USER', field: this.changeUL('CLEAR_USER'), align: 'center', width: 150 },
+        { title: 'ALARM_TEXT', field: this.changeUL('ALARM_TEXT'), align: 'center', width: 300 },
+        { title: 'ALARM_CODE', field: this.changeUL('ALARM_CODE'), align: 'center', width: 150 },
+        { title: 'ALARM_LEVEL', field: this.changeUL('ALARM_LEVEL'), align: 'center', width: 150},
+        { title: 'UNIT_NAME', field: this.changeUL('UNIT_NAME'), align: 'center', width: 150}
       ],
       datasource: []
     }
   },
+  mounted() {
+    this.initData()
+  },
   methods: {
+    async initData() {
+      let params = this.form
+
+      params['sql_name'] = 'getAllNormalMachine'
+      let res_categories = await executeSQL(params)
+      if(res_categories['success']) {
+        this.macSource['options'] = res_categories['result']
+      }
+    },
     handlerSubmit() {
       this.handlerWaterUseChartSubmit()
     },
@@ -167,32 +160,14 @@ export default {
       this.loading = true
       let _this = this
       let params = JSON.parse(JSON.stringify(_this.form))
-      let product_str = ""
-      const products = params['product'].split(' ')
-      for (let i = 0; i < products.length; i++) {
-        const product = products[i]
-        if(i > 0){
-          product_str += "'"
-        }
-        product_str += product
-        if(i < products.length - 1){
-          product_str += "',"
-        }
-      }
-      params['product'] = product_str
-      if(product_str !== ''){
-        params['product_flag'] = 'Y'
-      }else{
-        params['product_flag'] = ''
-      }
-      params['sql_name'] = 'getProductRecordsByParams'
+      params['sql_name'] = 'getMacAlarmParams'
 
       postAction('/common/executeSql', params).then(res => {
         _this.datasource = res['result']
-        this.loading = false
+        _this.loading = false
       }).catch(error => {
-        this.$message.error(error)
-        this.loading = false
+        _this.$message.error(error)
+        _this.loading = false
       })
     },
     handleReset() {
